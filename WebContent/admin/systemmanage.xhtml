@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/admin.css" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+<div class="layout">
+	<!-- User Top content -->
+	<ui:include src="admin-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv">
+		<div class="content">
+		<!-- Page Left content -->
+			<f:view>
+			<f:event listener="#{systemManageAction.initSystemEmail}" type="preRenderView" />
+			<h:form id="form2">	
+				<div style="clear:both;float:left; padding:0px; margin:0px;margin-left:40px;">
+						<div style="clear:both;float:left;padding-top:6px;"><img src="../images/admin/manageadmin_icon2.jpg" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:250px;" class="t17 tgra tbold">Service Management Settings</div>
+							<div style="clear:both;float:left; width:850px; height:2px; background-color:#464646;"></div>
+						</div>
+				</div>
+				<div style="clear:both;float:left; margin-top:11px; width:100%;">
+					<div style="clear:both;float:left;">
+						<div style="clear:both; float:left; width:216px; padding-right:5px;">
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink  actionListener="#{systemManageAction.editSystemSettings}" update=":form2:mainDiv"  onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Update Settings" /></div>
+						</div>
+					</div>
+					<div style="float:left; margin-left:22px;">
+						<div style="float:left; width:2px; height:700px; background-color:#000000;"></div>
+					</div>
+					<h:panelGroup style="float:left; margin-left:28px;" id="rightDiv">
+						<h:panelGroup layout="block" id="mainDiv" style="float:left; clear:both;display:none;">
+					    	<ui:repeat varStatus="i" var="systemConfig" value="#{systemManageAction.configList}">
+								<div style="clear:both;float:left;padding-top:4px;padding-bottom:11px;">
+									<div style="clear:both;float:left;width:200px;padding-top:6px; " class="t14 tgra tbold">#{systemConfig.configLabel}</div>
+									<div style="float:left">
+										<h:inputText id="test" value="#{systemConfig.configValue}"/>
+									</div>
+								</div>				
+					    	</ui:repeat>
+							<div class="frmbtn" style="clear:both;float:left;margin-left:200px; padding-top:18px;width:480px;">
+								<p:commandLink style="float:left;" styleClass="save" update=":form2:statusDiv" actionListener="#{systemManageAction.updateSettings}" onstart="processDialog('form2')" oncomplete="statusDialog('form2')" />
+								<p:commandLink style="float:left; margin-left:7px; " styleClass="discard" onclick="statusDialog('form2')"/>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="statusDiv" style="float:left; clear:both;display:block;" class="t14 tgra">
+					    	<ui:repeat varStatus="i" var="systemConfig" value="#{systemManageAction.configList}">
+							<div style="clear:both;float:left;padding-top:4px;padding-bottom:11px;">
+								<div style="clear:both;float:left;width:200px;padding-top:6px;" class="t14 tgra tbold">#{systemConfig.configLabel}</div>
+								<div style="float:left;padding-top:6px;" class="t14 tgra">: #{systemConfig.configValue}</div>					
+							</div>				
+					    	</ui:repeat>
+							<h:panelGroup rendered="#{systemManageAction.settingsUpdated}" style="clear:both;float:left;padding-top:14px;">
+								<span class="t14 tblue">System settings updated successfully.</span>
+							</h:panelGroup>		
+						</h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;display:none;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<div style="clear:both;float:left;margin-left: 6px;">please be patient...<br/><br/>Application restarting.</div>
+						</h:panelGroup>	
+					</h:panelGroup>
+		
+				</div>
+			</h:form>
+			</f:view>	
+		</div>
+	</div>
+</div>
+</body>
+</html>

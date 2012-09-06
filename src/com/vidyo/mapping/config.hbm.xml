@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.vidyo.beans.ConfigBean" table="TLB_SETTINGS">
+	   <id name="id" column="CONFIG_ID" >
+	   <generator class="identity"/>
+	  </id>
+
+	  <property name="configName">
+		 <column name="CONFIG_NAME" />
+	  </property>
+	  <property name="configValue">
+		 <column name="CONFIG_VALUE" />
+	  </property>
+	  <property name="configLabel">
+		 <column name="CONFIG_LABEL" />
+	  </property>
+
+   </class>
+</hibernate-mapping>

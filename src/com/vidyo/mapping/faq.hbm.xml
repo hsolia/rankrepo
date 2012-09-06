@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.vidyo.beans.Faq" table="TLB_FAQ">
+	   <id name="id" column="FAQ_ID" >
+	   <generator class="identity"/>
+	  </id>
+
+	  <property name="faqQuetion">
+		 <column name="FAQ_QUETION" />
+	  </property>
+	  <property name="faqAnswer">
+		 <column name="FAQ_ANSWER" />
+	  </property>
+   </class>
+</hibernate-mapping>

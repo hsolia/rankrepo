@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+
+<h:head>
+<title>VidyoWay :: Login</title>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/registration.css" rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
+</h:head>
+<h:body>
+<div style="width:824px; float:left; position:relative; left:50%; margin-left:-412px;">
+	<!-- Page Right content -->
+	<ui:include src="top-menu.xhtml"/>
+	<div style="clear:both; float:left;height:14px;"></div>
+	<div style="clear:both; float:left; width:782px; padding-right:42px;">
+		<div style="float:right; padding-bottom:10px; padding-right: 17px;"><img src="../images/Login_headerimg.jpg" /></div>
+		<div style="clear:both; float:right; width:570px;">
+		<div style="clear:both; float:left; width:570px; height:20px;padding-top:15px; padding-bottom: 15px;">
+			<h:message for="loginform" id="loginformM" errorClass="errorMsg" infoClass="infoMsg" />
+		</div>
+		<h:form id="loginform" name="form1" method="post" action="" rendered="#{loginForm.actionType == 'doLogin' || loginForm.actionType == 'getLogin'}">
+			<h:panelGroup style="clear:both;float:left;padding-bottom:34px;" rendered="#{!loginForm.forgotUsername}">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Username</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+						<h:inputText class="inputtext" tabindex="1"  id="username" value="#{loginForm.username}" disabled="#{loginForm.forgotUsername}" required="true" requiredMessage="Username is required" />
+					</div>
+					<div style="clear:right;float:left;"><h:message for="username" styleClass="errorMsg" /></div>
+				</div>
+				<div style="clear:both;float:left;padding-top:2px;" class="text14_gra">
+					<p:commandLink immediate="true" styleClass="text14_gra" actionListener="#{loginForm.clicked('username')}" update="@form :loginformM" value="Forgot Username" />
+				</div>
+			</h:panelGroup>
+			<h:panelGroup style="clear:both;float:left;padding-bottom:44px;" rendered="#{!loginForm.forgotPassword}">
+				<div style="clear:both;float:left;font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Password</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+						<h:inputSecret class="inputpassword" tabindex="2" id="password" redisplay="true" value="#{loginForm.password}"  label="Password" required="true" requiredMessage="Password is required" />
+					</div>
+					<div style="clear:right;float:left;"><h:message for="password" styleClass="errorMsg" /></div>
+				</div>
+				<div class="text14_gra" style="clear:both;float:left;padding-top:2px;">
+					<p:commandLink  immediate="true" styleClass="text14_gra" actionListener="#{loginForm.clicked('password')}" update="@form :loginformM" value="Forgot Password" />
+				</div>
+			</h:panelGroup>
+			<h:panelGroup style="clear:both;float:left;padding-bottom:34px;" rendered="#{loginForm.forgotUsername}">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; width:400px;" class="text16_gra">Email Address</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+	                     <p:inputText styleClass="inputtext" id="emailid" tabindex="1" value="#{loginForm.emailaddress}" required="true" requiredMessage="Email Address is required" validatorMessage="Email address is not valid">
+		                      <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+	                      </p:inputText>
+					</div>
+					<div style="clear:right;float:left;"><h:message for="emailid" styleClass="errorMsg" /></div>
+				</div>
+			</h:panelGroup>
+			<h:panelGroup style="clear:both;float:left;width:400px;" rendered="#{!loginForm.forgotUsername and !loginForm.forgotPassword}">
+					<div style="clear:both;float:left;"><p:selectBooleanCheckbox value="#{loginForm.rememberMe}"  style="display:inline;"  /></div>
+					<div style="width:300px;float:left;padding-left:7px; padding-top:4px; padding-bottom:6px;" class="text16_gra">Remember me on this computer</div>
+			</h:panelGroup>
+ 			<div style="clear:both;float:left; padding-bottom:73px; padding-top:40px;">
+				<div style="clear:both;float:left;">
+					<h:commandButton styleClass="inputsubmit" tabindex="3" actionListener="#{loginForm.loginAction}"  />
+				</div>
+			</div>
+		</h:form>
+		</div>
+	</div>
+
+</div>
+</h:body>
+</html>

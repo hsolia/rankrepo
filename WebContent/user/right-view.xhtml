@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:p="http://primefaces.org/ui"    
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<style type="text/css">
+.ui-shadow {
+	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8); -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8); box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8)
+}
+
+#lockroom a{
+	background-image:url(../images/manmeet/lock_btn.jpg); 
+	background-repeat:no-repeat;
+	width:34px; height:33px; display:block;
+}
+
+#lockroom a.lock{background-position:0px 0px;
+}
+#lockroom a.lock:hover{background-position:0px -33px;}
+
+#lockroom a.unlock{background-position:0px -33px;
+}
+#lockroom a.unlock:hover{background-position:0px -0px;}
+
+
+input[type=text].inputbluee2{
+	width:315px;
+	height:19px;
+	background-image:url(../images/account/textbox.jpg);
+}
+ 
+</style>
+<script language="javascript" src="../js/common.js" />
+
+<f:event listener="#{userAction.initRightView}" type="preRenderView" />
+<f:event listener="#{meetingControlAction.initControl}" type="preRenderView" />
+	<h:form id="rightform">	
+		<div style="float:right; width:320px;">
+			<div style="clear:both;float:left;">
+				<div style="clear:both;float:left;"><img src="../images/dialout_icon11.jpg" /></div>
+				<div style="float:left;">
+					<div style="clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:11px;" class="text15_gra">Meeting Room Information</div>
+					<div style="clear:both;float:left; height:1px; font-size:0; overflow:hidden; background-color:#88BF35; width:273px;"></div>
+				</div>
+			 </div>
+			 <h:panelGroup id="roomInfo" style="clear:both;float:left; width:320px;">
+			 	<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px;" class="text14_gra">Meeting Room Number</div>
+				<div style="float:right; padding-bottom:4x; padding-top:4px;" class="text14_gra"><h:outputText value="#{userAction.roomnumber}"/></div>
+				<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px;" class="text14_gra">Meeting PIN</div>
+				<div style="float:right; padding-bottom:4px; padding-top:4px;" class="text14_gra"><h:outputText value="#{userAction.roompin}"/></div>
+				<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px; text-decoration:underline;" class="text14_blue"><p:commandLink styleClass="sublink" actionListener="#{userAction.initRoomUpdate}" update=":updateRoomForm:mainDiv" onstart="loadDialog('updateRoomForm')" oncomplete="openDialog('updateRoomForm')" >Modify Room ID/PIN</p:commandLink></div>
+				<div style="clear:both;float:left;padding-bottom:0px; padding-top:12px;">
+					<div id="lockroom" style="clear:both;float:left;"><p:commandLink id="lockIcon" update="lockIcon lockIconT" actionListener="#{meetingControlAction.lockUnlockRoom}" styleClass="#{meetingControlAction.roomEntity.locked=='true' ? 'unlock' : 'lock'}" /></div>
+					<div style="clear:right;float:left; padding-bottom:4px; padding-left:12px; padding-top:7px;" class="t15 tgra3 tbold"><h:outputText id="lockIconT" value="#{meetingControlAction.roomEntity.locked=='true' ? 'Unlock Room' : 'Lock Room'}"/></div>
+				</div>					
+			 </h:panelGroup>
+			 <div style="clear:both;float:left; margin-top:39px;">
+			 	<div style="clear:both;float:left;"><img src="../images/dialout_icon12.jpg" /></div>
+				<div style="clear:right;float:left;">
+					<div style="clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:8px;" class="text15_gra">Call Instructions</div>
+					<div style="clear:both;float:left; height:1px;font-size:0; overflow:hidden; background-color:#F7B10A; width:273px;"></div>
+				</div>
+			 </div>
+			 <div style="clear:both;float:left; width:320px;">
+			 	<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px; text-decoration:underline;" class="text14_blue"><p:commandLink styleClass="sublink" actionListener="#{userAction.loadCallInstruction}" update=":r_form3:mainDiv" onstart="loadDialog('r_form3')" oncomplete="openDialog('r_form3')" >Display/Print Call Instructions</p:commandLink></div>
+				<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px; text-decoration:underline;" class="text14_blue"><p:commandLink styleClass="sublink" actionListener="#{userAction.loadCallInstruction}" update=":r_form2:mainDiv" onstart="loadDialog('r_form2')" oncomplete="openDialog('r_form2')" >Email Call Instructions</p:commandLink></div>
+			 </div>
+			 <div style="clear:both;float:left; margin-top:39px;">
+			 	<div style="clear:both;float:left;"><img src="../images/dialout_icon13.jpg" /></div>
+				<div style="clear:right;float:left;">
+					<div style="clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:6px;" class="text15_gra">Support</div>
+					<div style="clear:both;float:left; height:1px;font-size:0; overflow:hidden; background-color:#F7B10A; width:273px;"></div>
+				</div>
+			 </div>
+			 <div style="clear:both;float:left; width:320px;">
+			 	<div style="clear:both;float:left; padding-bottom:4px; padding-top:2px;">
+			 		<div class="t14 tgra1" style="clear:both;float:left;padding-right:16px; text-decoration:none;" >Call: </div>
+			 		<div class="t14 tgra1" style="float:left; text-decoration:none;">+1.866.99.VIDYO (+1.866.998.4396) <Br/>+1.201.289.8597</div>
+			 	</div>
+			 	<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px;">
+			 		<div class="t14 tgra1" style="clear:both;float:left;padding-right:6px; text-decoration:none;" >Email: </div>
+			 		<div class="t14" style="float:left;"><a href="mailto:support@vidyo.com" class="sublink">support@vidyo.com</a></div>
+				</div>
+				<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px; text-decoration:underline;" class="text14_blue"><a href="faq.jsf" class="sublink">FAQ</a></div>
+				<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px; text-decoration:underline;" class="text14_blue"><a href="../vidyo_userguide.pdf" target="blank" class="sublink">User Guide</a></div>
+				<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px; text-decoration:underline;" class="text14_blue"><a href="feedback.jsf" class="sublink">Feedback</a></div>
+			 </div>
+			 <div style="clear:both;float:left; margin-top:41px;">
+			 	<div style="clear:both;float:left;"><img src="../images/dialout_icon14.jpg" /></div>
+				<div style="clear:right;float:left;">
+					<div style="clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:7px;" class="text15_gra">Share With Others</div>
+					<div style="clear:both;float:left; height:1px;font-size:0; overflow:hidden; background-color:#88BF35; width:273px;"></div>
+				</div>
+			 </div>
+			 <div style="clear:both;float:left; margin-bottom:20px;">
+			 	<div style="clear:both;float:left; padding-top:2px;" class="text14_gra">Share Vidyo with your friends and associates.</div>
+			 </div>
+			 <div style="clear:both;float:left; margin-left:74px;">
+			 	<div style="clear:both;float:left;"><a href="http://www.linkedin.com/companies/vidyo" target="blank" ><img src="../images/dialout_icon15.jpg" border="0" /></a></div>
+				<div style="clear:right;float:left;margin-left:18px;"><a href="http://www.facebook.com/vidyoinc?ref=nf" target="blank"><img src="../images/dialout_icon16.jpg" border="0" /></a></div>
+				<div style="clear:right;float:left; margin-left:18px;"><a href="http://twitter.com/vidyo" target="blank"><img src="../images/dialout_icon17.jpg" border="0" /></a></div>
+			 </div>
+		</div>
+	</h:form>
+	<h:form id="r_form2">
+		<p:dialog id="form2Dialog" showHeader="false" position="center" resizable="false" draggable="false" header="Modal Dialog" widgetVar="r_form2Dialog" modal="true">  
+		    <div class="pop-up1" style="clear:both; float:left; height:450px; padding:0px; padding-top:0; padding-bottom:0px;">
+				<div id="test" style="clear:both;float:left;">
+					<div class="pop-up1 t15 tbold gra" style="clear:both; float:left;padding-bottom:2px; padding-top:5px;">Send Call Instruction in Email</div>
+					<div class="pop-up1" style="clear:both; float:left; height:2px;font-size:0; overflow:hidden; background-color:#C8C8C8;display:table-cell;"></div>
+				</div>
+				<h:panelGroup id="processDiv"  class="pop-up1 t12 tgra" style="clear:both;float:left;padding-top: 25px; padding-bottom: 25px;text-align: center; ">
+					<p:graphicImage value="../images/ajax-loader.gif"/>
+				</h:panelGroup>
+				<h:panelGroup id="statusDiv"  class="pop-up1 t13 tgra" style="clear:both;float:left;padding-top: 25px;text-align: center; ">
+					<div style=" padding-bottom: 25px;">We have sent call instruction details to the following email:<br />#{userAction.userEmailTo}</div>
+					<p:commandLink style="margin-top:25px; " styleClass="sublink" onclick="r_form2Dialog.hide()">Close</p:commandLink>
+				</h:panelGroup>		
+				<h:panelGroup id="mainDiv" class="t13 tgra" style="clear:both;float:left;padding-top:10px;">
+					<div style="clear:both;float:left;" class="t13 tgra tbold">Email send To</div>
+					<div style="clear:both;float:left;"><h:inputText id="sendto" value="#{userAction.userEmailTo}" /> </div>
+					<div style="clear:both;float:left;margin-top:5px;" class="t13 tgra tbold">Send from</div>
+					<div style="clear:both;float:left"><h:inputText id="sendfrom" value="#{userAction.userEmailFrom}" /> </div>
+					<div style="clear:both;float:left;margin-top:5px;" class="t13 tgra tbold">Subject </div>
+					<div style="clear:both;float:left"><h:inputText id="subject" value="#{userAction.userEmailSubject}" /> </div>
+					<div style="clear:both;float:left;margin-top:5px;" class="t13 tgra tbold">Call Instruction</div>
+					<div style="clear:both;float:left"><p:editor id="editor" height="250" width="620" interfaceColor="#F2F2F2" value="#{userAction.userEmailBody}"/></div>
+					<div class="pop-up1" style="clear:both;float:left; padding-top:7px;">
+						<p:commandLink style="clear:both;float:left;" styleClass="sublink" actionListener="#{userAction.sendCallInstruction}" immediate="false" update=":r_form2:statusDiv" onstart="processDialog('r_form2')" oncomplete="statusDialog('r_form2')" >Send</p:commandLink>
+						<p:commandLink style="float:right;" styleClass="sublink" onclick="r_form2Dialog.hide()">Close</p:commandLink>					
+					</div>
+				</h:panelGroup>	
+			</div> 			  
+		</p:dialog>
+	</h:form>
+	<h:form id="r_form3">
+		<p:dialog id="callInfoDialog" appendToBody="true" showHeader="false" position="center" resizable="false" draggable="false" header="Modal Dialog" widgetVar="r_form3Dialog" modal="true">  
+		    <div style="clear:both; float:left; height:450px; width:620px;  padding:0px; padding-top:10; padding-bottom:0px;">
+				<div id="test" style="clear:both;float:left;">
+					<div style="clear:both; float:left;padding-bottom:2px; padding-top:5px; width:620px;" class="t15 tbold gra">Join Meeting Information</div>
+					<div style="clear:both; float:left; height:2px;font-size:0; overflow:hidden; background-color:#C8C8C8; width:620px;"></div>
+				</div>
+				<h:panelGroup id="processDiv"  class="pop-up1 t12 tgra" style="clear:both;float:left;padding-top: 25px; padding-bottom: 25px;text-align: center; ">
+					<p:graphicImage value="../images/ajax-loader.gif"/>
+				</h:panelGroup>				
+				<h:panelGroup id="mainDiv" class="t14 tgra" style="clear:both;float:left;padding-top: 10px; padding-bottom: 10px; ">
+					<h:panelGroup style="clear:both;float:left; height:380px; overflow-y: scroll; overflow-x: hidden;width:620px;">
+						<h:outputText id="contentDiv" value="#{userAction.userEmailBody}" escape="false" />
+					</h:panelGroup> 
+				</h:panelGroup>
+				<h:panelGroup id="statusDiv"  class="t13 tgra" style="clear:both;float:left;padding-top: 25px; padding-bottom: 25px;width:480px; text-align: center; ">
+				</h:panelGroup>				
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left; width:620px; height:3px; font-size:0; overflow:hidden; background-image:url(../images/calender_bgimg.jpg)"></div>
+				</div>
+				<div class="pop-up1" style="clear:both;float:left; padding-top: 2px;">
+					<p:commandLink style="clear:both;float:right; margin-left:7px; " styleClass="sublink" onclick="r_form3Dialog.hide()">Close</p:commandLink>
+					<h:commandLink style="float:left;" styleClass="sublink" value="Print Call Instructions">
+						<p:printer target="contentDiv"  />
+					</h:commandLink>
+				</div>
+			</div>  
+		</p:dialog>	
+	</h:form>
+
+	<h:form id="updateRoomForm">
+		<p:dialog id="updateRoomFormDialog" showHeader="false" position="center" resizable="false" draggable="false" header="Change Room Info" widgetVar="updateRoomFormDialog" modal="true">  
+		    <div class="pop-up1" style="clear:both; float:left; height:450px; padding:0px; padding-top:0; padding-bottom:0px;">
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;"><img src="../images/account/account_icon3.jpg" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:240px;" class="t17 tbold tblue1">Change Room Info</div>
+					<div style="clear:both;float:left; width:570px; height:3px;font-size:0; overflow:hidden; background-image:url(../images/dialout_icon10.jpg)"></div>
+				</div>
+			</div>
+			<h:panelGroup class="pop-up1" layout="block" id="mainDiv" style="float:left; clear:both;">
+				<p:blockUI  block="mainDiv" widgetVar="updateRoomFormOverlay">
+					<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+					<span style="display:block;width:150px;">Pleae wait...</span>
+				</p:blockUI>
+				<div style="clear:both;float:left; margin-top:29px;">
+					<div style="clear:both;float:left;padding-top:2px;"><img src="../images/account/account_icon4.jpg" /></div>
+					<div style="float:left;">
+						<div style="clear:both;float:left; padding-bottom:2px; padding-top:10px; width:400px; font-weight:bold;" class="t14 tbold tblue">Meeting Room # <span style="color:#464646; font-weight:normal;"><h:outputText value="#{userAction.roomnumber}" /></span></div>
+						<div style="clear:both;float:left; width:405px; height:2px; font-size:0; overflow:hidden; background-image:url(../images/account/account_bg1.jpg)"></div>
+					</div>
+				</div>
+				<div style="clear:both;float:left; margin-top:10px; margin-left:50px;">
+					<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text14_gra">Change Conference Room #</div>
+					<div style="clear:both;float:left; padding-left:2px;">
+	                      <h:inputText styleClass="inputbluee2" tabindex="1"  id="roomnumber" value="#{userAction.newroomnumber}"  required="false"  requiredMessage="Room number is required" validatorMessage="Room ID must be between 4 to 16 digits" validator="#{userAction.VidyoRoomNumberValidator}" >
+	                      		<f:validateRegex pattern="\d*" />
+	                      		<f:validateLength minimum="4" />                      		
+	                      		<f:validateLength maximum="16" />
+	                      	</h:inputText>
+					</div>
+					<div  style="float:left;padding-top: 8px;padding-left: 5px;" class="t12 tgra2 tbold">4 to 16 digits</div>
+					<div style="clear:both;float:left; height:12px;"><h:message id="roomnumberM" for="roomnumber" errorClass="errorMsg"  /></div>				
+				</div>
+				<div style="clear:both;float:left; margin-top:14px;">
+					<div style="clear:both;float:left;padding-top:1px;"><img src="../images/account/account_icon5.jpg" /></div>
+					<div style="float:left;">
+						<div style="clear:both;float:left; padding-bottom:2px; padding-top:9px; width:400px;  font-weight:bold;" class="t14 tbold tblue">PIN # <span style="color:#464646; font-weight:normal;"><h:outputText value="#{userAction.roompin}" /></span></div>
+						<div style="clear:both;float:left; width:405px; height:2px; font-size:0; overflow:hidden; background-image:url(../images/account/account_bg1.jpg)"></div>
+					</div>
+				</div>
+				<div style="clear:both;float:left; margin-top:10px; margin-left:50px;">
+					<div style="clear:both;float:left; padding-bottom:2px; font-weight:bold;" class="text14_gra">Change Conference Room PIN</div>
+					<div style="clear:both;float:left;">
+						<h:inputText id="roompin" styleClass="inputbluee2" required="false"  validatorMessage="PIN must be between 3 to 10 digits" value="#{userAction.newroompin}" >
+							<f:validateRegex pattern="|\d{3,10}" />
+						</h:inputText>
+					</div>
+					<div  style="float:left;padding-top: 8px; padding-left: 5px;" class="t12 tgra2 tbold">3 to 10 digits</div>
+					<div style="clear:both;float:left;height:12px;"><h:message id="roompinM" for="roompin" errorClass="errorMsg"  /></div>				
+				</div>
+				<div style="clear:both;float:left; margin-top:22px; margin-left:50px;">
+					<div style="clear:both; float:left; padding:10px; text-align:center; border:1px solid #C9C9C9; border-bottom:0px; width:383px; background-image:url(../images/account/war_bg.jpg); background-repeat:repeat-x; background-position:bottom; background-color:#FFF100;" class="t14"><span class="tbold">Warning:</span> You are about to change the room number or PIN. This means that you will need to notify any previously invited participants of the change or they will not be able to join the meeting.</div>			
+				</div>
+				<div style="clear:both;float:left; margin-top:15px; margin-left:50px; width:404px;">
+					<p:commandLink style="clear:both;float:left;" styleClass="tblue" actionListener="#{userAction.updateRoom}"  update=":rightform:roomInfo mainDiv" onclick="openOverlay('updateRoomForm','Overlay')"  oncomplete="closeOverlay(xhr, status, args,'updateRoomForm');"  value="Update"/>
+					<p:commandLink style="float:right; margin-left:7px; " styleClass="tblue" immediate="true" onclick="updateRoomFormDialog.hide()">Close</p:commandLink>
+				</div>
+			</h:panelGroup>
+			<h:panelGroup id="statusDiv" class="pop-up1 t13 tgra" style="clear:both;float:left;padding-top:25px;text-align: center; " >
+				<div style=" padding-bottom: 25px;">You have successfully updated your Meeting Room Information.</div>
+				<p:commandLink style="margin-top:25px; " styleClass="sublink" onclick="updateRoomFormDialog.hide()">Close</p:commandLink>
+			</h:panelGroup>			
+			<h:panelGroup  id="processDiv"  class="pop-up1 t12 tgra" style="clear:both;float:left;padding-top: 25px; padding-bottom: 25px;text-align: center; ">
+				<p:graphicImage value="../images/ajax-loader.gif"/>
+			</h:panelGroup>
+			</div> 			  
+		</p:dialog>
+	</h:form>
+
+</ui:composition>

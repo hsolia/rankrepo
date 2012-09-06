@@ -1,0 +1,80 @@
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html"     
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<style type="text/css">
+
+a.admin{
+display:inline-block;
+background-image:url(../images/admin/admin_menu.jpg); 
+background-repeat:no-repeat;
+width:164px; height:43px;
+background-position:0px 0px;
+}
+a.admin:hover{background-position:0px -43px;}
+
+a.customers{
+padding:0px;
+margin:0px;
+display:inline-block;
+background-image:url(../images/admin/admin_menu.jpg); 
+background-repeat:no-repeat;
+width:164px; height:43px;
+background-position:-164px 0px;
+}
+a.customers:hover{background-position:-164px -43px;}
+
+a.email{
+background-image:url(../images/admin/admin_menu.jpg); 
+background-repeat:no-repeat;
+width:164px; height:43px; display:inline-block;
+background-position:-328px 0px;
+}
+a.email:hover{background-position:-328px -43px;}
+
+a.services{
+background-image:url(../images/admin/admin_menu.jpg); 
+background-repeat:no-repeat;
+width:164px; height:43px; display:inline-block;
+background-position:-492px 0px;
+}
+a.services:hover{background-position:-492px -43px;}
+
+a.reports{
+background-image:url(../images/admin/admin_menu.jpg); 
+background-repeat:no-repeat;
+width:150px; height:43px; display:inline-block;
+background-position:-656px 0px;
+}
+a.reports:hover{background-position:-656px -43px;}
+
+
+a.logout{
+background-image:url(../images/logout_btn.jpg); 
+background-repeat:no-repeat;
+width:111px; height:47px; display:block;
+background-position: 0px 0px;}
+a.logout:hover{background-position: -111px 0px;}
+
+
+</style>
+
+<h:form id="navForm">
+<div style="clear:both; float:left; width:100%">
+	<div style="float:left; padding-left:23px;padding-top:12px;"><a href="manageadmin.jsf"><img src="../images/vidyo_img.jpg" border="0" /></a></div>
+	<div style="float:right; padding-right:41px;"><h:commandLink action="#{loginForm.doLogout}" styleClass="logout" /></div>
+	<div style="float:right; padding-right:10px; padding-top:10px;" class="welcomeText">Welcome, <h:outputText value="#{sessionScope.user.firstname}" /></div>
+</div>
+<div style="clear:both;float:left;padding-top:14px; width:100%;text-align:center;">
+		<div style="clear:both;display:inline-block;">
+			<div style="display:inline-block;clear:both;float:left;"><a href="manageadmin.jsf" class="admin"></a></div>
+			<div style="display:inline-block;float:left;"><a href="managecustomer.jsf" class="customers"></a></div>
+			<div style="display:inline-block;float:left;"><a href="systememail.jsf" class="email"></a></div>
+			<div style="display:inline-block;float:left;"><a href="systemmanage.jsf" class="services"></a></div>
+			<div style="display:inline-block;float:left;"><a href="reports.jsf" class="reports"></a></div>
+		</div>
+</div>
+</h:form>
+</ui:composition>

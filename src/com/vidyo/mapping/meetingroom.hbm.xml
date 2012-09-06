@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.vidyo.dtos.RoomEntityDTO" table="TLB_ROOM">
+	   <id name="roomID" column="ROOM_ID" >
+	   <generator class="identity"/>
+	  </id>
+
+	  <property name="extension">
+		 <column name="ROOM_NUMBER" />
+	  </property>
+
+	  <property name="roomPIN">
+		 <column name="ROOM_PIN" />
+	  </property>
+	  <property name="roomURL">
+		 <column name="ROOM_URL" />
+	  </property>
+
+   </class>
+</hibernate-mapping>

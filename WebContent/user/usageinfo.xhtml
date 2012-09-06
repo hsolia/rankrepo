@@ -1,0 +1,112 @@
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html"  
+	xmlns:p="http://primefaces.org/ui"   
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<style type="text/css">
+.col{
+	white-space:normal;
+	word-wrap: break-word;
+    -moz-hyphens:auto; 
+    -webkit-hyphens:auto; 
+    -o-hyphens:auto; 
+    hyphens:auto; 
+}
+.col0{
+	word-wrap: break-word;
+    -moz-hyphens:auto; 
+    -webkit-hyphens:auto; 
+    -o-hyphens:auto; 
+    hyphens:auto; 
+    width:100px;
+	border-left:1px solid #0089cb;    
+}
+
+.datepicker input[type=text]{
+	width:95px;
+	height:18px;
+	background-image:url(../images/account/inputblue_small.jpg);
+}
+
+
+table.datatlb{
+	border-bottom:1px solid #0089cb;
+}
+table.datatlb thead{
+	border:0px;
+}
+table.datatlb tbody tr{
+	background-image: url('../images/account/dotted.jpg'); background-position: bottom; background-repeat: repeat-x;
+}
+
+table.datatlb thead tr th{
+	word-wrap:break-word; padding:4px;
+	vertical-align:bottom;
+	text-align: center;
+	border-bottom:1px solid #0089cb;
+}
+
+table.datatlb tbody tr td{
+	word-wrap:break-word;
+	word-wrap: break-word;
+    -moz-hyphens:auto; 
+    -webkit-hyphens:auto; 
+    -o-hyphens:auto; 
+    hyphens:auto; 	
+	padding:4px; border-right:1px solid #0089cb;
+	vertical-align: text-top;
+}
+
+</style>
+		<div style="clear:both;float:left; width:627px;">
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left; position: relative; top:-2px;"><img src="../images/account/usage_icon1.jpg" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:150px;" class="t17 tbold tblue1">Usage Info</div>
+					<div style="clear:both;float:left; width:577px; height:3px; background-image:url(../images/dialout_icon10.jpg)"></div>
+				</div>
+			</div>
+			
+			<h:panelGroup id="usageContent"  style="clear:both;float:left;margin-top:r0px; width:100%;">
+		    	<h:panelGroup id="usageList" style="clear:both;float:left;">
+			    	<h:panelGroup id="recordingContent" style="width:629px;clear:both;float:left;">
+					<h:dataTable columnClasses="col0,col,col1,col,col,col,col" rules="groups" width="627px;" cellpadding="0" cellspacing="0" headerClass="t14 tgra3 tbold col" rowClasses="t14 tgra3 col" styleClass="datatlb" var="callInfoDto" value="#{reportAction.callInfoList}">
+						<h:column>
+				            <f:facet name="header">Call ID</f:facet>  
+				            <h:outputText value="#{callInfoDto.callId}" /> 
+						</h:column>
+						<h:column>
+				            <f:facet name="header">Conference Name</f:facet>  
+				            <h:outputText value="#{callInfoDto.conferenceName}" /> 
+						</h:column>
+						<h:column>
+				            <f:facet name="header">Caller ID</f:facet>  
+				            <h:outputText value="#{callInfoDto.callerId}" /> 
+						</h:column>
+						<h:column>
+				            <f:facet name="header">JoinTime</f:facet>  
+				            <h:outputText value="#{callInfoDto.joinTime}" /> 
+						</h:column>
+						<h:column>
+				            <f:facet name="header">LeaveTime</f:facet>  
+				            <h:outputText value="#{callInfoDto.leaveTime}" /> 
+						</h:column>
+						<h:column>
+				            <f:facet name="header">Status</f:facet>  
+				            <h:outputText value="#{callInfoDto.callState}" /> 
+						</h:column>
+					</h:dataTable>
+					</h:panelGroup>
+			    	<div style="float:left;margin-top:20px;">
+			    		<div style="float:left;padding-right:5px;" class="t14 tgra1">Pages</div>
+						<ui:repeat var="page" value="#{reportAction.pagging.totPages}">
+							<p:commandLink style="float:left;margin-right:5px;" styleClass="sublink" update="@form" actionListener="#{reportAction.pagging.movePage(page)}" onclick="contentOverlay.show()" oncomplete="contentOverlay.hide()">#{page}</p:commandLink>
+						</ui:repeat>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>
+		
+		</div>
+</ui:composition>

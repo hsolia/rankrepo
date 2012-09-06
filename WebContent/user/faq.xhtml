@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/dialout.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript" src="../spywidget/SpryAccordion.js" />
+<link href="../spywidget/SpryAccordion.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+a.call{
+background-image:url(../images//call_icon.jpg); 
+background-repeat:no-repeat;
+width:122px; height:52px; display:block;
+background-position: 0px 0px;}
+a.call:hover{background-position: -122px 0px;}
+</style>
+</h:head>
+<body>
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv" style="border-top:0px;">
+		<div class="content">
+			<!-- Page Left content -->
+			<f:view>
+			<f:event listener="#{faqAction.initFaqs}" type="preRenderView" />
+			<h:form id="form">
+				<div style="clear:both;float:left; width:627px;">
+					<div style="clear:both;float:left; padding:0px; margin:0px;">
+						<div style="clear:both;float:left;"><img src="../images/faq/faq_icon1.jpg" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:6px; width:150px;" class="t17 tgreen2 tbold">FAQ</div>
+							<div style="clear:both;float:left; width:577px; height:3px; font-size:0px; overflow:hidden; background-image:url(../images/faq/faq_bgimg1.jpg)"></div>
+						</div>
+					</div>
+					<!-- FAQ content -->
+					<div style="clear:both; float:left; height: 45px;"></div>
+	
+	
+					<div style="clear:both; float:left; width:625px;" id="Acc1" class="Accordion">
+				    	<ui:repeat varStatus="i" var="faq" value="#{faqAction.faqList}">
+						  <div class="AccordionPanel">
+						    <div class="AccordionPanelTab" style="white-space:normal;"><a href="#p#{i.index}">#{faq.faqQuetion}</a></div>
+						    <div id="p4" class="AccordionPanelContent t15 tgra"><div style="padding:8px; padding-bottom:20px;white-space:normal;">#{faq.faqAnswer}</div></div>
+						  </div>
+				    	</ui:repeat>
+			    	</div>
+				</div>
+			</h:form>
+			</f:view>
+		</div>
+		<!-- Page FooterRight content -->
+		<ui:include src="user-footer.xhtml"/>
+	</div>	
+</div>
+<script type="text/javascript">
+var acc1 = new Spry.Widget.Accordion("Acc1");
+</script>
+</body>
+</html>

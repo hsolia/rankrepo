@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<style type="text/css">
+a.meetnow{
+background-image:url(../images/meetnow_btn.jpg); 
+background-repeat:no-repeat;
+width:144px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.meetnow:hover{background-position:-144px 0px;}
+
+a.join{
+background-image:url(../images/join_icon.jpg); 
+background-repeat:no-repeat;
+width:144px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.join:hover{background-position:-144px 0px;}
+
+
+a.login{
+background-repeat:no-repeat;
+background-image:url(../images/login_icon.jpg); width:113px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.login:hover{background-position:-113px 0px;}
+</style>
+
+<div style="clear:both; float:left; width:100%">
+	<div style="float:left; padding-left:23px;padding-top:12px;"><a href="index.jsf"><img src="../images/vidyo_img.jpg"  border="0" /></a></div>
+	<div style="float:right;"><a href="meetnow.jsf" class="login"></a></div>
+	<div style="float:right;"><a href="meetnow.jsf" class="meetnow"></a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="contactus.jsf" class="topNav">Contact</a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="aboutus.jsf" class="topNav">About</a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="features.jsf" class="topNav">Features</a></div>
+</div>
+</ui:composition>

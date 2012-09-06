@@ -1,0 +1,110 @@
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html"  
+	xmlns:p="http://primefaces.org/ui"   
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/registration.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+input[type=text], input[type=password]{
+	width:315px;
+	background-image:url(../images/account/textbox.jpg);
+}
+
+</style>
+
+
+<div style="clear:both;float:left; width:627px;">
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;"><img src="../images/account/account_icon1.jpg" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:150px;" class="t17 tbold tblue1">My Account</div>
+					<div style="clear:both;float:left; width:577px; height:3px; background-image:url(../images/dialout_icon10.jpg)"></div>
+					<div style="clear:both;float:right;">
+						<p:commandLink immediate="true" update="@form" actionListener="#{userAction.changeAction('usageInfo')}"  style="float:right" styleClass="usage" />
+						<p:commandLink immediate="true" update="@form" oncomplete="onLoad()" actionListener="#{userAction.changeAction('editAccount')}" style="float:right" styleClass="acchange" />
+					</div>					
+				</div>
+			</div>
+			
+			<h:panelGroup rendered="#{userAction.actionType=='editAccount'}">
+			<div style="clear:both;float:left; padding-top:44px; padding-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Username</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+				  <h:inputText disabled="true" value="#{userAction.username}" />
+				</div>
+			</div>
+			<div style="clear:both;float:left; padding-top:23px; padding-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Firstname*</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+				  <p:inputText tabindex="1" id="firstname" value="#{userAction.firstname}" required="true" requiredMessage="First name required" >
+					<f:ajax event="blur"  render="firstnameM firstname" execute="firstname" />
+				  </p:inputText>
+				</div>
+				<div style="float:right;"><h:message for="firstname" id="firstnameM" styleClass="errorMsg" /></div>
+			</div>
+			<div style="clear:both;float:left; padding-top:23px; padding-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Lastname</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+					<p:inputText tabindex="2" id="lastname" value="#{userAction.lastname}" required="false"  />				</div>
+			</div>
+
+			<div style="clear:both;float:left; margin-top:23px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Email Address*</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+				  <p:inputText tabindex="3" id="emailid" value="#{userAction.emailaddress}" required="true" requiredMessage="Email Address is required" validatorMessage="Email address is not valid">
+					  <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					  <f:ajax event="blur"  render="emailidM emailid" execute="emailid" />
+				  </p:inputText>
+				</div>
+				<div style="float:right;"><h:message for="emailid" id="emailidM" styleClass="errorMsg" /></div>
+			</div>
+			<div style="clear:both;float:left; margin-top:23px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Company Name</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+					<p:inputText tabindex="4" value="#{userAction.companyname}"/>
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-top:23px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Address</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+					<p:inputText tabindex="5" value="#{userAction.address}" />
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-top:23px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Phone Number</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+					<p:inputText tabindex="6" value="#{userAction.phonenumber}" />				
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-top:23px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Password*</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+				  <p:password tabindex="7" id="password" redisplay="true"  value="#{userAction.password}" match="password2"   feedback="true" label="Password" required="true" requiredMessage="Password is required" >
+					<f:ajax event="blur"  render="passwordM password" execute="password" />
+				  </p:password>
+				</div>
+				<div style="float:left;padding-left:2px;"><h:message for="password" id="passwordM" styleClass="errorMsg" /></div>
+			</div>
+			<div style="clear:both;float:left; margin-top:23px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Confirm Password*</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+				  <p:password tabindex="8" id="password2" redisplay="true"  value="#{userAction.password}"  label="Confirm Password" feedback="false" required="true" requiredMessage="Confirm password is required" >
+					<f:ajax event="blur"   render="passwordM password password2M password2" execute="password password2" />
+				  </p:password>
+				</div>
+				<div style="float:left;"><h:message for="password2" id="password2M" styleClass="errorMsg" /></div>
+			</div>
+			<div style="clear:both;float:left; margin-top:33px; margin-left:50px;">
+				<div style="clear:both;float:left;"><h:commandButton action="#{userAction.updateUser}" /></div>
+			</div>
+			</h:panelGroup>
+			<h:panelGroup  rendered="#{userAction.actionType=='updateAccount'}" styleClass="infoMsg1" style="padding-top: 100px;padding-bottom:150px;text-align:center;" >
+				<BR/><BR/>You have successfully update your account information.
+			</h:panelGroup>				
+		</div>
+</ui:composition>

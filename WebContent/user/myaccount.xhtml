@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<script language="javascript" src="../js/common.js" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/registration.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+a.roomchange{
+background-image:url(../images/account/account_btn.jpg); 
+background-repeat:no-repeat;
+width:125px; height:29px; display:block;
+background-position: 0px 0px;}
+a.roomchange:hover{background-position: 0px -29px;}
+
+
+a.acchange{
+background-image:url(../images/account/account_btn.jpg); 
+background-repeat:no-repeat;
+width:125px; height:29px; display:block;
+background-position:-125px 0px;}
+a.acchange:hover{background-position: -125px -29px;}
+
+a.usage{
+background-image:url(../images/account/account_btn.jpg); 
+background-repeat:no-repeat;
+width:125px; height:29px; display:block;
+background-position: -250px 0px;}
+a.usage:hover{background-position: -250px -29px;}
+
+input[type=text], input[type=password]{
+	width:322px;
+	background-image:url(../images/account/textbox.jpg);
+}
+
+.ui-datatable .ui-datatable-data TR.ui-state-hover {
+	BORDER-BOTTOM-COLOR: blue; BORDER-TOP-COLOR: orange; BORDER-RIGHT-COLOR: red; BORDER-LEFT-COLOR: purple; FONT-WEIGHT: inherit;
+}
+</style>
+</h:head>
+<body>
+
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+
+	<!-- Page content -->
+	<div class="contentdiv" style="border-top:0px;">
+		<div class="content">
+			<f:view>
+			<f:event listener="#{userAction.initUserAction}" type="preRenderView" />
+			<h:form id="myaccform">
+				<f:subview id="usageView">
+					<ui:include src="usageinfo.xhtml"/>
+				</f:subview>	
+			</h:form>
+			</f:view>
+		</div>
+		<!-- Page FooterRight content -->
+		<ui:include src="user-footer.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

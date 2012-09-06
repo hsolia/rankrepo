@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/meeting.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.inputblue1{
+	border:0px;
+	font-family:'Droid Sans', Verdana, Arial;
+	FONT-WEIGHT: normal;
+	color:#464646;
+	font-size:14px;	
+	padding:7px;
+	height:19px;
+	padding-right:0px;
+	box-shadow:0 0px 0px;
+	BACKGROUND-POSITION: 0px 0px;
+	background-repeat:no-repeat;
+	width:394px;
+	height:19px;
+	background-image:url(../images/dialout/dialoutform_2img.jpg);
+}
+
+input[type=text].inputblue1{
+	width:394px;
+	height:19px;
+	background-image:url(../images/dialout/dialoutform_2img.jpg);
+}
+
+button[type='submit'].call{
+	background-image:url(../images/manmeet/manmeet_frm.jpg); 
+	background-repeat:no-repeat;
+	width:116px; height:46px; display:block;
+	background-position:0px -46px;}
+button[type='submit']:hover.call{
+	background-position:-116px -46px;
+}
+
+</style>
+</h:head>
+<body>
+<div style="width:1073px; position:relative; left:50%; margin-left:-536px; float:left;">
+	<!-- Page Right content -->
+	<ui:include src="top-menu.xhtml"/>
+	
+	<div style="clear:both;float:left;padding-top:14px; width:100%;">
+			<div style="clear:both;float:left;"><img src="../images/video/aboutus_mainimg.jpg" /></div>
+	</div>
+	<div style="clear:both;float:left; margin-left:35px; margin-right:35px; margin-top:51px; margin-bottom:120px; width:1003px;">
+		<!-- Page Left content -->
+		<f:view>
+		<f:event listener="#{dialOutAction.initGuestDialOut}" type="preRenderView" />
+		<h:form id="dialoutform">
+				<div style="clear:both;float:left; width:627px;">
+					<div style="clear:both;float:left; padding:0px; margin:0px;">
+						<div style="clear:both;float:left;"><img src="../images/manmeet/manmeet_icon2.jpg" width="50" height="47" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left;" class="headT">Call Your Video Conferencing Endpoint</div>
+							<div style="clear:both;float:left; width:577px; height:3px; font-size:0; background-image:url(../images//dialout_icon10.jpg)"></div>
+						</div>
+					</div>
+					<div style="clear:both;float:left; margin-top:25px; margin-left:50px;">
+						<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text16_gra">Enter room PIN</div>
+						<div style="clear:both;float:left; padding-left:2px;">
+							<h:inputText styleClass="inputblue1" id="roompin" value="#{dialOutAction.roomPin}"  required="true"  requiredMessage="Room PIN is required" />
+						</div>
+						<div style="clear:both;float:left;height:15px; padding-left:2px;"><h:message for="roompin" styleClass="errorMsg" infoClass="infoMsg" /></div>				
+					</div>
+					<div style="clear:both;float:left; margin-top:15px; margin-left:50px;">
+						<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text16_gra">Enter video device IP address to call</div>
+						<div style="clear:both;float:left; padding-left:2px;">
+							<h:inputText styleClass="inputblue1" id="ipaddress" value="#{dialOutAction.dialOutipAddress}"  required="true"  requiredMessage="IP Address is required" validatorMessage="Invalid IP Address you entered." />
+						</div>
+						<div style="clear:both;float:left;height:15px; padding-left:2px;"><h:message for="ipaddress" styleClass="errorMsg" infoClass="infoMsg" /></div>						
+					</div>
+					<div style="clear:both;float:left; height:20px; margin-top:20px; margin-left:50px;" class="t14 tgra1">
+						<h:message for="dialoutform" errorClass="errorMsg" infoClass="infoMsg"/>
+					</div>
+					<div style="clear:both;float:left; margin-top:0px; margin-left:50px;">
+						<div style="clear:both;float:left; margin-top:37px;">
+							<p:commandButton styleClass="call" value="" ajax="true" update="@form" actionListener="#{dialOutAction.doDialIn}"  />
+						</div>
+					</div>
+				</div>
+		</h:form>
+		</f:view>
+		<!-- Page Right content -->
+		<ui:include src="right-view.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

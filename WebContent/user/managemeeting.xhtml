@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/meeting.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.inputblue1{
+	border:0px;
+	font-family:'Droid Sans', Verdana, Arial;
+	FONT-WEIGHT: normal;
+	color:#464646;
+	font-size:14px;	
+	padding:7px;
+	height:19px;
+	padding-right:0px;
+	box-shadow:0 0px 0px;
+	BACKGROUND-POSITION: 0px 0px;
+	background-repeat:no-repeat;
+	width:394px;
+	height:19px;
+	background-image:url(../images/dialout/dialoutform_2img.jpg);
+}
+
+input[type=text].inputblue1{
+	width:394px;
+	height:19px;
+	background-image:url(../images/dialout/dialoutform_2img.jpg);
+}
+
+#lockroom a{
+	background-image:url(../images/manmeet/lock_btn.jpg); 
+	background-repeat:no-repeat;
+	width:34px; height:33px; display:block;
+}
+
+#lockroom a.lock{background-position:0px 0px;
+}
+#lockroom a.lock:hover{background-position:0px -33px;}
+
+#lockroom a.unlock{background-position:0px -33px;
+}
+#lockroom a.unlock:hover{background-position:0px -0px;}
+
+
+#ctrlBtn a{
+	background-image:url(../images/manmeet/controllall_btn_small.jpg); 
+	background-repeat:no-repeat;
+	width:27px; height:25px; display:block;
+}
+
+#ctrlBtn a.mute{background-position:0px 0px;}
+#ctrlBtn a.mute:hover{background-position:0px -25px;}
+#ctrlBtn a.unmute{background-position:0px -25px;}
+#ctrlBtn a.unmute:hover{background-position:0px 0px;}
+
+#ctrlBtn a.muteV{background-position:-27px 0px;}
+#ctrlBtn a.muteV:hover{background-position:-27px -25px;}
+#ctrlBtn a.unmuteV{background-position:-27px -25px;}
+#ctrlBtn a.unmuteV:hover{background-position:-27px 0px;}
+
+#ctrlBtn a.discon{background-position:-54px 0px;}
+#ctrlBtn a.discon:hover{background-position:-54px -25px;}
+#ctrlBtn a.recon{background-position:-54px -25px;}
+#ctrlBtn a.recon:hover{background-position:-54px 0px;}
+
+#ctrlRcd span{
+	background-image:url(../images/manmeet/recording_btn.jpg); 
+	background-repeat:no-repeat;
+	width:34px; height:33px; display:block;
+}
+
+#ctrlRcd a{
+	background-image:url(../images/manmeet/recording_btn.jpg); 
+	background-repeat:no-repeat;
+	width:34px; height:33px; display:block;
+}
+#ctrlRcd span .startR{
+	background-position:0px 0px;
+}
+
+#ctrlRcd a.startR{background-position:0px 0px;}
+#ctrlRcd a.startR:hover{background-position:0px -33px;}
+
+#ctrlRcd span .pauseR{background-position:-34px 0px;}
+#ctrlRcd a.pauseR{background-position:-34px 0px;}
+#ctrlRcd a.pauseR:hover{background-position:-34px -33px;}
+
+#ctrlRcd a.unpauseR{background-position:-34px -33px;}
+
+
+#ctrlRcd span .stopR{background-position:-68px -33px;
+}
+#ctrlRcd a.stopR{background-position:-68px 0px;}
+#ctrlRcd a.stopR:hover{background-position:-68px -33px;}
+
+
+#ctrlAll a{
+	background-image:url(../images/manmeet/controllall_btn.jpg); 
+	background-repeat:no-repeat;
+	width:35px; height:33px; display:block;
+}
+#ctrlAll a.muteAll{
+background-position:0px 0px;
+}
+#ctrlAll a.muteAll:hover{background-position:0px -33px;}
+
+#ctrlAll a.unmuteAll{
+	background-position:0px -33px;
+}
+#ctrlAll a.unmuteAll:hover{background-position:0px 0px;}
+
+#ctrlAll a.muteAllV{
+	background-position:-35px 0px;
+}
+#ctrlAll a.muteAllV:hover{background-position:-35px -33px;}
+
+#ctrlAll a.unmuteAllV{
+	background-position:-35px -33px;
+}
+#ctrlAll a.unmuteAllV:hover{background-position:-35px 0px;}
+
+
+.disAll{
+	background-image:url(../images/manmeet/controllall_btn.jpg); 
+	background-repeat:no-repeat;
+	width:35px; height:33px; display:block;
+	background-position:-69px -33px;
+}
+
+#ctrlAll a.disAll{
+	background-position:-69px 0px;
+}
+#ctrlAll a.disAll:hover{background-position:-69px -33px;}
+
+button[type='submit'].submit{
+	background-image:url(../images/manmeet/manmeet_frm.jpg); 
+	background-repeat:no-repeat;
+	width:116px; height:46px; display:block;
+	background-position:0px 0px;
+}
+button[type='submit']:hover.submit{
+	background-position:-116px 0px;
+}
+
+button[type='submit'].call{
+	background-image:url(../images/manmeet/manmeet_frm.jpg); 
+	background-repeat:no-repeat;
+	width:116px; height:46px; display:block;
+	background-position:0px -46px;}
+button[type='submit']:hover.call{
+	background-position:-116px -46px;
+}
+</style>
+
+<script language="javascript">
+
+function refreshControl(form,msgDiv, cntrlDiv,tot){
+	var msgDiv = document.getElementById(form+":"+msgDiv);
+	var cntrlDiv = document.getElementById(form+":"+cntrlDiv);
+	if(tot==0){
+		msgDiv.display="block";
+		cntrlDiv.display="none";
+	}else{
+		msgDiv.display="none";
+		cntrlDiv.display="block";
+	}
+	
+}
+
+</script>
+
+</h:head>
+<body>
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px;">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<div class="contentdiv" style="border-top:0px;">
+		<!-- Page content -->
+		<div class="content">
+			<!-- Page Left content -->		
+			<div style="clear:both;float:left; display:block; width:629px;">	
+				<f:event listener="#{manageMeetingAction.initManageMeeting}" type="preRenderView" />
+				<h:panelGroup id="getRoomView" style="clear:both;float:left; width:627px;" >
+					<h:form id="getRoomForm" style="clear:both;float:left;" rendered="#{manageMeetingAction.roomEntity eq null}">
+							<div style="clear:both;float:left; width:627px;">
+								<div style="clear:both;float:left; padding:0px; margin:0px;">
+									<div style="clear:both;float:left;"><img src="../images/manmeet/manmeet_icon1.jpg" width="50" height="47" /></div>
+									<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left;" class="headT">Manage My Meeting</div>
+										<div style="clear:both;float:left; width:577px; height:2px; font-size:0px; overflow:hidden;background-color:#1088CA; "></div>
+									</div>
+								</div>
+								<div style="clear:both;float:left; margin-top:25px; margin-left:50px;">
+									<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t15 tgra">Enter Meeting ID to manage</div>
+									<div style="clear:both;float:left; padding-left:2px;">
+										<h:inputText styleClass="inputblue1" id="roomNumber" value="#{manageMeetingAction.roomNumber}"  required="true"  requiredMessage="Meeting ID is required"  />
+									</div>
+									<div style="clear:both;float:left; height:15px; padding-left:2px;"><h:message for="roomNumber" styleClass="errorMsg" infoClass="infoMsg" /></div>				
+								</div>
+								<div style="clear:both;float:left; margin-top:0px;margin-left:50px;">
+									<div style="clear:both;float:left; margin-top:17px;"><p:commandButton styleClass="submit" ajax="true" value="" update="@form :getRoomView :roomControlView :rightform" actionListener="#{manageMeetingAction.getRoomForManage}" onclick="roomControlViewOverlay.show()" oncomplete="roomControlViewOverlay.hide()"  /></div>
+								</div>
+								<div style="clear:both;float:left; height:40px;width:100px;"></div>
+							</div>
+					</h:form>
+				</h:panelGroup>
+				<h:panelGroup id="roomControlView">			
+					<p:blockUI  block="roomControlView" widgetVar="roomControlViewOverlay">
+						<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+						<span style="display:block;width:150px;">Pleae wait...</span>
+					</p:blockUI>
+					<h:panelGroup rendered="#{manageMeetingAction.roomEntity!=null}">			
+						<h:form id="dialoutForm">
+								<div style="clear:both;float:left; width:627px;">
+									<div style="clear:both;float:left; padding:0px; margin:0px;">
+										<div style="clear:both;float:left;"><img src="../images/manmeet/manmeet_icon2.jpg" width="50" height="47" /></div>
+										<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+											<div style="clear:both;float:left;" class="headT">Dial Out Now</div>
+											<div style="clear:both;float:left; width:577px; height:3px; font-size:0; background-image:url(../images//dialout_icon10.jpg)"></div>
+										</div>
+									</div>
+									<div style="clear:both;float:left; margin-top:25px; margin-left:50px;">
+										<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t15 tgra">Enter video device IP address to call</div>
+										<div style="clear:both;float:left; padding-left:2px;">
+											<h:inputText styleClass="inputblue1" id="ipaddress" value="#{manageMeetingAction.dialOutipAddress}"  required="true"  requiredMessage="IP Address is required" validatorMessage="Invalid IP Address you entered." />
+										</div>
+										<div style="clear:both;float:left; height:15px; padding-left:2px;"><h:message for="ipaddress" styleClass="errorMsg" infoClass="infoMsg" /></div>				
+									</div>
+									<div style="clear:both;float:left; margin-top:0px;margin-left:50px;">
+										<div style="clear:both;float:left; margin-top:17px;"><p:commandButton styleClass="call" value="" ajax="true" update="@form" actionListener="#{manageMeetingAction.doDialOut}"  /></div>
+									</div>
+									<div style="clear:both;float:left; height:40px;width:100px;"></div>
+								</div>
+						</h:form>
+						<h:form id="controlForm">
+						<div style="clear:both;float:left; padding:0px;margin-top:2px;">
+							<div style="clear:both;float:left;"><img src="../images/manmeet/manmeet_icon3.jpg" /></div>
+							<div style="clear:right;float:left;padding:0px; margin:0px; padding-right:0px;">
+								<div style="clear:both;float:left;" class="headT">Manage meeting in progress</div>
+								<div style="clear:both;float:left; width:577px; height:2px; font-size:0px; overflow:hidden;background-color:#1088CA; "></div>
+							</div>
+						</div>
+						<h:panelGroup id="mainDiv"  style="clear:both;float:left; display:block;">
+							<h:panelGroup id="msgDiv" style="clear:both;float:left; display:block; width:629px;" rendered="#{manageMeetingAction.totAtt==0}" >
+								<div style="display:inline-block; padding-top:60px;text-align:center;width:629px;">You have no meeting in progress</div>
+								<div style=" padding-bottom:4px; padding-top:2px;text-align:center;width:629px;text-decoration:underline;" ><a href="createmeeting.jsf" class="text16_blue">Schedule a meeting</a></div>
+							</h:panelGroup>
+							<h:panelGroup id="controlDiv" style="clear:both;float:left; display:block; width:629px;" rendered="#{manageMeetingAction.totAtt!=0}" >
+								<div style="clear:both;float:left; margin-top:34px;">
+									<div style="clear:both;float:left;"><img src="../images/manmeet/manmeet_icon4.jpg" /></div>
+									<div style="clear:right;float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left;" class="headT t15">Meeting Controls</div>
+										<div style="clear:both;float:left; width:405px; height:2px; font-size:0px; overflow:hidden; background-image:url(../images/manmeet/bline_doted.jpg)"></div>
+									</div>
+								</div>
+								<div style="clear:both;float:left; margin-top:22px;border:1px solid #969696; width:625px;white-space:normal; ">
+								 	<div style="clear:both; float:left; text-align:center; border-right:1px solid #C7C7C7; width:281px; background-image:url(../images/manmeet/manmeet_bgimg3.jpg); background-repeat:repeat-x; background-position:bottom;">
+									  <div style="display:inline-block; width:200px; padding-top: 5px;"  class="t15 tgra3 tbold">Record The Meeting</div>
+									  <div style="display:inline-block; width:200px;background-color:#88C4E5; height: 2px; margin-top: 2px; "><img src="../images/spacer.gif" width="1" height="2" /></div>
+									  <div style="display:inline-block;width:86%; padding:7%; padding-top: 20px; padding-bottom:26px;" id="ctrlRcd">
+									  	<div style="clear:both; float:left;text-align:center; width:60px;">
+									  		<div style="display:inline-block;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.startStopRecording}" styleClass="startR" rendered="#{!manageMeetingAction.recording}" /><h:panelGroup rendered="#{manageMeetingAction.recording}" class="startR" style=" background-position: 0px -33px;" /></div>
+									  		<div style="display:inline-block;" class="t14 tgra3 tbold">start</div>				  		
+									  	</div>
+									  	<div style="float:right;text-align:center; width:60px;">
+									  		<div style="display:inline-block;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.startStopRecording}" styleClass="stopR" rendered="#{manageMeetingAction.recording}" /><h:panelGroup rendered="#{!manageMeetingAction.recording}" class="stopR" style=" background-position: -68px -33px;" /></div>
+									  		<div style="display:inline-block;" class="t14 tgra3 tbold">stop</div>				  		
+									  	</div>
+									  	
+									  	<div style="display:inline-table;text-align:center;width:60px;">
+									  		<div style="display:inline-block;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.puuseContinueRecording}" rendered="#{manageMeetingAction.recording}" styleClass="#{manageMeetingAction.recordingPaused=='true' ? 'unpauseR' : 'pauseR'}" /><h:panelGroup rendered="#{!manageMeetingAction.recording}" class="pauseR" style=" background-position: -34px -33px;" /></div>
+									  		<div style="display:inline-block;" class="t14 tgra3 tbold">pause</div>				  		
+									  	</div>
+									  </div>
+								 	</div>
+									<div style="float:left; text-align: center; border-left:1px solid #C7C7C7; width:341px; background-image:url(../images/manmeet/manmeet_bgimg4.jpg); background-repeat: repeat-x; background-position:bottom;">
+									  <div style="display:inline-block; width:241px; padding-top: 5px;"  class="t15 tgra3 tbold">Control All Attendees</div>
+									  <div style="display:inline-block; width:241px;background-color:#FEB184; height: 2px; margin-top: 2px; "><img src="../images/spacer.gif" width="1" height="2" /></div>
+									  <div style="display:inline-block; width:86%; padding:7%; padding-top: 20px;padding-bottom:10px;" id="ctrlAll">
+									  	<div style="clear:both; float:left; text-align:center; width:60px;">
+									  		<div style="display:inline-block;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.muteUnmuteAllAudio}" styleClass="#{manageMeetingAction.muteAllAudio=='true' ? 'unmuteAll' : 'muteAll'}"  /></div>
+									  		<div style="display:inline-block;" class="t14 tgra3 tbold">mute all</div>				  		
+									  	</div>
+									  	<div style="float:right; text-align:center; width:80px;">
+									  		<div style="display:inline-block;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.disconnectAll}" rendered="#{!manageMeetingAction.disconnectAll}" styleClass="disAll" /><h:panelGroup rendered="#{manageMeetingAction.disconnectAll}" styleClass="disAll"  /></div>
+									  		<div style="display:inline-block;" class="t14 tgra3 tbold">disconnect all</div>				  		
+									  	</div>
+									  	<div style="display:inline-block; text-align:center; width:80px;">
+									  		<div style="display:inline-block;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.muteUnmuteAllVideo}" styleClass="#{manageMeetingAction.muteAllVideo=='true' ? 'unmuteAllV' : 'muteAllV'}"  /></div>
+									  		<div style="display:inline-block;" class="t14 tgra3 tbold">video mute all</div>				  		
+									  	</div>
+									  </div>
+									</div>
+							  </div>
+							  <div style="clear:both;float:left; padding-top:15px; width:540px;white-space:normal;" class="t14 tblue">
+							  	Note: You can change the name and description of your recorded  meeting file in the <a href="recordedmeeting.jsf" class="sublink">Recorded Meetings</a> section of this site once the recording finishes.
+							  </div>
+							  <div style="clear:both;float:left; padding-top:32px;">
+									<div style="clear:both;float:left;"><img src="../images/manmeet/manmeet_icon5.jpg" /></div>
+									<div style="clear:right;float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left;" class="headT t15">Attendees</div>
+										<div style="clear:both;float:left; width:405px; height:2px; font-size:0px; overflow:hidden; background-image:url(../images/manmeet/bline_doted.jpg)"></div>
+									</div>
+							   </div>
+							  <div style="clear:both; float:left;padding:13px; padding-top:0px; padding-bottom: 0px; " >
+						    	<div style="clear:both; float:left; width: 140px;" class="t14 tgra3 tbold">name or email</div>
+						    	<div style="clear:right;float:left; width: 130px;" class="t14 tgra3 tbold">IP Address</div>
+						    	<div style="clear:right;float:left; width: 110px; text-align:center;" class="t14 tgra3 tbold">audio mute</div>
+						    	<div style="clear:right;float:left; width: 110px; text-align:center; " class="t14 tgra3 tbold">video mute</div>		    			    			    
+						    	<div style="clear:right;float:left; width: 110px; text-align: right;" class="t14 tgra3 tbold">Disconnect</div>		    	
+							  </div>
+							  <div style="clear:both;float:left; margin-top:3px;border:1px solid #B1B1B1; width:625px;background-image:url(../images/manmeet/manmeet_bgimg8.jpg); background-repeat:repeat-x; background-position:bottom;">
+							    <h:panelGroup id="participantList" style="clear:both; float:left; padding:12px; " >
+							    	<ui:repeat varStatus="i" var="participant" value="#{manageMeetingAction.participantEntityList}">
+								    	<div id="ctrlBtn" style="clear:both;float:left;">
+									    	<div style="clear:both; padding-bottom:2px; float:left; width: 140px; padding-top: 4px;" class="t14 tgra3">#{participant.displayName}</div>
+									    	<div style="float:left; padding-bottom:2px;width: 130px; padding-top: 4px;" class="t14 tgra3">#{participant.iPAddress}</div>
+									    	<div style="float:left; padding-bottom:2px; width: 70px; padding-left: 40px;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.muteUnmuteAudio(i.index)}" styleClass="#{participant.audio=='true' ? 'mute' : 'unmute'}" /></div>
+									    	<div style="float:left; padding-bottom:2px;width: 70px; padding-left: 40px;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.muteUnmuteVideo(i.index)}" styleClass="#{participant.video=='true' ? 'muteV' : 'unmuteV'}" /></div>		    			    			    
+									    	<div style="float:left; padding-bottom:2px;width: 45px; padding-left: 55px;"><p:commandLink update="@form" actionListener="#{manageMeetingAction.disconnectParticipant(i.index)}" styleClass="#{participant.status=='true' ? 'discon' : 'recon'}" /></div>
+								    	</div>		    	
+							    	</ui:repeat>
+							  	</h:panelGroup>
+							  </div>
+							</h:panelGroup>	
+						</h:panelGroup>
+						<p:poll interval="5" async="true" update="mainDiv" listener="#{manageMeetingAction.refreshList}"  />
+						</h:form>
+					</h:panelGroup>
+				</h:panelGroup>
+			</div>
+			<!-- Page Right content -->
+			<ui:include src="right-view_manmeet.xhtml"/>
+		</div>
+		<!-- Page FooterRight content -->
+		<ui:include src="user-footer.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

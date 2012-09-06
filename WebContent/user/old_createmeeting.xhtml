@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/meeting.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.sublink{
+	color:#ff6200;
+	text-decoration:underline;
+}
+a.sublink{
+	color:#ff6200;
+	text-decoration:underline;
+}
+a.sublink:hover{
+	color:#0089cb;
+	text-decoration:underline;
+}
+</style>
+</h:head>
+<body>
+
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<!-- Page content -->
+	<div style="clear:both;float:left; margin-left:35px; margin-right:35px; margin-top:51px; margin-bottom:120px; width:1003px;">
+		<!-- Page Left content -->
+		<f:view>
+		<f:event listener="#{meetingAction.initCreateMeeting}" type="preRenderView" />
+		<h:form id="form">
+		<div style="clear:both;float:left; width:627px;  ">
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;padding-top:6px;"><img src="../images/meeting/sched_icon1.jpg" width="50" height="40" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:10px; width:200px;" class="text17 tbold torg1">Schedule a meeting</div>
+					<div style="clear:both;float:left; width:577px; height:2px; background-image:url(../images/meeting/sched_line.jpg)"></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left; padding-left:52px; font-weight:normal;font-size:11px; " class="text14_gra">Note: Inputs marked (*) are mandatory fields.</div>
+			<div style="clear:both;float:left; margin-top:18px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text14_orange">Meeting Title*</div>
+				<div style="clear:both;float:left; padding-left:2px;">
+                      <h:inputText tabindex="1"  id="meetingTitle" value="#{meetingAction.meeting.meetingTitle}"  required="true"  requiredMessage="Meeting title  is required" validatorMessage="Invalid inputs." style="BACKGROUND-IMAGE:url(../images/meeting/text_large.jpg); width:535px; " >
+                      		<f:ajax event="blur"   render="meetingTitle" execute="meetingTitle" />
+                      </h:inputText>
+				</div>
+			</div>
+			
+			<div style="clear:both;float:left; margin-top:18px; margin-left:50px;">
+			<h:message for="meetingTitle" style="errorMsg" errorClass="errorMsg"></h:message>
+			</div>
+			
+			
+			<div style="clear:both;float:left; margin-top:24px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text14_orange">Meeting Description</div>
+				<div style="clear:both;float:left; padding-left:2px; background-image:url(../images/meeting/textarea.jpg); background-position:2px 0px; BACKGROUND-REPEAT: no-repeat;width: 542px; height:122px;"><h:inputTextarea id="meetingDesc" value="#{meetingAction.meeting.meetingDesc}" /></div>
+			</div>
+			<div style="clear:both;float:left; margin-top:50px; margin-left:50px;"></div>
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;padding-top:6px;"><img src="../images/meeting/sched_icon2.jpg" width="50" height="40" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:10px; width:200px;" class="text17 tbold torg1">Participants</div>
+					<div style="clear:both;float:left; width:510px; height:2px; background-image:url(../images/meeting/sched_dotline.jpg)"></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-left:50px;">
+			<div style="clear:both;float:left; margin-left:0px; font-weight:bold;" class="text14_gra">Participant name</div>
+			<div style="float:left; margin-left:137px; font-weight:bold;" class="text14_gra">Email Address</div>
+			
+			   <h:dataTable border="0"  headerClass="text14_gra"  cellpadding="0" cellspacing="0" id="invitationList" var="participant" value="#{meetingAction.invitationList}" >  
+			        <h:column >  
+			          <h:outputText styleClass="text14_gra" style="display:block; width:258px;padding:3px;" value="#{participant.participantName}" />
+			        </h:column> 					        
+			        <h:column>  
+			          <h:outputText styleClass="text14_gra" style="display:block; width:241px;padding:3px; padding-left:0px" value="#{participant.participantEmail}"/>
+			        </h:column> 
+			   </h:dataTable>
+			</div>
+			<div style="clear:both;float:left; margin-left:50px; ">
+				<div style="clear:both;float:left;"><h:inputText  value="#{meetingAction.participantName}"  id="participantName" /></div>
+				<div style="float:left;margin-left:19px;"><h:inputText   value="#{meetingAction.participantEmail}" id="participantEmail" /></div>
+			</div>
+			<div style="clear:both;float:left; width:553px;">
+				<div style="clear:both;float:right;"><p:commandLink process="@this,participantName,participantEmail"  update="invitationList participantName participantEmail" actionListener="#{meetingAction.addParticipant}" styleClass="plus" /></div>
+			</div>
+			<div style="clear:both;float:left; margin-top:50px; margin-left:50px;"></div>
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;padding-top:6px;"><img src="../images/meeting/sched_icon3.jpg" width="50" height="40" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:10px; width:200px;" class="text17 tbold torg1">Date</div>
+					<div style="clear:both;float:left; width:415px; height:2px; background-image:url(../images/meeting/sched_dotline.jpg)"></div>
+				</div>
+			</div>
+			<div style="clear:both; float:left; width:529px; margin-left:50px;">
+				<div style="clear:both; float:left;">
+					<div style="clear:both; float:left; text-align:right; width:103px; margin-top:8px; padding-right: 12px;" class="t14 tbold tgra">Date</div>
+					<p:calendar styleClass="datepicker" style="float:left;margin-top:4px;"  pattern="M/dd/yyyy" value="#{meetingAction.meeting.startDate}" id="popupButtonCal" showOn="button" >
+					</p:calendar>  
+  
+					<div style="float:left; text-align:right;width:80px;margin-top:5px;margin-left:16px; padding-right: 8px;" class="t14 tbold tgra">Duration</div>
+					<p:selectOneMenu value="#{meetingAction.meeting.duration}">
+						<f:selectItem itemValue="10" itemLabel="10 min" />
+						<f:selectItem itemValue="15" itemLabel="15 min" />
+						<f:selectItem itemValue="30" itemLabel="30 min" />
+						<f:selectItem itemValue="45" itemLabel="45 min" />
+						<f:selectItem itemValue="60" itemLabel="1 hr" />												
+					</p:selectOneMenu>
+				</div>
+				<div style="clear:both; float:left;margin-top:6px;">
+					<div style="clear:both; float:left; text-align:right; width:103px; margin-top:8px; padding-right: 12px;" class="t14 tbold tgra">Time</div>
+					<p:calendar styleClass="datepicker" style="float:left;margin-top:4px; " pattern="HH:mm" timeOnly="true" value="#{meetingAction.meeting.startTime}"  showOn="button" >
+					</p:calendar>
+					<div style="float:left; text-align:right; width:80px;margin-top:8px;margin-left:16px; padding-right: 8px;" class="t14 tbold tgra">Time Zone</div>
+					<p:selectOneMenu style="margin-top:3px;" value="#{meetingAction.meeting.timeZone}">
+					     <f:selectItem itemValue="US/Alaska" itemLabel="US/Alaska" />
+					     <f:selectItem itemValue="US/Aleutian" itemLabel="US/Aleutian" />
+					     <f:selectItem itemValue="US/Arizona" itemLabel="US/Arizona" />
+					     <f:selectItem itemValue="US/Central" itemLabel="US/Central" />
+					     <f:selectItem itemValue="US/East-Indiana" itemLabel="US/East-Indiana" />
+					     <f:selectItem itemValue="US/Eastern" selected="selected" itemLabel="US/Eastern" />
+					     <f:selectItem itemValue="US/Hawaii" itemLabel="US/Hawaii" />
+					     <f:selectItem itemValue="US/Indiana-Starke" itemLabel="US/Indiana-Starke" />
+					     <f:selectItem itemValue="US/Michigan" itemLabel="US/Michigan" />
+					     <f:selectItem itemValue="US/Mountain" itemLabel="US/Mountain" />
+					     <f:selectItem itemValue="US/Pacific" itemLabel="US/Pacific" />
+					     <f:selectItem itemValue="US/Samoa" itemLabel="US/Samoa" />
+						 <f:selectItem itemValue="Asia/Calcutta" itemLabel="Asia/Calcutta" />
+					</p:selectOneMenu>
+				</div>
+				<div style="clear:both; float:left;margin-top:30px;">
+					<div style="clear:both; float:left; text-align:right; width:103px; margin-top:3px; padding-right: 12px;" class="t14 tbold tgra">Repeats</div>
+					<p:selectOneMenu value="#{meetingAction.meeting.frequency}">
+						<f:selectItem itemValue="NONE" itemLabel="None" />						
+						<f:selectItem itemValue="DAILY" itemLabel="Daily" />
+						<f:selectItem itemValue="WEEKLY" itemLabel="Weekly" />
+						<f:selectItem itemValue="MONTHLY" itemLabel="Monthly" />												
+					</p:selectOneMenu>
+				</div>
+				<div id="myTest" style="clear:both; float:left;margin-top:6px;">
+					<div style="clear:both; float:left; text-align:right; width:103px; margin-top:3px; padding-right: 12px;" class="t14 tbold tgra">Repeats every</div>
+					<p:selectOneMenu value="#{meetingAction.meeting.feqInterval}" >
+						<f:selectItem itemValue="1" itemLabel="1st" />
+						<f:selectItem itemValue="2" itemLabel="2nd" />
+						<f:selectItem itemValue="3" itemLabel="3rd" />
+						<f:selectItem itemValue="4" itemLabel="4rd" />
+						<f:selectItem itemValue="5" itemLabel="5rd" />
+						<f:selectItem itemValue="6" itemLabel="6rd" />
+						<f:selectItem itemValue="7" itemLabel="7rd" />
+						<f:selectItem itemValue="8" itemLabel="8rd" />																								
+					</p:selectOneMenu>
+				</div>
+				<div style="clear:both; float:left;margin-top:6px;">
+					<div style="clear:both; float:left; text-align:right; width:103px; margin-top:3px; padding-right: 12px;" class="t14 tbold tgra">Repeat on</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[0]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px; " class="t14 tbold tgra">M</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[1]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px;" class="t14 tbold tgra">T</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[2]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px;" class="t14 tbold tgra">W</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[3]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px;" class="t14 tbold tgra">T</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[4]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px;" class="t14 tbold tgra">F</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[5]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px;" class="t14 tbold tgra">S</div>
+					<p:selectBooleanCheckbox name="ferDays" value="#{meetingAction.meeting.feqDays[6]}" style="float:left;" /><div style="float:left;margin-top:3px; margin-right:7px;" class="t14 tbold tgra">S</div>
+				</div>
+				<div style="clear:both; float:left;margin-top:6px;">
+					<div style="clear:both; float:left; text-align:right; width:103px; margin-top:6px; padding-right: 12px;" class="t14 tbold tgra">Ends</div>
+					<div id="form:options1" class="ui-selectoneradio ui-widget" style="float:left;">
+						<div style="clear:both;float:left;margin-left:3px;" class="ui-radiobutton ui-widget">
+							<div class="ui-helper-hidden"><input id="form:options1:0" name="form:options" type="radio" value="#{meetingAction.meeting.freqEndType}" /></div>
+							<div class="ui-radiobutton-box ui-widget ui-corner-all ui-radiobutton-relative ui-state-default">
+								<span class="ui-radiobutton-icon"></span>
+							</div>
+						</div>
+						<div style="margin-left:10px; float:left;padding-top:6px;" class="t14 tbold tgra">never</div>						
+						<div style="clear:both;float:left;margin-left:3px;" class="ui-radiobutton ui-widget">
+							<div class="ui-helper-hidden"><input id="form:options1:0" name="form:options" type="radio" value="#{meetingAction.meeting.freqEndType}" /></div>
+							<div class="ui-radiobutton-box ui-widget ui-corner-all ui-radiobutton-relative ui-state-default ">
+								<span class="ui-radiobutton-icon"></span>
+							</div>
+						</div>
+						<div style="margin-left:10px; float:left;padding-top:6px;" class="t14 tbold tgra">after</div>
+						<h:inputText style="margin-left:10px; float:left" styleClass="intext2"  value="#{meetingAction.meeting.rcurCount}"/>
+						<div style="margin-left:10px; float:left;padding-top:6px;" class="t14 tbold tgra">occurances</div>						
+						<div style="clear:both;float:left;margin-left:3px;" class="ui-radiobutton ui-widget">
+							<div class="ui-helper-hidden"><input id="form:options1:0" name="form:options" type="radio" value="#{meetingAction.meeting.freqEndType}" /></div>
+							<div class="ui-radiobutton-box ui-widget ui-corner-all ui-radiobutton-relative ui-state-default ">
+								<span class="ui-radiobutton-icon"></span>
+							</div>
+						</div>
+						<div style="margin-left:10px; float:left;padding-top:6px;" class="t14 tbold tgra">on</div>
+						<p:calendar styleClass="datepicker" style="float:left;margin-top:4px;" pattern="M/dd/yyyy" value="#{meetingAction.meeting.rcurUntil}" showOn="button" />					
+					</div>
+					<script id="form:options1" type="text/javascript">PrimeFaces.cw('SelectOneRadio','widget_form_options',{id:'form:options1'});</script> 
+				</div>
+				<div style="clear:both;float:left; margin-top:30px; margin-left:115px;">
+					<div style="clear:both;float:left;"><p:commandLink  actionListener="#{meetingAction.sendInvitation}" update=":form2:statusDiv :form"  onstart="loadDialog('form2')" oncomplete="statusDialog('form2')"   styleClass="sendinv" /></div>
+				</div>
+			</div>							
+		</div>
+		</h:form>
+		<h:form id="form2">
+			<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="form2Dialog" modal="true" style="padding:0px;">  
+			    <div id="sendEmailDialog" style="clear:both; float:left; width:500px; padding:0px; padding-top:0px; padding-bottom:10px;">
+					<div style="clear:both;float:left;">
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:400px;" class="t17 tgra tbold">Sending Invitaions</div>
+							<div style="clear:both;float:left; width:400px; height:2px; background-color:#464646;"></div>
+						</div>
+					</div>
+					<h:panelGroup id="mainDiv" style="clear:both;float:left;"></h:panelGroup>
+					<h:panelGroup id="processDiv" style="clear:both;float:left; text-align:left;width:100%;" class="t14 tgra">
+						<img src="../images/account/ajaxloadingbar.gif" border="0" /><br />
+						<span style="margin-left: 6px;">Please wait...</span>
+					</h:panelGroup>	
+					<h:panelGroup id="statusDiv" style="clear:both;float:left;">
+						<h:outputText styleClass="t14 tgra3 tbold" value="Invitaion sent to below participants" />
+						<table id="recordingList" border="0" cellpadding="0" cellspacing="0">
+						<ui:repeat varStatus="i" var="participant" value="#{meetingAction.invitationList}">
+					    	<tr>
+					    		<td width="211" align="left" valign="top" style="word-wrap:break-word; padding:4px;">#{participant.participantName}</td>
+					    		<td width="211" align="left" valign="top" style="word-wrap:break-word; padding:4px;">#{participant.participantEmail}</td>
+					    	</tr>
+				    	</ui:repeat>
+						</table>	
+						<br /><br />
+						<p:commandLink style="float:left; margin-left:7px; " styleClass="sublink" onclick="form2Dialog.hide()">Close</p:commandLink>
+					</h:panelGroup>
+				</div> 			  
+			</p:dialog>
+		</h:form>		
+		</f:view>
+		<!-- Page Right content -->
+		<ui:include src="right-view.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

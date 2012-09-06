@@ -1,0 +1,37 @@
+/* CSS Document */
+
+
+
+
+a.submit1{
+background-image:url(../images/contact/btn_submit.jpg); 
+background-repeat:no-repeat;
+width:121px; height:49px; display:block;
+background-position:0px 0px;
+}
+a.submit1:hover{background-position:0px -49px;}
+
+
+
+.errorMsg{
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#ff6200;
+	height:19px;
+	padding:8px;
+	padding-left:5px;
+	display: block;
+	padding-bottom:0px;
+}
+
+.infoMsg{
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#0089CB;
+	height:19px;
+	padding:8px;
+	padding-left:0px;
+	display: block;
+	padding-bottom:0px;
+}
+	

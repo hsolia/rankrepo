@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13293218974730" configfile="/Vidyo/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/login.jsf" x="122" y="370" id="pf13295144519780" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13326068302500 pf13326068302502 pf13326068302503 pf13329580656460 pf13359711433820 pf13359711949894 pf13359713896795 pf13372826007551" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/login.jsf" id="pf13326068302504" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf13326068302500 pf13359711949894" path="/pages/login.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/index.jsf" id="pf13326068302506" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13326068302502" path="/pages/index.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/registration.jsf" id="pf13326068302507" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf13326068302503" path="/pages/registration.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/manageadmin.jsf" id="pf13329580656471" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf13329580656460" path="/admin/manageadmin.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="user/managemeeting.jsf" id="pf13359711433821" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf13359711433820" path="/user/managemeeting.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/ad-login.jsf" id="pf13359713896796" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf13359713896795" path="/pages/ad-login.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="data.csv" id="pf13372826007552" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13372826007551" path="/data.csv"/>
+  <links id="pf13326068302500" target="pf13326068302504" source="pf13295144519780" outcome="login"/>
+  <links id="pf13326068302502" target="pf13326068302506" source="pf13295144519780" outcome="index"/>
+  <links id="pf13326068302503" target="pf13326068302507" source="pf13295144519780" outcome="signup"/>
+  <links id="pf13329580656460" target="pf13329580656471" source="pf13295144519780" outcome="adminHome" redirect="true" fromaction="#{loginForm.doLogin}"/>
+  <links id="pf13359711433820" target="pf13359711433821" source="pf13295144519780" outcome="userHome" redirect="true" fromaction="#{loginForm.doLogin}"/>
+  <links id="pf13359711949894" target="pf13326068302504" source="pf13295144519780" outcome="userlogin" redirect="true"/>
+  <links id="pf13359713896795" target="pf13359713896796" source="pf13295144519780" outcome="adminlogin" redirect="true"/>
+  <links id="pf13372826007551" target="pf13372826007552" source="pf13295144519780" outcome="datadownload"/>
+</pageflow:Pageflow>

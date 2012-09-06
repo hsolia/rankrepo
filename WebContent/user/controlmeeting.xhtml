@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+<f:view>
+<f:event listener="#{meetingAction.initControlMeeting}" type="preRenderView" />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><ui:include src="top.xhtml" /></td>
+  </tr>
+  <tr>
+    <td align="center"><table width="900" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+          <tr>
+            <td width="240"><ui:include src="user-left.xhtml" /></td>
+            <td align="left" valign="top"><table width="639" border="0" cellspacing="0" cellpadding="0" style="margin-left:20px; margin-top:20px;">
+              <tr>
+                <td height="38" align="left" valign="middle" class="headline" >Control Meeting</td>
+              </tr>
+              <tr>
+                <td height="38">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>
+                <h:form id="form1" name="form1" method="post" action=""  >
+                  <h:panelGroup rendered="#{meetingAction.actionType=='init'}">
+                  <table width="100%" border="0" cellspacing="2" cellpadding="0" >
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Meeting Title*</td>
+                      <td width="203">
+                      <p:inputText tabindex="1"  id="meetingTitle" value="#{meetingAction.meetingTitle}"  required="true"  requiredMessage="Meeting title  is required" validatorMessage="Invalid inputs." >
+                      		<f:ajax event="blur"   render="meetingTitle meetingTitleM" execute="meetingTitle" />
+                      </p:inputText>                      </td>
+                      <td width="271" ><p:message for="meetingTitle" id="meetingTitleM" /></td>
+                    </tr>
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Meeting Description</td>
+                      <td width="203"><p:inputText tabindex="1"  id="meetingDesc" value="#{meetingAction.meetingDesc}" />                      </td>
+                      <td >&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Schedule Time*</td>
+                      <td width="203">
+                      	<rich:calendar required="true" requiredMessage="Schedule Time required" datePattern="MM/dd/yyyy HH:mm" id="meetingSchedule" value="#{meetingAction.meetingSchedule}" >
+                      		<f:convertDateTime pattern="MM/dd/yyyy" />
+                      	</rich:calendar>
+					  </td>
+                      <td ><p:message for="meetingSchedule" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>Repeat</td>
+                      <td><h:selectBooleanCheckbox id="repeat" value="#{meetingAction.meetingRepeat}"  style="display:inline;" selected="false" >
+                      		<f:ajax event="click" render="repeatPeriod repeatUpto" />
+                      </h:selectBooleanCheckbox>
+				        <h:selectOneMenu disabled="#{!meetingAction.meetingRepeat}" immediate="false" id="repeatPeriod"  value="#{meetingAction.repeatPeriod}"     >
+					    	   <f:selectItem itemLabel="Daily" itemValue="Select" />
+					           <f:selectItem itemLabel="Daily" itemValue="Daily" />  
+					           <f:selectItem itemLabel="Weekly" itemValue="Weekly" />  
+					           <f:selectItem itemLabel="Monthly" itemValue="Monthly" />           
+				        </h:selectOneMenu></td>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>Repeat Upto</td>
+                      <td><rich:calendar disabled="#{!meetingAction.meetingRepeat}" datePattern="MM/dd/yyyy HH:mm" id="repeatUpto" value="#{meetingAction.repeatUpto}" /></td>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td colspan="2">
+					   <h:dataTable cellpadding="0" cellspacing="0" id="invitationList" var="participant" value="#{meetingAction.invitationList}" >  
+					        <h:column>  
+							 <f:facet name="header">
+							  	Participant Name
+							  </f:facet>					            
+					            <p:inputText value="#{participant.participantName}" style="width:99%" label="Participant Name">
+					            	<a4j:ajax event="change"/>
+					            </p:inputText>  
+					        </h:column> 					        
+					        <h:column>  
+							 <f:facet name="header">
+							  	Participant Email
+							  </f:facet>					              
+					              <p:inputText immediate="true" value="#{participant.participantEmail}" style="width:99%" label="Email Address">
+					              	<a4j:ajax event="change"/>
+					              </p:inputText>  
+					        </h:column> 
+					        <h:column>  
+					              <p:commandLink  actionListener="#{meetingAction.removeParticipantRowUI}" value="Remove" immediate="true" update="invitationList">
+					              	<f:param  value="1" name="index"/>
+					              </p:commandLink>
+					        </h:column> 
+
+					       </h:dataTable>
+					       
+					        <p:commandLink immediate="true" value="Add More" update="invitationList" action="#{meetingAction.addParticipantRowUI}" />
+                      </td>
+                      </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>                    
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>
+                      <h:commandButton immediate="false" value="Submit" update="@all" actionListener="#{meetingAction.confirmMeeting}" />
+                      <h:commandButton value="reset" type="reset" ><f:ajax render="form1" /> </h:commandButton>                      </td>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  </h:panelGroup>
+                  <!-- Meeting Details -->
+                  <h:panelGroup rendered="#{meetingAction.actionType == 'display'}">
+                  <table width="100%" border="0" cellspacing="2" cellpadding="0" >
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Meeting Title</td>
+                      <td ><h:outputText value="#{meetingAction.meetingTitle}" /></td>
+                    </tr>
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Meeting Description</td>
+                      <td ><h:outputText  value="#{meetingAction.meetingDesc}" /></td>
+                    </tr>
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Schedule Time</td>
+                      <td><h:outputText  value="#{meetingAction.meetingSchedule}" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td><h:outputText rendered="#{meetingAction.meetingRepeat}" value="Repeat"/>&nbsp;
+                      	  <h:outputText rendered="#{meetingAction.meetingRepeat}" value="#{meetingAction.repeatPeriod}" />
+                      	  <h:outputText rendered="#{meetingAction.meetingRepeat}" value="Upto :"/>
+                      	  <h:outputText rendered="#{meetingAction.meetingRepeat}" value="#{meetingAction.repeatUpto}" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td colspan="2">
+					   <p:dataTable cellpadding="0" cellspacing="0" id="invitationListDetail" var="participant" value="#{meetingAction.invitationList}" >  
+					        <h:column>  
+							 <f:facet name="header">
+							  	Participant Name
+							  </f:facet>					            
+					            <h:outputText value="#{participant.participantName}" style="width:99%" label="Participant Name"/>  
+					        </h:column> 					        
+					        <h:column>  
+							 <f:facet name="header">
+							  	Participant Email
+							  </f:facet>					              
+					              <h:outputText value="#{participant.participantEmail}" style="width:99%" label="Email Address"/>  
+					        </h:column> 
+					       </p:dataTable>
+                      </td>
+                      </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>                    
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>
+                      	<h:commandButton immediate="false" value="Edit Details" update="@all" actionListener="#{meetingAction.editMeeting}" />
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      	<h:commandButton immediate="false" value="Create Meeting" action="#{meetingAction.createMeeting}" />
+                      </td>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  </h:panelGroup>
+                  </h:form>
+                  <h:panelGroup rendered="#{meetingAction.actionType == 'done'}">
+                  	Meeting created successfully.
+                  </h:panelGroup>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+      <table width="900" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
+        <tr>
+          <td height="70" background="images/footer-bg.jpg" style="border:1px solid #A8A8A8;">Copyright &#169;Vidyo.com 2011-2012</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</f:view>
+</body>
+</html>

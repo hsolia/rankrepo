@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>VidyoWay :: Contact us</title>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/common_new.css" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+<div style="width:1052px; position:relative; left:50%; margin-left:-526px; float:left;">
+	<!-- Page Right content -->
+	<ui:include src="top-menu.xhtml"/>
+	<div style="clear:both;float:left; margin-top:31px;">
+		<div style="clear:both;float:left;">
+			<div style="clear:both;float:left;"><img src="../images/vidyo/connect_with_vidyoway.jpg" alt="About Vidyoway"/></div>
+			<div style="clear:right;float:left; background-image: url(../images/vidyo/box_toptile.jpg); width:529px; "><img src="../images/vidyo/box_toptile.jpg" /></div>
+			<div style="float:right;"><img src="../images/vidyo/box_trcorner.jpg" /></div>
+		</div>
+		<div style="clear:both;float:left; padding-left:33px; background-image:url(../images/vidyo/box_lefttile.jpg); background-repeat: repeat-y; background-position:left;">
+			<div style="clear:right;float:left;  padding-left:27px; padding-top:27px;padding-bottom:30px; padding-right:67px; background-image:url(../images/vidyo/box_righttile.jpg); background-repeat: repeat-y; background-position:right;">
+				<div style="clear:both;float:left; width:645px; padding-right:30px; ">	
+			        <div style="clear:both;float:left;">
+			          <div style="clear:both;float:left;"><img src="../images/contact/contact_icon1jpg.jpg" /></div>
+			          <div style="float:left;">
+			            <div style="clear:both;float:left; padding-bottom:2px; height:32px;width:150px; vertical-align:text-bottom;" class="t17 tbold torg3">Contact Us</div>
+			            <div style="clear:both;float:left; width:530px; height:3px;  font-size:0; overflow:hidden; background-image:url(../images/contact/contact_bgimg.jpg)"></div>
+			          </div>
+			        </div>
+			        <h:panelGroup id="status" rendered="#{contactForm.emailSent == 'true'}" style="clear:both;float:left; margin-top:45px;text-align:center;width:528px;" styleClass="t14 tgra3">
+			        	Thank you for contacting us.
+			        	<BR/>Our support team will contact your shortly.
+			        </h:panelGroup>
+			        <h:form id="contactform" rendered="#{!contactForm.emailSent}" style="clear:both;float:left; margin-left:50px;">
+					    <div style="clear:both;float:left; margin-top:45px;">
+				          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px;" class="t16 tgra">Name*</div>
+					      <div style="clear:both;float:left;">
+						      <div style="clear:both;float:left; padding-left:2px;">
+						      	<p:inputText styleClass="inputtextBig" value="#{contactForm.senderName}"  id="receivername" required="true" requiredMessage="Please enter your name!" />
+						      </div>
+						      <div style="clear:both;float:left;height:20px;"><h:message for="receivername" id="receivernameM" styleClass="errorMsg" /></div>
+				          </div>
+				        </div>
+					    <div style="clear:both;float:left; margin-top:10px;">
+				          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px;" class="t16 tgra">Email Address*</div>
+					      <div style="clear:both;float:left;">
+						      <div style="clear:both;float:left; padding-left:2px;">
+						      	<p:inputText styleClass="inputtextBig" value="#{contactForm.senderEmail}"  id="receiveremail" required="true" requiredMessage="Please enter your email!" validatorMessage="Invalid email address!" >
+						      		<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						      	</p:inputText>
+						      </div>
+						      <div style="clear:both;float:left;height:20px;"><h:message for="receiveremail" id="receiveremailM" styleClass="errorMsg" /></div>
+				          </div>
+				        </div>
+					    <div style="clear:both;float:left; margin-top:10px;">
+				          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px;" class="t16 tgra">Phone*</div>
+					      <div style="clear:both;float:left;">
+						      <div style="clear:both;float:left; padding-left:2px;">
+						      	<p:inputText styleClass="inputtextBig" value="#{contactForm.senderPhone}"  id="receiverphone" required="true" requiredMessage="Please enter your phone!"/>
+						      </div>
+						      <div style="clear:both;float:left;height:20px;"><h:message for="receiverphone" id="receiverphoneM" styleClass="errorMsg" /></div>
+				          </div>
+				        </div>
+					    <div style="clear:both;float:left; margin-top:10px;">
+				          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px;" class="t16 tgra">Comments*</div>
+					      <div style="clear:both;float:left; padding-left:2px;">
+					      	<h:inputTextarea  value="#{contactForm.supportReuest}"  id="supportrequest" required="true" requiredMessage="Please enter your comments!"/>
+					      </div>
+					      <div style="clear:both;float:left;height:20px;"><h:message for="supportrequest" id="supportrequestM" styleClass="errorMsg" style="padding-left:0px;" /></div>
+				        </div>
+					    <div style="clear:both;float:left; margin-top:10px;">
+				          <div style="clear:both;float:left; padding-left:2px;">
+								<p:commandButton ajax="true" immediate="false" actionListener="#{contactForm.sendRequestEmail('User Contact us Request')}"  update="@all" value=""  />
+				          </div>
+				        </div>
+			      	</h:form>
+				</div>		
+				<!-- Page Right content -->
+				<ui:include src="right-view.xhtml"/>				
+			</div> 
+		</div>
+		<div style="clear:both;float:left;">
+			<div style="clear:both;float:left;"><img src="../images/vidyo/box_blcorner.jpg"/></div>
+			<div style="clear:right;float:left; background-image: url(../images/vidyo/box_bottomtile.jpg); width:997px; "><img src="../images/vidyo/box_bottomtile.jpg" /></div>
+			<div style="float:right;"><img src="../images/vidyo/box_brcorner.jpg" /></div>
+		</div>
+	</div>
+	<div style="clear:both;float:left;width:1016px; padding-left:23px; padding-right:15px;  padding-top:10px; padding-bottom:30px; ">
+		<ui:include src="footer-view.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

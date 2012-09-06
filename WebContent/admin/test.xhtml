@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:s="http://jboss.com/products/seam/taglib">
+    <style>
+    .column {
+        width: 410px;
+        vertical-align: top;
+    }
+    </style>
+    
+<rich:editor id="editor" value="#{editor.value}">
+    <f:facet name="config">
+        skin: "#{editor.skin}",
+        toolbar: "MyToolbar",
+        toolbar_MyToolbar:
+            [
+                      { name: 'document', items : [ 'NewPage','Preview' ] },
+                      { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+                      { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
+                      { name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'
+                         ,'Iframe' ] },
+                        '/',
+                      { name: 'styles', items : [ 'Styles','Format' ] },
+                      { name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
+                      { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+                      { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                      { name: 'tools', items : [ 'Maximize' ] }
+            ]
+    </f:facet>
+</rich:editor>
+</ui:composition>

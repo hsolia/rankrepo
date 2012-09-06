@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/registration.css" rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
+<style type="text/css">
+
+a.join{
+background-image:url(../images/join_icon.jpg); 
+background-repeat:no-repeat;
+width:144px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.join:hover{background-position:-144px 0px;}
+
+a.login{
+background-repeat:no-repeat;
+background-image:url(../images/login_icon.jpg); width:113px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.login:hover{background-position:-113px 0px;}
+
+</style>
+
+</h:head>
+<body>
+<div style="width:824px; float:left; position:relative; left:50%; margin-left:-412px;">
+	<div style="clear:both; float:left; margin-top:12px; margin-bottom:14px;"><a href="index.jsf"><img src="../images/vidyo_img.jpg" border="0" /></a></div>
+	<div style="float:right;"><a href="login.jsf" class="login"></a></div>
+	<div style="float:right;"><a href="registration.jsf" class="join"></a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="#" class="topNav">Features</a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="#" class="topNav">About Us</a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="#" class="topNav">Contact Us</a></div>
+	<div style="float:right; padding-top:11px; padding-right:17px;" class="text16_bold"><a href="#" class="topNav">Support</a></div>
+	<div style="clear:both; float:left; width:765px; padding-right:59px;">
+		<div style="float:right; padding-bottom:40px"><img src="../images/Registration_img.jpg" /></div>
+		<div style="clear:both; float:right; width:553px">
+			<f:view>                        
+				<f:event listener="${loginForm.activateUser}" type="preRenderView"  />
+				<h:panelGroup id="processDiv" style="clear:both;float:left; text-align:center; width:100%; " class="t14 tgra">
+					<img src="../images/account/ajaxloadingbar.gif"  /><br />
+					<span style="margin-left: 6px;">Please wait...Activating your account.</span>
+				</h:panelGroup>
+			</f:view>
+		</div>
+	</div>
+</div>
+</body>
+</html>

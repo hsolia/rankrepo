@@ -1,0 +1,102 @@
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html"  
+	xmlns:p="http://primefaces.org/ui"   
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/registration.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.inputtext, .inputpassword{
+	width:315px;
+	background-image:url(../images/account/textbox.jpg);
+}
+
+
+input[type=text], input[type=password]{
+	width:315px;
+	background-image:url(../images/account/textbox.jpg);
+}
+
+.errorMsg{
+	padding-top:1px;
+}
+
+</style>
+
+		<div style="clear:both;float:left; width:627px;">
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;"><img src="../images/account/account_icon3.jpg" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;width:577px;">
+					<div style="clear:both;float:left;border:0px solid;">
+					<div style="clear:both;float:left;border:0px solid;">
+						<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:240px;" class="t17 tbold tblue1">Change Room Info</div>
+						<div style="clear:both;float:left; width:577px; height:3px; font-size:0px; overflow:hidden; background-image:url(../images/dialout_icon10.jpg)"></div>
+					</div>
+					<div style="clear:both;float:right;">
+						
+					</div>
+					</div>					
+				</div>
+			</div>
+			<h:panelGroup rendered="#{userAction.actionType=='editRoom'}">
+			
+			<div style="clear:both;float:left; margin-top:29px;">
+				<div style="clear:both;float:left;padding-top:2px;"><img src="../images/account/account_icon4.jpg" /></div>
+				<div style="clear:right;float:left;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:10px; width:400px; font-weight:bold;" class="t14 tbold tblue">Meeting Room # <span style="color:#464646; font-weight:normal;"><h:outputText value="#{userAction.roomnumber}" /></span></div>
+					<div style="clear:both;float:left; width:405px; height:2px; font-size:0px; overflow:hidden;font-size:0px; overflow:hidden; background-image:url(../images/account/account_bg1.jpg)"></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-top:10px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text14_gra">Change Conference Room #</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left; padding-left:2px;">
+	                      <p:inputText styleClass="inputtext" tabindex="1"  id="roomnumber" value="#{userAction.newroomnumber}"  required="false"  requiredMessage="Room ID is required" validatorMessage="Room ID must be between 4 to 16 digits" validator="#{userAction.VidyoRoomNumberValidator}" >
+	                      		<f:validateRegex pattern="\d*" />
+	                      		<f:validateLength minimum="0" />                      		
+	                      		<f:validateLength maximum="16" />
+	                      	</p:inputText>
+					</div>
+					<div  style="clear:right;float:left;padding-top:9px;" class="t12 tgra2 tbold">4 to 16 digits</div>
+				</div>
+				<div style="clear:both;float:left; height:12px;"><h:message id="roomnumberM" for="roomnumber" errorClass="errorMsg"  /></div>				
+			</div>
+			
+			<div style="clear:both;float:left; margin-top:14px;">
+				<div style="clear:both;float:left;padding-top:1px;"><img src="../images/account/account_icon5.jpg" /></div>
+				<div style="clear:right;float:left;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:9px; width:400px;  font-weight:bold;" class="t14 tbold tblue">PIN # <span style="color:#464646; font-weight:normal;"><h:outputText value="#{userAction.roompin}" /></span></div>
+					<div style="clear:both;float:left; width:405px; height:2px; font-size:0px; overflow:hidden; background-image:url(../images/account/account_bg1.jpg)"></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-top:10px; margin-left:50px;">
+				<div style="clear:both;float:left; padding-bottom:2px; font-weight:bold;" class="text14_gra">Change Conference Room PIN</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+						<p:inputText styleClass="inputpassword" id="roompin" validatorMessage="PIN must be between 3 to 10 digits" value="#{userAction.newroompin}" >
+							<f:validateRegex pattern="|\d{3,10}" />
+						</p:inputText>
+					</div>
+					<div  style="clear:right;float:left;padding-top:9px;" class="t12 tgra2 tbold">3 to 10 digits</div>
+				</div>
+				<div style="clear:both;float:left; height:12px;"><h:message id="roompinM" for="roompin" errorClass="errorMsg"  /></div>				
+			</div>
+			<div style="clear:both;float:left; margin-top:22px; margin-left:50px;">
+				<div style="clear:both; float:left; padding:10px; text-align:center; border:1px solid #C9C9C9; border-bottom:0px; width:383px; background-image:url(../images/account/war_bg.jpg); background-repeat:repeat-x; background-position:bottom; background-color:#FFF100;white-space:normal;" class="t14"><span class="tbold">Warning:</span> You are about to change the room number or PIN. This means that you will need to notify any previously invited participants of the change or they will not be able to join the meeting.</div>			
+			</div>
+			<div style="clear:both;float:left; margin-top:33px; margin-left:50px;">
+				<div style="clear:both;float:left;"><h:commandButton styleClass="inputsubmit" action="#{userAction.updateRoom}" /></div>
+			</div>
+
+			</h:panelGroup>
+			<h:panelGroup  rendered="#{userAction.actionType=='updateRoom'}" styleClass="infoMsg1" style="padding-top: 100px;padding-bottom:150px;text-align:center;" >
+				<BR/><BR/>You have successfully updated your Meeting Room.
+			</h:panelGroup>			
+		</div>
+
+</ui:composition>

@@ -1,0 +1,417 @@
+/* CSS Document */
+
+body{
+	margin:0px;
+	padding:0px;
+	color: #464646;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	white-space:nowrap;
+}
+ div a{
+ 	white-space:nowrap; 
+ }
+
+.welcomeText{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#979797;
+	font-weight:bold;
+
+}
+
+.headT{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#0089cb;
+	font-size:17px;
+	font-weight:bold;
+	padding-bottom:2px; 
+	width:150px; 
+	height:29px; 
+	vertical-align:middle;
+	display: block;
+}
+
+.text2{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#0089cb;
+	font-weight:bold;
+	
+
+}
+
+.text3{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#464646;
+	font-weight:bold;
+
+}
+
+.text4{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#0089cb;
+	font-size:14px;
+
+}
+
+.text14_orange{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#FF6200;
+	font-size:14px;
+}
+
+
+.text14_gra{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#464646;
+	font-size:14px;
+
+}
+
+.text16_blue{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#0089cb;
+	font-size:16px;
+
+}
+
+a.text16_blue:hover{
+	color:#ff6200;
+	text-decoration:underline;
+}
+
+.text14_blue{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#0089cb;
+	font-size:14px;
+
+}
+
+.text15_gra{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#464646;
+	
+}
+
+.text15{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+}
+
+.text17{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:17px;
+}
+
+
+
+
+.textb{
+	font-weight: bold;
+}
+.text15_blue{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#0089cb;
+}
+
+a.topNav{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px; 
+	color:#000000;
+	font-weight:bold;
+	text-decoration:none;
+	
+}
+
+a.topNav:hover{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px; 
+	color:#0089CB;
+	font-weight:bold;
+	text-decoration:underline;
+	
+}
+
+.text26{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:26px;
+	color:#464646;
+	font-weight:bold;
+
+}
+
+.text13{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	color:#464646;
+}
+
+.text16_gra{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px; 
+	color:#464646;
+	
+}
+
+
+.t11{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:11px;
+}
+.t12{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+}
+
+.t13{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:13px;
+}
+
+.t14{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:14px;
+}
+
+.t15{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+}
+
+.t16{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:16px;
+}
+
+.t17{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:17px;
+}
+
+.t19{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:19px;
+}
+
+.t20{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:20px;
+}
+
+.t26{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:26px;
+}
+
+.torg1{
+color:#FF6200;
+}
+
+.tgra1{
+color:#464646;
+}
+
+.tgra2{
+color:#979797;
+}
+
+.tgra3{
+color:#585858;
+}
+
+.tblue{
+color:#0089cb;
+}
+
+
+
+.tbold{
+font-weight:bold;
+}
+
+.tgreen{
+color:#5baf42;
+	}
+
+a{
+	font-size:14px;
+	color:#0089cb;
+	text-decoration:underline;
+}
+
+a.torg1{
+	color:#0089cb;
+	text-decoration:underline;
+}
+
+a.torg1:hover{
+	color:#ff6200;
+	text-decoration:underline;
+}
+
+a.tblue{
+	color:#0089cb;
+	text-decoration:underline;
+}
+
+a.tblue:hover{
+	color:#ff6200;
+	text-decoration:underline;
+}
+
+a.torg{
+	color:#ff6200;
+	text-decoration:underline;
+}
+
+a.torg:hover{
+	color:#0089cb;
+	text-decoration:underline;
+}
+
+a.sublink{
+	color:#0089cb;
+	text-decoration:underline;
+}
+
+a.sublink:hover{
+	color:#ff6200;
+	text-decoration:underline;
+}
+
+
+
+
+.layout{
+width:1073px;
+position:absolute;
+float:left;
+left:50%;
+margin-left:-536px;
+}
+
+.contentdiv{
+ clear:both;float:left; 
+ width:1071px; 
+ border:1px solid #BDBDBD;
+ margin-bottom:30px;
+}
+
+.content{
+ clear:both;float:left; 
+ padding-left:35px; 
+ padding-right:35px; 
+ padding-top:51px; 
+ padding-bottom:50px; 
+ width:1001px; 
+ min-height:360px; !important;
+ }
+
+.comcontent{
+	float:left;
+	background-color:#FFFFFF;
+	width:800px;
+	padding:0px;
+	margin:0px;
+	text-align:left;
+	position:absolute;
+	left:-50%;
+	margin-left:250px;
+}
+
+
+	
+.infoMsg1{
+	display: block;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:16px;
+	color:#464646;
+	line-height: 24px;
+	white-space:nowrap;
+}
+
+.pop-up1{
+	width:620px;
+	display:table;
+}
+
+a.meetnow{
+	background-image:url(../images/meetnow_btn.jpg); 
+	background-repeat:no-repeat;
+	width:144px; height:46px; display:block;
+	background-position:0px 0px;
+}
+a.meetnow:hover{background-position:-144px 0px;}
+
+a.join{
+background-image:url(../images/join_icon.jpg); 
+background-repeat:no-repeat;
+width:144px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.join:hover{background-position:-144px 0px;}
+
+a.login{
+background-repeat:no-repeat;
+background-image:url(../images/login_icon.jpg); width:113px; height:46px; display:block;
+background-position:0px 0px;
+}
+a.login:hover{background-position:-113px 0px;}
+
+
+.inputtext{
+	border:0px;
+	font-family:'Droid Sans', Verdana, Arial;
+	FONT-WEIGHT: normal;
+	color:#464646;
+	font-size:14px;	
+	padding:7px;
+	height:19px;
+	padding-right:0px;
+	box-shadow:0 0px 0px;
+	BACKGROUND-POSITION: 0px 0px;
+	background-repeat:no-repeat;
+}
+
+.inputpassword{
+	border:0px;
+	font-family:'Droid Sans', Verdana, Arial;
+	FONT-WEIGHT: normal;
+	color:#464646;
+	font-size:14px;	
+	padding:7px;
+	height:19px;
+	padding-right:0px;
+	box-shadow:0 0px 0px;
+	BACKGROUND-POSITION: 0px 0px;
+	background-repeat:no-repeat;
+}
+input[type=text]{
+	box-shadow:0 0px 0px;
+}
+input[type=text]:hover{
+	box-shadow:0 0px 0px;
+}
+
+.footer {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#B1B1B1;
+	text-decoration:none;
+}
+
+.footer a{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-decoration:none;
+	color:#B1B1B1;
+}
+.footer a:hover {
+	text-decoration:underline;
+}

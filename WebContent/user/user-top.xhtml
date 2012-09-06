@@ -1,0 +1,59 @@
+<ui:composition      
+	xmlns="http://www.w3.org/1999/xhtml"     
+	xmlns:f="http://java.sun.com/jsf/core"     
+	xmlns:h="http://java.sun.com/jsf/html"     
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<style type="text/css">
+
+#navBtn a{
+	background-image:url(../images/navigation_menu.png); 
+	background-repeat:no-repeat;
+	width:216px; height:44px; display:block;
+}
+
+#navBtn a.btn1{background-position:0px 0px;}
+#navBtn a.btn1:hover{background-position:0px -44px;}
+
+#navBtn a.btn2{background-position:-216px 0px;}
+#navBtn a.btn2:hover{background-position:-216px -44px;}
+
+#navBtn a.btn3{width:215px;background-position:-432px 0px;}
+#navBtn a.btn3:hover{background-position:-432px -44px;}
+
+#navBtn a.btn4{background-position:-647px 0px;}
+#navBtn a.btn4:hover{background-position:-647px -44px;}
+
+#navBtn a.btn5{width:210px;background-position:-863px 0px;}
+#navBtn a.btn5:hover{background-position:-863px -44px;}
+
+
+a.logo{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:22px;
+font-weight:bold;
+text-decoration:none;
+color:#9797B4;
+}
+
+a.logout{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+font-weight:bold;
+text-decoration:none;
+color:#9797B4;
+}
+a.logout:hover{text-decoration:underline;}
+
+
+</style>
+
+<h:form id="navForm">
+<div style="clear:both; float:left; width:100%">
+	<div style="float:left; padding-left:23px;padding-top:12px;"><a href="dashboard.jsf" class="logo">Rank Consultancy</a></div>
+	<div style="float:right; padding-right:10px; padding-top:10px;" class="welcomeText">Welcome John,</div>
+</div>
+<div id="navBtn" style="clear:both;float:left;padding-top:14px;border-bottom:1px solid;width:100%;">
+</div>
+</h:form>
+</ui:composition>

@@ -1,0 +1,203 @@
+/* CSS Document */
+
+.ui-chkbox {
+	DISPLAY: inline-block;
+}
+.ui-chkbox .ui-chkbox-box {
+	WIDTH: 24px; FLOAT: left; HEIGHT: 23px; MARGIN-RIGHT: 3px;
+	background-image:url(../images/regis_image/checkbox_icon.png);
+	BACKGROUND-POSITION: 0px 0px;
+}
+
+
+
+.ui-widget .ui-icon-check {
+	WIDTH: 24px; FLOAT: left; HEIGHT: 23px;
+	BACKGROUND-IMAGE:url(../images/regis_image/checkbox_icon.png);
+	BACKGROUND-POSITION: -48px 0px;
+}
+
+.ui-widget .ui-state-default {
+	border:0px;
+
+}
+
+
+.ui-chkbox .ui-state-hover {
+	WIDTH: 24px; FLOAT: left; HEIGHT: 23px;
+	BACKGROUND-POSITION: -24px 0px;
+
+}
+
+INPUT[type='submit']{
+	background-image:url(../images/admin/submitimg.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	border:0px;
+	height:46px;
+	width:121px;
+}
+
+INPUT[type='submit']:hover {
+	background-image:url(../images/admin/submitimg.jpg);
+	BACKGROUND-POSITION: 0px -46px;
+	border:0px;
+}
+
+
+input[type=text]{
+	font-family:'Droid Sans', Verdana, Arial;
+	color:#464646;
+	font-size:14px;	
+	border:0px; 
+	padding:7px;
+	padding-right:12px;
+	width:302px;
+	height:19px;
+	background-image:url(../images/admin/formimg.jpg);
+	font-weight: normal;
+}
+
+input[type=password]{
+ 	font-family:Verdana, Arial;
+	color:#464646;
+	font-size:14px;
+	border:0px; 
+	padding:7px;
+	padding-right:12px;
+	width:302px;
+	height:19px;
+	background-image:url(../images/admin/formimg.jpg);
+	font-weight:normal;
+}
+
+input[type=text].ui-inputfield{
+	font-family:'Droid Sans', Verdana, Arial;
+	color:#464646;
+	font-size:14px;	
+	border:0px; 
+	padding:7px;
+	padding-right:12px;
+	width:302px;
+	height:19px;
+	background-image:url(../images/admin/formimg.jpg);
+	font-weight: normal;
+}
+
+input[type=password].ui-inputfield{
+ 	font-family:Verdana, Arial;
+	color:#464646;
+	font-size:14px;
+	border:0px; 
+	padding:7px;
+	padding-right:12px;
+	width:302px;
+	height:19px;
+	background-image:url(../images/admin/formimg.jpg);
+	font-weight:normal;
+}
+
+.errorMsg{
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#ff6200;
+	height:19px;
+	padding:8px;
+	display: block;
+	padding-bottom:0px;
+}
+
+.infoMsg{
+	height:19px;
+	padding:8px;
+	padding-left:0px;
+	padding-bottom:0px;
+	display: block;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#0089CB;
+	}
+	
+.infoMsg1{
+	display: block;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:16px;
+	color:#464646;
+	line-height: 24px;
+	
+	}
+	
+.frmbtn a{
+	background-image:url(../images/admin/email_btn.jpg); 
+	background-repeat:no-repeat;
+	width:121px; height:48px; display:block;
+}
+
+.frmbtn a.submit{ 
+	background-image:url(../images/admin/submitimg.jpg);
+	width:121px; height:46px; display:block;
+	background-position:0px 0px; }
+.frmbtn a.submit:hover{
+	background-position:0px -46px;
+}
+
+
+
+.frmbtn a.send{background-position:0px -48px;
+}
+.frmbtn a.send:hover{background-position:-121px -48px;}
+
+.frmbtn a.save{background-position:0px -96px;
+}
+.frmbtn a.save:hover{background-position:-121px -96px;}
+
+.frmbtn a.discard{background-position:0px -144px;
+}
+.frmbtn a.discard:hover{background-position:-121px -144px;}
+
+.frmbtn a.priview{background-position:0px -192px;
+}
+.frmbtn a.priview:hover{background-position:-121px -192px;}
+
+
+
+a.t17gra{
+	font-family:"Droid Sans", Verdana, Arial;
+	font-size:17px;
+	font-weight:bold;
+	color:#464646;
+	text-decoration: none;
+	}
+	
+a.t17gra:hover:{
+	text-decoration: underline;
+	}
+
+
+#edittab a{
+background-image:url(../images/admin/tab_btn.jpg); 
+background-repeat:no-repeat;
+width:121px; height:30px;
+display:block;
+}
+
+#edittab a.acc1{BACKGROUND-POSITION: 0px 0px;}
+
+#edittab a.acc1:hover{BACKGROUND-POSITION: 0px -30px;}
+
+#edittab a.acc2{BACKGROUND-POSITION: -125px 0px;}
+
+#edittab a.acc2:hover{BACKGROUND-POSITION: -125px -30px;}
+
+.datepicker input[type=text]{
+	width:85px;
+	height:19px;
+	background-image:url(../images/admin/input_small.jpg);
+	box-shadow:0 0px 0px;
+}
+
+.datetimepicker input[type=text]{
+	width:125px;
+	height:19px;
+	background-image:url(../images/admin/input_mid.jpg);
+	box-shadow:0 0px 0px;
+}

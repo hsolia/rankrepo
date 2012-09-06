@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/admin.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+<div class="layout">
+	<!-- User Top content -->
+	<ui:include src="admin-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv">	
+		<div class="content">
+		<!-- Page Left content -->
+			<f:view>
+			<f:event listener="#{systemEmailAction.initSystemEmail}" type="preRenderView" />
+				
+				<div style="clear:both;float:left; padding:0px; margin:0px;margin-left:40px;">
+						<div style="clear:both;float:left;"><img src="../images/admin/mngemail_icon1.jpg" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:250px;" class="t17 tgra tbold">System Email Templates</div>
+							<div style="clear:both;float:left; width:850px; height:2px; background-color:#464646;"></div>
+						</div>
+				</div>
+				<div style="clear:both;float:left; margin-top:11px; width:100%;">
+					<div style="clear:both;float:left;">
+						<div style="clear:both; float:left; width:216px; padding-right:5px;">
+						<h:form id="form1">
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink  actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[0])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Registration Confirmation" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[1])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)"  onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="User Welcome Email" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[2])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Admin Welcome Email" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[3])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Account/Room Change Email" /></div>										
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[4])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Forgot Username/Password" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[5])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Meeting Invitation" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[6])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Call Instruction Email" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[7])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Call Instruction With PIN" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[9])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Voice Instruction With PIN" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[11])}" update=":form2:rightDiv" onclick="closeDialog('form3',false)" onstart="loadDialog('form2',false)" oncomplete="openDialog('form2',false)" styleClass="sublink" value="Recorded Meeting Link Email" /></div>					
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><a href="managefaq.jsf" class="sublink">Manage FAQ</a></div>					
+							<div style="clear:both; float:right; margin-top:16px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink actionListener="#{systemEmailAction.loadEmailTemplate(systemEmailAction.emailTemps[6])}" update=":form3:rightDiv" onclick="closeDialog('form2',false)"  onstart="loadDialog('form3',false)" oncomplete="openDialog('form3',false)" styleClass="sublink" value="Email Blast" /></div>
+						</h:form>
+						<div style="clear:both; float:right;padding-top:20px;">
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14 tbold" >CONSTANT KEYWORDS</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[USERNAME]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[PASSWORD]</div>					
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[FIRSTNAME]</div>					
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[LASTNAME]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[ROOMNUMBER]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[ROOMPIN]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[MEETINGTITLE]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[GATEWAYIP]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[GATEWAYURL]</div>					
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[ACTIVATIONLINK]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[IOSGUESTLINK]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[DIALOUTGUESTROOMURL]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[MANAGEMEETINGURL]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[ADMINPORTALURL]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[USERPORTALURL]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[CALLINSTRUCTIONS]</div>
+							<div style="clear:both; float:right;padding-top: 2px;" class="t14" >[VOICEINSTRUCTIONS]</div>																				
+						</div>
+						</div>
+					</div>
+					<div style="float:left; margin-left:22px;">
+						<div style="float:left; width:2px; height:720px; background-color:#000000;"></div>
+					</div>
+					<h:form id="form2">
+					<h:panelGroup style="float:left; margin-left:28px;" id="rightDiv">
+						<h:panelGroup layout="block" id="mainDiv" style="float:left; clear:both;">
+							<div style="float:left; margin-top:4px; margin-bottom:2px;" class="t16 tgra tbold">#{systemEmailAction.templateTitle}</div>
+							<h:panelGroup rendered="#{systemEmailAction.templateTitle != null}">
+							<div style="float:left; clear:both;">
+								<div  style="clear:both;float:left; margin-top:3px;">
+								<pe:ckEditor id="editor" value="#{systemEmailAction.templateBody}" interfaceColor="#F2F2F2" width="700" height="400" >
+								</pe:ckEditor>
+								</div>
+								<div class="frmbtn" style="clear:both; margin-top:27px; float:left;">
+									<div style="clear:both; float:left;"><p:commandLink styleClass="save"   onstart="processDialog('form2')" oncomplete="statusDialog('form2')" actionListener="#{systemEmailAction.updateEmailTemplate(systemEmailAction.currentTemp)}" /></div>
+									<div style="float:left;"><p:commandLink styleClass="priview" /></div>
+								</div>
+							</div>
+							</h:panelGroup>				
+						</h:panelGroup>
+						<h:panelGroup id="statusDiv" style="float:left; clear:both;display:none;" class="t14 tgra">
+							<div style="float:left; margin-top:4px; margin-bottom:2px;" class="t16 tgra tbold">#{systemEmailAction.templateTitle}</div>	
+							<br/><br/>Email template updated successfully.
+						</h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;display:none;" class="t14 tgra">
+							<div style="float:left; margin-top:4px; margin-bottom:2px;" class="t16 tgra tbold">#{systemEmailAction.templateTitle}</div>
+							<br/><br/>
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...</span>
+						</h:panelGroup>	
+					</h:panelGroup>
+					</h:form>
+					<h:form id="form3">
+					<h:panelGroup  style="float:left; margin-left:28px;" id="rightDiv">
+						<p:blockUI   block="rightDiv" widgetVar="form3Overlay">
+							<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+							<span style="display:block;width:150px;">Pleae wait...</span>
+						</p:blockUI>
+						<h:panelGroup layout="block" id="mainDiv" style="float:left; clear:both;">
+							<h:panelGroup rendered="#{systemEmailAction.templateTitle != null}" style="float:left; margin-top:4px; margin-bottom:2px;" styleClass="t16 tgra tbold" >Email Blast</h:panelGroup>
+							<h:panelGroup rendered="#{systemEmailAction.actionType == 'init'}">
+							<div style="float:left; clear:both;">
+								<div style="float:left;margin-top:2px;">
+									<div style="float:left; margin-top:12px; margin-bottom:8px;" class="t16 tgra tbold">to</div>
+									<div style="float:left; margin-left:53px; margin-top:12px;">All users</div>
+								</div>
+								<div style=" clear:both;float:left;">
+									<div style="float:left; margin-top:6px; margin-bottom:8px;" class="t16 tgra tbold">cc</div>
+									<div style="float:left; margin-left:50px; margin-top:0px;">
+										<h:inputText id="ccEmail" value="#{systemEmailAction.ccEmail}" validatorMessage="Invalid cc email address" >
+											<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+										</h:inputText>
+									</div>
+									<div style="float:right;"><h:message for="ccEmail" id="ccEmailM" styleClass="errorMsg" /></div>
+								</div>
+								<div style=" clear:both;float:left;">
+									<div style="float:left; margin-top:12px; margin-bottom:8px;" class="t16 tgra tbold">bcc</div>
+									<div style="float:left; margin-left:40px; margin-top:6px;">
+										<h:inputText required="false" id="bccEmail" value="#{systemEmailAction.bccEmail}" validatorMessage="Invalid bcc email address" >
+											<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+										</h:inputText>
+									</div>
+									<div style="float:right;"><h:message for="bccEmail" id="bccEmailM" styleClass="errorMsg" /></div>
+								</div>
+								<div style=" clear:both;float:left;">
+									<div style="float:left; margin-top:12px; margin-bottom:8px;" class="t16 tgra tbold">subject</div>
+									<div style="float:left; margin-left:10px; margin-top:6px;"><h:inputText value="#{systemEmailAction.emailSubject}" /></div>
+								</div>
+								<div  style="clear:both;float:left; margin-top:3px;">
+									<p:editor   height="300" width="600" value="#{systemEmailAction.userMailBody}" />
+								</div>
+								<div class="frmbtn" style="clear:both; margin-top:27px; float:left;">
+									<div style="clear:both; float:left;"><p:commandLink  id="sendEmail" styleClass="send" update="mainDiv" onclick="openOverlay('form3','Overlay')" oncomplete="closeOverlay('form3','Overlay');" actionListener="#{systemEmailAction.sendUserMail}" /></div>
+									<div style="float:left;"><p:commandLink   styleClass="discard" onclick="closeDialog('form3',false)" /></div>
+								</div>
+							</div>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{systemEmailAction.actionType == 'sentSuccess'}" style="float:left; clear:both;" class="t14 tgra">
+								<div style=" clear:both; float:left;">Email sent to all users successfully.</div>
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup  id="statusDiv" style="float:left; clear:both;display:none;" class="t14 tgra"></h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;display:none;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...</span>
+						</h:panelGroup>	
+					</h:panelGroup>
+					</h:form>
+		
+				</div>
+			</f:view>	
+		</div>
+	</div>
+</div>
+</h:body>
+</html>

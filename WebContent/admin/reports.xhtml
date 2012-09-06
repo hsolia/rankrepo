@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/admin.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+
+
+a.save{
+background-image:url(../images/admin/email_btn.jpg); 
+background-repeat:no-repeat;
+width:121px; height:48px; display:block;
+background-position:0px -96px;
+}
+a.save:hover{background-position:-121px -96px;}
+
+a.discard{
+background-image:url(../images/admin/email_btn.jpg); 
+background-repeat:no-repeat;
+width:121px; height:48px; display:block;
+background-position:0px -144px;
+}
+a.discard:hover{background-position:-121px -144px;}
+</style>
+</h:head>
+<body>
+<div class="layout">
+	<!-- User Top content -->
+	<ui:include src="admin-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv">
+		<div class="content">
+		<!-- Page Left content -->
+			<f:view>
+			<h:form id="form2">	
+				<div style="clear:both;float:left; padding:0px; margin:0px;margin-left:40px;">
+						<div style="clear:both;float:left;padding-top:6px;"><img src="../images/admin/manageadmin_icon2.jpg" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:250px;" class="t17 tgra tbold">System Reports</div>
+							<div style="clear:both;float:left; width:850px; height:2px; background-color:#464646;"></div>
+						</div>
+				</div>
+				<div style="clear:both;float:left; margin-top:11px; width:100%;">
+					<div style="clear:both;float:left;">
+						<div style="clear:both; float:left; width:216px; padding-right:5px;">
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink  actionListener="#{reportAction.exportCustomer}"  onstart="loadDialog('form2',false)" oncomplete="statusDialog('form2',false)" styleClass="sublink" value="Export All Customers" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink  onclick="openDialog('form2',false)" styleClass="sublink" value="Export Usage Data" /></div>
+							<div style="clear:both; float:right; margin-top:6px; margin-bottom:0px; text-decoration:underline;" class="t16 tblue"><p:commandLink  actionListener="#{reportAction.exportConfig}"   onstart="loadDialog('form2',false)" oncomplete="statusDialog('form2',false)" styleClass="sublink" value="Export System Settings" /></div>										
+						</div>
+					</div>
+					<div style="float:left; margin-left:22px;">
+						<div style="float:left; width:2px; height:455px; background-color:#000000;"></div>
+					</div>
+					<h:panelGroup style="float:left; margin-left:28px;" id="rightDiv">
+						<h:panelGroup layout="block" id="mainDiv" style="float:left; clear:both;display:none;">
+					    	<p:blockUI  block="mainDiv" widgetVar="mainDivverlay">
+								<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+								<span style="display:block;width:150px;">Pleae wait...</span>
+							</p:blockUI>
+							<div style="clear:both;float:left; margin-left:50px;">
+								<div style="clear:both;float:left; padding-bottom:2px;" class="t15 tgra tbold">Search Customer by name/Email</div>
+								<div style="clear:both;float:left">
+									<h:inputText id="queryString" value="#{reportAction.queryString}"  />
+								</div>
+						    	<div style="clear:both;float:left;padding-top:25px;">
+						    		<div style="clear:both;float:left;">
+						    			<div style="clear:both;float:left;" class="t15 tbold tgra">Beginning Date</div>
+						    			<p:calendar style="clear:both;float:left;" styleClass="datetimepicker" value="#{reportAction.beginningDate}" pattern="MM/dd/yyyy" >
+							    			<f:convertDateTime type="date" pattern="MM/dd/yyyy"/>
+						    			</p:calendar>
+						    		</div>
+						    		<div style="float:left;margin-left:35px;">
+						    			<div style="clear:both;float:left;width:150px;" class="t15 tbold tgra">Ending Date</div>
+						    			<p:calendar style="clear:both;float:left;" styleClass="datetimepicker" value="#{reportAction.endingDate}" pattern="MM/dd/yyyy" >
+						    				<f:convertDateTime type="date" pattern="MM/dd/yyyy"/>
+						    			</p:calendar>
+						    		</div>
+						    		<div style="clear:both;float:left;margin-top:20px;" class="frmbtn">
+						    			<p:commandButton style="padding:0px;" value="Export to CSV" styleClass="submit" actionListener="#{reportAction.exportUsage}" onclick="mainDivverlay.show()" oncomplete="mainDivverlay.hide()">
+						    			</p:commandButton>
+										<p:commandButton style="margin-left:10px;" type="reset" value="Reset Filter" styleClass="submit"/>		
+						    		</div>
+						    	</div>							
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="statusDiv" style="float:left; clear:both;display:none;" class="t14 tgra">
+								<a class="sublink" href="../data.csv">Download Exported File</a><br/><br/>
+								<span class="t14 tblue">Data exported successfully.</span>
+						</h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;display:none;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...Exporting</span>
+						</h:panelGroup>	
+					</h:panelGroup>
+				</div>
+			</h:form>
+			</f:view>	
+		</div>
+	</div>
+</div>
+</body>
+</html>

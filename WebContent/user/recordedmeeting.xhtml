@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+
+td a{
+	background-image:url(../images/recordform/btn.jpg); 
+	background-repeat:no-repeat;
+	width:34px; height:33px; display:block;
+}
+
+a.view{background-position:0px 0px;}
+a.view:hover{background-position:0px -33px;}
+
+a.email{
+width:48px; height:33px; display:block;
+background-position:-34px 0px;
+}
+a.email:hover{background-position:-34px -33px;}
+
+a.delete{background-position:-82px 0px;}
+a.delete:hover{background-position:-82px -33px;}
+
+
+a.edit{background-position:-116px 0px;}
+a.edit:hover{background-position:-116px -33px;}
+
+
+table.datatlb{
+	border-bottom:1px solid #8AC32F;
+}
+table.datatlb thead{
+	border:0px;
+}
+table.datatlb tbody tr{
+	background-image: url('../images/recordform/doted_line.jpg'); background-position: bottom; background-repeat: repeat-x;
+}
+
+table.datatlb thead tr th{
+	word-wrap:break-word; padding:4px;
+	vertical-align:bottom;
+	text-align: center;
+	border-bottom:1px solid #8AC32F;
+}
+
+table.datatlb tbody tr td{
+	word-wrap:break-word;  border-right:1px solid #8AC32F;
+	vertical-align:top;
+	padding:4px;
+	padding-top:8px;
+	padding-bottom:16px;
+}
+
+
+input[type=text], input[type=password]{
+	width:452px;
+	background-image:url(../images/recordform/input_gr.jpg);
+	height:17px;
+}
+
+TEXTAREA{
+	width:446px;
+	height:63px;
+	background-image:url(../images/recordform/textarea_gr.jpg);
+	font-family:'Droid Sans', Verdana, Arial;
+	color:#464646;
+	font-size:14px;	
+	font-weight: normal;
+	
+}
+
+
+</style>
+</h:head>
+<body>
+
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px;">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<!-- Page content -->
+	<f:view>
+	<f:event listener="#{recordingManageAction.initRecordMeetings}" type="preRenderView" />
+	<div class="contentdiv" style="border-top:0px;">
+		<div class="content">
+			<!-- Page Left content -->		
+			<h:form id="mainform">
+			<div style="clear:both;float:left; display:block; width:629px;"  >
+				<div style="clear:both;float:left; padding:0px;margin-top:2px;">
+					<div style="clear:both;float:left;"><img src="../images/recordform/record_icon1.jpg" /></div>
+					<div style="float:left;padding:0px;  padding-right:0px;">
+						<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:250px;" class="t17 tgreen tbold">Recorded Meetings</div>
+						<div style="clear:both;float:left; width:577px; height:3px;font-size:0px; overflow:hidden; background-image:url(../images/recordform/record_bgimg.jpg);"></div>
+					</div>
+				</div>
+			    <div style="clear:both;float:left; margin-top:0px; margin-left:0px;">
+			    	<h:panelGrid style="clear:both;float:left; text-align:center;width:629px;" styleClass="t14 tgra3" rendered="#{recordingManageAction.recCount eq 0}">
+			    		You currently don't have any recorded meetings
+			    	</h:panelGrid>
+			    	<h:panelGroup id="recordingList" style="width:629px;clear:both;float:left;" rendered="#{recordingManageAction.recCount > 0}" >
+				    	<p:blockUI  block="recordingContent" widgetVar="contentOverlay">
+							<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+							<span style="display:block;width:150px;">Please wait...</span>
+						</p:blockUI>
+						<h:panelGroup id="recordingContent" style="width:629px;clear:both;float:left;">
+					    	<table rules="groups" width="100%" class="t14 tgra3 datatlb" border="0" cellpadding="0" cellspacing="0" >
+					    	<thead>
+						    	<tr>
+						    		<th width="108"  class="tbold">date &amp; time</th>
+						    		<th class="tbold">meeting name</th>
+						    		<th width="60" class="tbold">edit</th>
+						    		<th width="60" class="tbold">view<br/>recording</th>
+						    		<th width="60" class="tbold">email<br/>link</th>
+						    		<th width="60" class="tbold">delete</th>		    		
+						    	</tr>
+					    	</thead>
+					    	<tbody>
+						    	<ui:repeat varStatus="i" offset="#{recordingManageAction.pagging.posFrom}" size="#{recordingManageAction.pagging.posTo}"  var="recording" value="#{recordingManageAction.recordingList}">
+							    	<tr style="#{i.last=='false' ?'' : 'background-image:none;'}">
+							    		<td style="border-left:1px solid #8AC32F;">#{recording.dateCreated}<br/>Duration : #{recording.duration}</td>
+							    		<td>#{recording.title}<br/>Comments : #{recording.desc}</td>
+							    		<td align="center"><p:commandLink actionListener="#{recordingManageAction.viewRecording(i.index)}" update=":editForm:mainDiv" onstart="loadDialog('editForm')" oncomplete="openDialog('editForm')" styleClass="edit" /></td>
+							    		<td align="center"><a target="_blank" href="#{recording.playbackLink}" class="view"></a></td>
+							    		<td align="center"><p:commandLink actionListener="#{recordingManageAction.viewRecording(i.index)}" update=":linkEmailForm:mainDiv" onstart="loadDialog('linkEmailForm')" oncomplete="openDialog('linkEmailForm')" styleClass="email" /></td>
+							    		<td align="center"><p:commandLink actionListener="#{recordingManageAction.deleteRecording(i.index)}" update="@form" onstart="loadDialog('form4')" oncomplete="statusDialog('form4')" styleClass="delete"/></td>
+							    	</tr>
+						    	</ui:repeat>
+					    	</tbody>
+					    	</table>
+				    	</h:panelGroup>
+				    	<div style="float:left;margin-top:20px;">
+				    		<div style="float:left;" class="t14 tgra1">Pages&nbsp;&nbsp;</div>
+							<ui:repeat var="page" value="#{recordingManageAction.pagging.totPages}">
+								<p:commandLink style="float:left;margin-right:5px;" styleClass="sublink" update=":mainform:recordingContent" actionListener="#{recordingManageAction.pagging.movePage(page)}" onclick="contentOverlay.show()" oncomplete="contentOverlay.hide()">#{page}</p:commandLink>
+							</ui:repeat>
+						</div>
+			    	</h:panelGroup>
+			    </div>
+			</div>		
+			</h:form>
+			
+			<h:form id="viewForm">
+				<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="viewFormDialog" modal="true" style="padding:0px;">  
+				    <div id="sendEmailDialog" style="clear:both; float:left; height:420px; width:620px; padding:0px; padding-top:0px; padding-bottom:10px;">
+						<div style="clear:both;float:left; padding:0px;margin-top:0px;">
+							<div style="clear:both;float:left;"><img src="../images/recordform/record_icon1.jpg" /></div>
+							<div style="float:left;padding:0px;  padding-right:0px;">
+								<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:570px;" class="t17 tgreen tbold">View Recorded Meeting</div>
+								<div style="clear:both;float:left; width:570px; height:3px; background-image:url(../images/recordform/record_bgimg.jpg);"></div>
+							</div>
+						</div>
+						<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+							<div style="clear:both;float:left;padding-top:15px;">
+								<script type="text/javascript" src="../flowplayer/flowplayer-3.2.8.min.js"></script>
+								<a  
+									 href="#{recordingManageAction.flvFilePlyaing}"
+									 style="display:block;width:620px;height:330px"  
+									 id="player"> 
+								</a> 
+								<script type="text/javascript">
+									flowplayer("player", "../flowplayer/flowplayer-3.2.8.swf");
+								</script>
+							</div>				
+							<div id="close2" style="clear:both;float:left; padding-top:18px;width:620px;">
+								<p:commandLink style="float:right; margin-left:7px; " styleClass="sublink" onclick="viewFormDialog.hide()">Close</p:commandLink>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...</span>
+						</h:panelGroup>	
+						<h:panelGroup id="statusDiv" style="clear:both;float:left;"></h:panelGroup>							
+					</div> 			  
+				</p:dialog>
+			</h:form>
+			<h:form id="editForm">
+				<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="editFormDialog" modal="true" style="padding:0px;">  
+				    <div style="clear:both; float:left; height:400px; width:620px; padding:0px; padding-top:0px; padding-bottom:10px;">
+						<div style="clear:both;float:left; padding:0px;margin-top:0px;">
+							<div style="clear:both;float:left;"><img src="../images/recordform/pan_icon_gr.jpg" /></div>
+							<div style="float:left;padding:0px;  padding-right:0px;">
+								<div style="clear:both;float:left; padding-bottom:2px; padding-top:9px; width:570px;" class="t17 tgreen tbold">Change meeting title and description</div>
+								<div style="clear:both;float:left; width:570px; height:3px; background-image:url(../images/recordform/record_bgimg.jpg);"></div>
+							</div>
+						</div>
+						<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+							<p:blockUI  block="mainDiv" widgetVar="editFormOverlay">
+								<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+								<span style="display:block;width:150px;">Pleae wait...</span>
+							</p:blockUI>
+							<div style="clear:both;float:left;padding-top:15px;">
+								<div style="clear:both;float:left; margin-top:10px; margin-left:50px;">
+									<div style="clear:both;float:left; padding-bottom:2px; font-weight:bold;" class="t14 tgreen">Meeting Title</div>
+									<div style="clear:both;float:left;">
+										<h:inputText id="mtitle" value="#{recordingManageAction.recodingDto.title}" requiredMessage="Meeting title can't be empty!" required="true"  />
+									</div>
+									<div style="clear:both;float:left;height:12px;"><h:message id="mtitleM" for="mtitle" errorClass="errorMsg"  /></div>				
+								</div>							
+							</div>	
+							<div style="clear:both;float:left;padding-top:15px;">
+								<div style="clear:both;float:left; margin-top:10px; margin-left:50px;">
+									<div style="clear:both;float:left; padding-bottom:2px; font-weight:bold;" class="t14 tgreen">Meeting Description</div>
+									<div style="clear:both;float:left;">
+										<h:inputTextarea value="#{recordingManageAction.recodingDto.desc}" id="mdesc" required="false"  />
+									</div>
+									<div style="clear:both;float:left;height:12px;"><h:message for="roompin" errorClass="errorMsg"  /></div>				
+								</div>							
+							</div>									
+							<div id="close2" style="clear:both;float:left; padding-top:18px;margin-left:50px; width:459px;">
+								<p:commandLink style="float:left;" styleClass="sublink" update=":mainform:recordingList mtitleM" actionListener="#{recordingManageAction.updateRecording}" onclick="openOverlay('editForm','Overlay')"  oncomplete="closeOverlay(xhr, status, args,'editForm');" >Update</p:commandLink>
+								<p:commandLink style="float:right;" styleClass="sublink" onclick="editFormDialog.hide()">Close</p:commandLink>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...</span>
+						</h:panelGroup>	
+						<h:panelGroup id="statusDiv" class="pop-up1 t13 tgra" style="clear:both;float:left;padding-top:25px;text-align: center; " >
+							<div style=" padding-bottom: 25px;">You have successfully updated your Recorded Meeting Information.</div>
+							<p:commandLink style="margin-top:25px; " styleClass="sublink" onclick="editFormDialog.hide()">Close</p:commandLink>
+						</h:panelGroup>			
+					</div> 			  
+				</p:dialog>
+			</h:form>
+			<h:form id="linkEmailForm">
+				<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="linkEmailFormDialog" modal="true" style="padding:0px;">  
+				    <div id="sendEmailDialog" style="clear:both; float:left; height:250px; width:620px; padding:0px; padding-top:0px; padding-bottom:10px;">
+						<div style="clear:both;float:left; padding:0px;margin-top:0px;">
+							<div style="clear:both;float:left;"><img src="../images/recordform/record_icon1.jpg" /></div>
+							<div style="float:left;padding:0px;  padding-right:0px;">
+								<div style="clear:both;float:left; padding-bottom:2px; width:570px; padding-top:4px;" class="t17 tgreen tbold">Send Email Link for Recorded Meeting</div>
+								<div style="clear:both;float:left; width:570px; height:3px; background-image:url(../images/recordform/record_bgimg.jpg);"></div>
+							</div>
+						</div>
+						<h:panelGroup id="mainDiv" style="clear:both;float:left;margin-left:50px;">
+							<div style="clear:both;float:left;padding-top:15px;">
+								<div style="clear:both;float:left;" class="t14 tgra tbold">Name</div>
+								<div style="clear:both;float:left">
+									<h:inputText value="#{recordingManageAction.receiverName}"/>
+								</div>
+								<div style="clear:both;float:left;margin-top: 10px;" class="t14 tgra tbold">Email Address</div>
+								<div style="clear:both;float:left">
+									<h:inputText value="#{recordingManageAction.receiverEmailAddress}"/>
+								</div>
+	
+							</div>				
+							<div style="clear:both;float:left; padding-top:18px;width:459px;">
+								<p:commandLink style="float:left;" styleClass="sublink" actionListener="#{recordingManageAction.sendEmailLink}" onstart="processDialog('linkEmailForm')" oncomplete="statusDialog('linkEmailForm')" >Send Email</p:commandLink>
+								<p:commandLink style="float:right;" styleClass="sublink" onclick="linkEmailFormDialog.hide()">Close</p:commandLink>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...</span>
+						</h:panelGroup>	
+						<h:panelGroup id="statusDiv" class="pop-up1 t13 tgra" style="clear:both;float:left;padding-top:25px;text-align: center; " >
+							<div style=" padding-bottom: 25px;">Email sent successfully.</div>
+							<p:commandLink style="margin-top:25px; " styleClass="sublink" onclick="linkEmailFormDialog.hide()">Close</p:commandLink>
+						</h:panelGroup>			
+					</div> 			  
+				</p:dialog>
+			</h:form>
+			<h:form id="form4">
+				<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="form4Dialog" modal="true" style="padding:0px;">  
+				    <div id="sendEmailDialog" style="clear:both; float:left; height:180px; width:400px; padding:0px; padding-top:0px; padding-bottom:10px;">
+						<div style="clear:both;float:left; padding:0px;margin-top:0px;">
+							<div style="clear:both;float:left;"><img src="../images/recordform/record_icon1.jpg" /></div>
+							<div style="float:left;padding:0px;  padding-right:0px;">
+								<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:250px;" class="t17 tgreen tbold">Delete Recorded Meeting</div>
+								<div style="clear:both;float:left; width:350px; height:3px; background-image:url(../images/recordform/record_bgimg.jpg);"></div>
+							</div>
+						</div>
+						<h:panelGroup id="mainDiv" style="clear:both;float:left;"></h:panelGroup>
+						<h:panelGroup id="processDiv" style="clear:both;float:left;margin-left:50px;" class="t14 tgra">
+							<img src="../images/account/ajaxloadingbar.gif"  /><br />
+							<span style="margin-left: 6px;">Please wait...</span>
+						</h:panelGroup>	
+						<h:panelGroup id="statusDiv" style="clear:both;float:left;margin-left:50px;">
+							<div id="close2" style="clear:both;float:left; padding-top:18px;" class="t14 tgra">
+								Record deleted successfully.
+								<br /><br />
+								<p:commandLink style="float:left;" styleClass="sublink" onclick="form4Dialog.hide()">Close</p:commandLink>
+							</div>
+						</h:panelGroup>							
+					</div> 			  
+				</p:dialog>
+			</h:form>
+		
+		</div>
+		<!-- Page FooterRight content -->
+		<ui:include src="user-footer.xhtml"/>
+	</div>
+	</f:view>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/dialout.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+a.call{
+background-image:url(../images//call_icon.jpg); 
+background-repeat:no-repeat;
+width:122px; height:52px; display:block;
+background-position: 0px 0px;}
+a.call:hover{background-position: -122px 0px;}
+</style>
+</h:head>
+<body>
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<!-- Page content -->
+	<div class="content" style="border-top:0px;">
+		<!-- Page Left content -->
+		<f:view>
+		<f:event listener="#{dialOutAction.initDialOut}" type="preRenderView" />
+		
+		<h:form id="dialoutform">
+				<div style="clear:both;float:left; width:627px;">
+					<div style="clear:both;float:left; padding:0px; margin:0px;">
+						<div style="clear:both;float:left;"><img src="../images/dialout_icon1.jpg" width="50" height="43" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:8px; width:150px;" class="text1">Dial Out Now</div>
+							<div style="clear:both;float:left; width:577px; height:3px; background-image:url(../images//dialout_icon10.jpg)"></div>
+						</div>
+					</div>
+					<div style="clear:both;float:left; margin-top:25px; margin-left:50px;">
+						<div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="text16_gra">Participant IP Address</div>
+						<div style="clear:both;float:left; padding-left:2px;">
+							<h:inputText styleClass="inputblue1" id="ipaddress" value="#{dialOutAction.dialOutipAddress}"  required="true"  requiredMessage="IP Address must be required" validatorMessage="Invalid IP Address you entered." >
+							</h:inputText>
+						</div>
+						<div style="clear:both;float:left; padding-left:2px;"><h:message for="ipaddress" styleClass="errorMsg" infoClass="infoMsg" /></div>				
+					</div>
+					<div style="clear:both;float:left; margin-top:15px; margin-left:50px;">
+						<div style="clear:both;float:left; margin-top:37px;"><h:commandButton actionListener="#{dialOutAction.doDialOut}"  /></div>
+					</div>
+				</div>
+		</h:form>
+		
+		</f:view>
+		<!-- Page Right content -->
+		<ui:include src="right-view.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

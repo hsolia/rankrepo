@@ -1,0 +1,166 @@
+/* CSS Document */
+
+.ui-chkbox {
+	DISPLAY: inline-block;
+}
+.ui-chkbox .ui-chkbox-box {
+	WIDTH: 24px; FLOAT: left; HEIGHT: 23px; MARGIN-RIGHT: 3px;
+	background-image:url(../images/regis_image/checkbox_icon.png);
+	BACKGROUND-POSITION: 0px 0px;
+}
+
+
+
+.ui-chkbox-box .ui-icon-check {
+	WIDTH: 24px; FLOAT: left; HEIGHT: 23px;
+	BACKGROUND-IMAGE:url(../images/regis_image/checkbox_icon.png);
+	BACKGROUND-POSITION: -48px 0px;
+}
+
+.ui-widget .ui-state-default {
+	border:0px;
+}
+
+
+.ui-chkbox .ui-state-hover {
+	WIDTH: 24px; FLOAT: left; HEIGHT: 23px;
+	BACKGROUND-POSITION: -24px 0px;
+
+}
+
+.inputtext{
+	width:310px;
+	height:19px;
+	background-image:url(../images/form_img.jpg);
+	margin-right: 8px;	
+}
+
+.inputpassword{
+	width:310px;
+	height:19px;
+	background-image:url(../images/form_img.jpg);
+	margin-right: 8px;	
+}
+
+input[type=text]{
+	width:310px;
+	height:19px;
+	background-image:url(../images/form_img.jpg);
+	margin-right: 8px;	
+}
+
+input[type=password]:focus{
+	box-shadow:0 0px 0px;
+}
+
+
+input[type=password]{
+	width:310px;
+	height:19px;
+	background-image:url(../images/form_img.jpg);
+	margin-right: 8px;
+}
+
+.inputsubmit {
+	background-image:url(../images/regis_image/submit_img1.png);
+	BACKGROUND-POSITION: 0px 0px;
+	border:0px;
+	height:46px;
+	width:117px;
+}
+
+.inputsubmit:hover {
+	background-image:url(../images/regis_image/submit_img1.png);
+	BACKGROUND-POSITION: -117px 0px;
+	border:0px;
+}
+
+INPUT[type='submit'] {
+	background-image:url(../images/regis_image/submit_img1.png);
+	BACKGROUND-POSITION: 0px 0px;
+	border:0px;
+	height:46px;
+	width:117px;
+}
+
+INPUT[type='submit']:hover {
+	background-image:url(../images/regis_image/submit_img1.png);
+	BACKGROUND-POSITION: -117px 0px;
+	border:0px;
+}
+
+
+a.submit {
+	background-image:url(../images/regis_image/submit_img1.png);
+	BACKGROUND-POSITION: 0px 0px;
+	border:0px;
+	height:46px;
+	width:117px;
+	display: block;
+}
+
+a.submit:hover {
+	background-image:url(../images/regis_image/submit_img1.png);
+	BACKGROUND-POSITION: -117px 0px;
+}
+
+
+a.export {
+	background-image:url(../images/account/export_btn.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	border:0px;
+	height:46px;
+	width:180px;
+	display: block;
+}
+
+a.export:hover {
+	background-image:url(../images/account/export_btn.jpg);
+	BACKGROUND-POSITION:0px -46px;
+}
+
+
+.errorMsg{
+	float:left;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#ff6200;
+	height:19px;
+	padding:8px;
+	padding-left:0px;
+	display: block;
+	padding-bottom:0px;
+	white-space:nowrap;
+}
+
+.infoMsg{
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#0089CB;
+	height:19px;
+	padding:8px;
+	padding-left:0px;
+	display: block;
+	padding-bottom:0px;
+	white-space:nowrap;
+}
+	
+.infoMsg1{
+	display: block;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:16px;
+	color:#464646;
+	line-height: 24px;
+	white-space:nowrap;
+}
+	
+a.text14_gra{
+	font-family:"Droid Sans", Verdana, Arial;
+	color:#464646;
+	font-size:14px;
+	text-decoration: underline;
+}
+
+a.text14_gra:hover{
+	text-decoration: none;
+}

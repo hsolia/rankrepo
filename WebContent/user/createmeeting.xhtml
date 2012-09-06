@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/meeting.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.sublink{
+	color:#ff6200;
+	text-decoration:underline;
+}
+a.sublink{
+	color:#ff6200;
+	text-decoration:underline;
+}
+a.sublink:hover{
+	color:#0089cb;
+	text-decoration:underline;
+}
+
+a.crmet_btn{
+background-image:url(../images/meeting/crmet_btn.jpg);
+height:45px;width:235px;
+background-position: 0px 0px;
+background-repeat:no-repeat;
+display:inline-block;}
+a.crmet_btn:hover{background-position: 0px -45px;}
+
+</style>
+</h:head>
+<body>
+
+<div style="width:1073px; position:absolute; float:left; left:50%;margin-left:-536px">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv" style="border-top:0px;">
+		<div class="content">
+		<!-- Page Left content -->
+		<f:view>
+		<f:event listener="#{createMeetingAction.initCreateMeeting}" type="preRenderView" />
+		<h:form id="form">
+		<div style="clear:both;float:left; width:627px;  ">
+			<div style="clear:both;float:left; padding:0px; margin:0px;">
+				<div style="clear:both;float:left;padding-top:6px;"><img src="../images/meeting/sched_icon1.jpg" width="50" height="40" /></div>
+				<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+					<div style="clear:both;float:left; padding-bottom:2px; padding-top:10px; width:200px;" class="text17 tbold torg1">Create a meeting</div>
+					<div style="clear:both;float:left; width:577px; height:2px; font-size:0px; overflow:hidden; background-image:url(../images/meeting/sched_line.jpg)"></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left; margin-top:25px;">
+				<div style="clear:both;float:left;padding-left:50px;">
+					<div style="clear:both;float:left;width:148px;padding-bottom:2px; font-weight:bold;" class="t15 tgra">Enter Meeting Name</div>
+					<div style="clear:both;float:left;"><h:inputText value="#{createMeetingAction.meetingName}" id="meetingName" required="true" requiredMessage="Meeting name required!" /></div>
+					<div style="clear:both;float:left; height:30px;"><h:message for="meetingName" styleClass="errorMsg" infoClass="infoMsg" /></div>
+					<div style="clear:both;float:left;"><p:commandLink update="@form" actionListener="#{createMeetingAction.exportInvite}" styleClass="crmet_btn"/></div>
+				</div>
+			</div>
+		</div>
+		</h:form>
+		<h:form id="form2">
+			<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="form2Dialog" modal="true" style="padding:0px;">  
+			    <div id="sendEmailDialog" style="clear:both; float:left; width:500px; padding:0px; padding-top:0px; padding-bottom:10px;">
+					<div style="clear:both;float:left;">
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:400px;" class="t17 tgra tbold">Sending Invitaions</div>
+							<div style="clear:both;float:left; width:400px; height:2px; background-color:#464646;"></div>
+						</div>
+					</div>
+					<h:panelGroup id="mainDiv" style="clear:both;float:left;"></h:panelGroup>
+					<h:panelGroup id="processDiv" style="clear:both;float:left; text-align:left;width:100%;" class="t14 tgra">
+						<img src="../images/account/ajaxloadingbar.gif" border="0" /><br />
+						<span style="margin-left: 6px;">Please wait...</span>
+					</h:panelGroup>	
+					<h:panelGroup id="statusDiv" style="clear:both;float:left;">
+						<h:outputText styleClass="t14 tgra3 tbold" value="Invitaion sent to below participants" />
+						<table id="recordingList" border="0" cellpadding="0" cellspacing="0">
+						<ui:repeat varStatus="i" var="participant" value="#{createMeetingAction.invitationList}">
+					    	<tr>
+					    		<td width="211" align="left" valign="top" style="word-wrap:break-word; padding:4px;">#{participant.participantName}</td>
+					    		<td width="211" align="left" valign="top" style="word-wrap:break-word; padding:4px;">#{participant.participantEmail}</td>
+					    	</tr>
+				    	</ui:repeat>
+						</table>	
+						<br /><br />
+						<p:commandLink style="float:left; margin-left:7px; " styleClass="sublink" onclick="form2Dialog.hide()">Close</p:commandLink>
+					</h:panelGroup>
+				</div> 			  
+			</p:dialog>
+		</h:form>		
+		</f:view>
+	</div>
+		<!-- Page FooterRight content -->
+		<ui:include src="user-footer.xhtml"/>
+</div>
+</div>
+</body>
+</html>

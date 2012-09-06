@@ -1,0 +1,250 @@
+/* CSS Document */
+
+.ui-chkbox .ui-widget{
+	DISPLAY: inline-block;
+	border:0px;
+}
+.ui-chkbox .ui-chkbox-box {
+	WIDTH:25px; FLOAT: left; HEIGHT: 26px; MARGIN-RIGHT:0px;
+	background-image:url(../images/meeting/invitepeople_squre.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+}
+
+
+
+.ui-chkbox-box .ui-icon-check {
+	WIDTH: 25px; FLOAT: left; HEIGHT: 26px;
+	BACKGROUND-IMAGE:url(../images/meeting/invitepeople_squre.jpg);
+	BACKGROUND-POSITION: -50px 0px;
+}
+
+.ui-chkbox.ui-state-default {
+	border:0px;
+
+}
+
+
+.ui-chkbox .ui-state-hover {
+	WIDTH: 25px; FLOAT: left; HEIGHT: 26px;
+	BACKGROUND-POSITION: -25px 0px;
+
+}
+
+
+.ui-radiobutton .ui-widget{
+	DISPLAY: inline-block;
+	WIDTH: 18px; FLOAT: left; HEIGHT: 18px;
+	border:0px;
+}
+.ui-radiobutton .ui-radiobutton-box {
+	WIDTH: 18px; FLOAT: left; HEIGHT: 18px; MARGIN-RIGHT:0px;
+	background-image:url(../images/meeting/radio_icon.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	
+}
+
+.ui-state-active .ui-radiobutton-icon{
+	WIDTH:18px; FLOAT: left; HEIGHT: 18px;
+	BACKGROUND-IMAGE:url(../images/meeting/radio_icon.jpg);
+	BACKGROUND-POSITION: -20px 0px;
+}
+
+.ui-state-hover .ui-radiobutton-icon{
+	WIDTH:18px; FLOAT: left; HEIGHT: 18px;
+	BACKGROUND-IMAGE:url(../images/meeting/radio_icon.jpg);
+	BACKGROUND-POSITION: -20px 0px;
+}
+
+.ui-selectonemenu  {
+	border: 0px; 
+	height:30px;
+}
+
+
+
+input[type=text].ui-inputfield{
+	float:left;
+	font-family:'Droid Sans', Verdana, Arial;
+	color:#464646;
+	font-size:13px;	
+	font-weight:normal;
+	border:0px solid; 
+	padding:0px;
+	padding-left:7px;
+	padding-top:5px;
+	width:75px;
+	height:25px;
+	margin:0px;
+	background-image:url(../images/meeting/select_menu.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	background-repeat:no-repeat;
+	box-shadow:0 0px 0px;
+}
+
+input[type=text].ui-inputfield:hover {
+	background-image:url(../images/meeting/select_menu.jpg);
+	BACKGROUND-POSITION: 0px -30px;
+}
+.ui-selectonemenu .ui-icon-triangle-1-s{
+	background-image:none;
+}
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	WIDTH:20px; FLOAT: left; HEIGHT:30px;
+	background-image:url(../images/meeting/select_menu_trig.jpg);
+	BACKGROUND-POSITION:0px 0px;
+	padding: 0px;
+	border:0px;
+	padding: 0px;
+}
+
+.ui-selectonemenu .ui-state-hover  {
+	WIDTH:20px; FLOAT: left; HEIGHT:30px;
+	background-image:url(../images/meeting/select_menu_trig.jpg);
+	BACKGROUND-POSITION: 0px -30px;
+	padding: 0px;
+}
+
+	
+
+.ui-selectonemenu-panel {
+	POSITION: absolute; OVERFLOW: auto;
+}
+.ui-selectonemenu-panel .ui-selectonemenu-item {
+	FONT-WEIGHT: normal;
+	font-family:'Droid Sans', Verdana, Arial;
+	color:#464646;
+	font-size:14px;	
+}
+.ui-selectonemenu-panel .ui-selectonemenu-list {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0.4em; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0.4em;
+}
+.ui-selectonemenu-panel .ui-selectonemenu-list-item {
+	BORDER-BOTTOM: 0px; TEXT-ALIGN: left; BORDER-LEFT: 0px; PADDING-BOTTOM: 1px; MARGIN: 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; WHITE-SPACE: nowrap; BORDER-TOP: 0px; CURSOR: pointer; BORDER-RIGHT: 0px; PADDING-TOP: 0px;
+}
+.ui-selectonemenu-panel .ui-selectonemenu-table {
+	BORDER-COLLAPSE: collapse;
+}
+.ui-selectonemenu-panel .ui-selectonemenu-table TD {
+	BORDER-BOTTOM: ; BORDER-LEFT: ; PADDING-BOTTOM:0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; BORDER-TOP: ; BORDER-RIGHT: ; PADDING-TOP: 4px;
+}
+.ui-state-disabled A {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: medium;
+}
+
+.datepicker .ui-datepicker-trigger{
+	WIDTH:20px;float:left;HEIGHT:30px;
+	background-image:url(../images/meeting/select_menu_trig.jpg);
+	BACKGROUND-POSITION:0px 0px;
+	padding: 0px;
+	border:0px;
+	margin: 0px;
+}
+
+.datepicker .ui-state-hover{
+	WIDTH:20px;float:left;HEIGHT:30px;
+	background-image:url(../images/meeting/select_menu_trig.jpg);
+	BACKGROUND-POSITION:0px -30px;
+	padding: 0px;
+	border:0px;
+	margin: 0px;
+}
+
+
+.ui-corner-all {
+	-moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px
+}
+
+
+
+.inputtext {
+	width:412px;
+	height:19px;
+	background-image:url(../images/meeting/text_short.jpg);
+}
+
+input[type=text] {
+	width:412px;
+	height:19px;
+	background-image:url(../images/meeting/text_short.jpg);
+}
+
+input[type=text].intext1{
+	width:95px;
+	height:19px;
+	background-image:url(../images/meeting/smalltxt1.jpg);
+}
+
+input[type=text].intext2{
+	width:54px;
+	height:19px;
+	margin:0px;
+	background-image:url(../images/meeting/smalltxt2.jpg);
+}
+
+a.plus{
+	background-image:url(../images/meeting/plus.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	width:34px;
+	height:31px;
+	background-repeat:no-repeat;
+	display:block;
+}
+a.plus:hover{
+	BACKGROUND-POSITION: -34px 0px;
+}
+
+a.sendinv{
+	background-image:url(../images/meeting/sendinv_btn.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	width:239px;
+	height:46px;
+	background-repeat:no-repeat;
+	display:block;
+}
+a.sendinv:hover{
+	BACKGROUND-POSITION: 0px -46px;
+}
+
+a.meetnow{
+	background-image:url(../images/meeting/invitepeople_meetnow_btn.jpg);
+	BACKGROUND-POSITION: 0px 0px;
+	width:138px;
+	height:48px;
+	background-repeat:no-repeat;
+	display:block;
+}
+a.meetnow:hover{
+	BACKGROUND-POSITION: -138px 0px;
+}
+
+.errorMsg{
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#ff6200;
+	padding:0px;
+	display: block;
+	padding-bottom:0px;
+	padding-left: 0px;
+	margin-left:1px;
+	display: inline;
+}
+
+.infoMsg{
+	display: inline;
+	padding:0px;
+	margin-left:1px;
+	padding-bottom:0px;
+	display: block;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:15px;
+	color:#0089CB;
+	}
+	
+.infoMsg1{
+	display: block;
+	font-family:'Droid Sans', Verdana, Arial;
+	font-size:16px;
+	color:#464646;
+	line-height: 24px;
+	
+	}

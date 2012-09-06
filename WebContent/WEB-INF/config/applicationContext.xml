@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+  <!-- more bean definitions go here -->
+<bean id="vidyoConfig" class="com.vidyo.common.VidyoConfig" >
+	<constructor-arg ref="configDao"/>
+</bean>
+
+<bean id="myVidyoDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
+	<property name="url" value="#{vidyoConfig.vidyoPortalCDRdbUrl}"/> 
+	<property name="username" value="cdraccess"/> 
+	<property name="password" value="#{vidyoConfig.vidyoPortalCDRPassword}"/>
+    <property name="initialSize" value="3"/>
+    <property name="maxActive" value="15"/>
+    <property name="poolPreparedStatements" value="true"/>
+</bean> 
+<!--
+ <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
+	<property name="url" value="jdbc:mysql://localhost/vidyo_portal"/> 
+	<property name="username" value="root"/> 
+	<property name="password" value="peyYLuqfWerv0r7RAuBu"/> 
+</bean>
+ -->
+<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
+	<property name="url" value="jdbc:mysql://localhost/rankjvm_vidyo?noAccessToProcedureBodies=true"/> 
+	<property name="username" value="rankjvm_admin"/> 
+	<property name="password" value="SuJh^{DGqasG"/> 
+</bean> 
+
+ 
+<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource">
+		<ref local="myDataSource" />
+	</property>
+	<property name="mappingDirectoryLocations">
+		<list>
+			<value>classpath:com/vidyo/mapping</value>
+		</list>
+	</property>
+	<property name="hibernateProperties"> 
+		<props> 
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> 
+			<prop key="hibernate.show_sql">true</prop> 
+<!-- 			<prop key="hibernate.hbm2ddl.auto">create</prop> --> 
+		</props> 
+	</property> 
+</bean>
+
+<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<property name="sessionFactory" ref="mySessionFactory" />
+</bean>
+
+
+  <bean id="vidyoContentServiceProxy" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+    <property name="serviceInterface" value="com.vidyo.webservices.content.VidyoReplayContentManagementServicePortType" />
+    <property name="wsdlDocumentUrl"  value="#{vidyoConfig.vidyoReplyApiWsdl}" />
+    <property name="namespaceUri"     value="http://replay.vidyo.com/apiservice" />
+    <property name="serviceName"      value="VidyoReplayContentManagementService" />
+    <property name="portName"         value="VidyoReplayContentManagementServicePort" />
+  </bean>
+
+
+  <bean id="vidyoUserServiceProxy" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+    <property name="serviceInterface" value="com.vidyo.webservices.user.VidyoPortalUserServicePortType" />
+    <property name="wsdlDocumentUrl"  value="#{vidyoConfig.vidyoPortalApiUserWsdl}" />
+    <property name="namespaceUri"     value="http://portal.vidyo.com/user/v1_1" />
+    <property name="serviceName"      value="VidyoPortalUserService" />
+    <property name="portName"         value="VidyoPortalUserServicePort" />
+  </bean>
+
+  <bean id="vidyoAdminServiceProxy" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+    <property name="serviceInterface" value="com.vidyo.webservices.admin.VidyoPortalAdminServicePortType" />
+    <property name="wsdlDocumentUrl"  value="#{vidyoConfig.vidyoPortalApiAdminWsdl}" />
+    <property name="namespaceUri"     value="http://portal.vidyo.com/admin/v1_1" />
+    <property name="serviceName"      value="VidyoPortalAdminService" />
+    <property name="portName"         value="VidyoPortalAdminServicePort" />
+  </bean>
+
+<bean id="vidyoAPIManager" class="com.vidyo.services.VidyoAPIManager" />
+
+<bean id="vidyoContentService" class="com.vidyo.webservices.common.VidyoContentService">
+	<constructor-arg ref="vidyoContentServiceProxy"/>
+	<constructor-arg value="#{vidyoConfig.vidyoReplyApiUsername}"/>
+	<constructor-arg value="#{vidyoConfig.vidyoReplyApiPassword}"/>	
+</bean>
+<bean id="vidyoAdminService" class="com.vidyo.webservices.common.VidyoAdminService">
+	<constructor-arg ref="vidyoAdminServiceProxy"/>
+	<constructor-arg value="#{vidyoConfig.vidyoPortalApiUsername}"/>
+	<constructor-arg value="#{vidyoConfig.vidyoPortalApiPassword}"/>	
+</bean>
+<bean id="vidyoUserService"  class="com.vidyo.webservices.common.VidyoUserService" scope="session" >
+	<constructor-arg ref="vidyoUserServiceProxy"/>
+</bean>
+
+
+<bean id="commonDao" class="com.vidyo.daos.CommonDAO">
+	<property name="sessionFactory" ref="mySessionFactory" />
+</bean>
+
+<bean id="userDao" class="com.vidyo.daos.UserDAO">
+	<property name="sessionFactory" ref="mySessionFactory" />
+</bean>
+
+<bean id="configDao" class="com.vidyo.daos.ConfigDAO">
+	<property name="sessionFactory" ref="mySessionFactory" />
+</bean>
+
+
+
+<bean id="userBusiness" class="com.vidyo.services.UserBusiness" >
+	<property name="userDao" ref="userDao" />
+</bean>
+
+
+<bean id="userManager" class="com.vidyo.services.UserManager" >
+	<property name="userBusiness" ref="userBusiness" />
+</bean>
+
+
+
+</beans>

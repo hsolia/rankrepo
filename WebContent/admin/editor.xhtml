@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta http-equiv="pragma" content="no-cache" />
+            <meta http-equiv="cache-control" content="no-cache" />
+            <meta http-equiv="expires" content="0" />
+
+</h:head>
+<h:form>
+
+<p:growl id="growl" showDetail="true" />
+<pe:ckEditor id="editor" value="#{editorController.content}" interfaceColor="#33fc14">
+	<p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>
+</pe:ckEditor>
+                
+<p:commandButton actionListener="#{editorController.changeColor}" update="editor"
+                 value="Change color with AJAX" style="margin-top:10px;"/>
+            
+</h:form>
+</html>
+            

@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/admin.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+td a{
+background-image:url(../images/admin/ctrl_btn.jpg); 
+background-repeat:no-repeat;
+width:34px; height:33px; display:block;
+}
+
+a.sendemail{
+width:48px; height:33px; display:block;
+background-position:0px 0px;}
+a.sendemail:hover{background-position:0px -33px;}
+
+a.suspend{background-position:-48px 0px;}
+a.suspend:hover{background-position:-48px -33px;}
+
+a.delete{background-position:-82px 0px;}
+a.delete:hover{background-position:-82px -33px;}
+
+a.edit{background-position:-116px 0px;}
+a.edit:hover{background-position:-116px -33px;}
+
+a.usage{background-position:-150px 0px;}
+a.usage:hover{background-position:-150px -33px;}
+
+table.datatlb tbody{
+	border:1px solid #757575;
+}
+table.datatlb thead{
+	border:0px;
+}
+table.datatlb tbody tr{
+	background-image: url('../images/admin/doted_line.jpg'); background-position: bottom; background-repeat: repeat-x;
+}
+
+table.datatlb thead tr th{
+	word-wrap:break-word; padding:4px;
+	vertical-align:bottom;
+	text-align: center;
+}
+
+table.datatlb tbody tr td{
+	word-wrap:break-word;  border-right:1px solid #757575;
+	vertical-align:top;
+	padding:4px;
+	padding-top:8px;
+	padding-bottom:16px;
+}
+
+
+</style>
+</h:head>
+<body>
+<div class="layout">
+	<!-- User Top content -->
+	<ui:include src="admin-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv">
+		<div class="content">
+			<f:view>
+			<f:event listener="#{adminAction.initCustomers}" type="preRenderView" />
+				<h:form id="form1" name="form1" method="post" action="#{adminAction.searchCustomer}" >
+					<div style="clear:both;float:left; margin-left:95px;">
+						<div style="clear:both;float:left; padding-bottom:2px;" class="t16 tgra tbold">Search for Customer</div>
+						<div style="clear:both;float:left">
+							<h:inputText id="queryString" value="#{adminAction.queryString}"  />
+						</div>
+						<div style="clear:both;float:left;margin-top:40px;">
+							<h:commandButton  type="submit"   >
+								<f:ajax listener="#{adminAction.searchCustomer}" execute="@form" render="@form"  />
+							</h:commandButton>
+						</div>				
+					</div>
+					<div style="clear:both;float:left; margin-top:46px; margin-left:40px;">
+						<div style="clear:both;float:left;"><img src="../images/admin/mngcust_icon1.jpg" /></div>
+						<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+							<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:250px;" class="t17 tgra tbold">Manage Customers</div>
+							<div style="clear:both;float:left; width:850px; height:2px; background-color:#464646;"></div>
+						</div>
+					</div>
+					<div style="clear:both;float:left;width:900px; margin-top:20px; margin-left:40px;">
+				    	<table rules="groups" width="100%" class="t14 tgra3 datatlb" id="customerList" border="0" cellpadding="0" cellspacing="0" >
+					    	<thead>
+						    	<tr>
+						    		<th width="180" class="tbold">customer name</th>
+						    		<th width="180" class="tbold">customer email</th>
+						    		<th class="tbold">phone number/<Br/>company name</th>
+						    		<th width="62" class="tbold">email</th>
+						    		<th width="62" class="tbold">disable/enable</th>
+						    		<th width="62" class="tbold">delete</th>
+						    		<th width="62" class="tbold">edit</th>
+						    		<th width="62" class="tbold">usage</th>
+						    	</tr>
+					    	</thead>
+					    	<tbody>
+						    	<ui:repeat varStatus="i" var="user" value="#{adminAction.customerList}">
+							    	<tr  style="#{i.last=='false' ?'' : 'background-image:none;'}">
+							    		<td>#{user.firstname} #{user.lastname}<br />[#{user.username}]</td>
+							    		<td>#{user.emailaddress}</td>
+							    		<td>#{user.phonenumber}<br />#{user.companyname}</td>
+							    		<td align="center" ><p:commandLink actionListener="#{adminAction.editCustomer(i.index)}" update=":form3:mainDiv" onstart="loadDialog('form3')" oncomplete="openDialog('form3')" styleClass="sendemail" /></td>
+							    		<td align="center" ><p:commandLink actionListener="#{adminAction.editCustomer(i.index)}" update=":form5:mainDiv" onstart="loadDialog('form5')" oncomplete="openDialog('form5')" styleClass="suspend" /></td>
+							    		<td align="center" ><p:commandLink actionListener="#{adminAction.editCustomer(i.index)}" update=":form4:mainDiv" onstart="loadDialog('form4')" oncomplete="openDialog('form4')" styleClass="delete" /></td>
+							    		<td align="center" ><p:commandLink actionListener="#{adminAction.editCustomer(i.index)}" update=":form2:mainDiv" onstart="loadDialog('form2')" oncomplete="openDialog('form2');" styleClass="edit" /></td>
+							    		<td align="center" ><p:commandLink actionListener="#{adminAction.custUsage(i.index)}" update=":form6:mainDiv" onstart="loadDialog('form6')" oncomplete="openDialog('form6')" styleClass="usage" /></td>			    					    					    					    					    		
+							    	</tr>
+						    	</ui:repeat>
+					    	</tbody>
+				    	</table>
+					</div>
+				</h:form>
+				<h:form id="form2">
+					<p:dialog id="dialog" showHeader="false"  position="center" resizable="false" draggable="false" header="Modal Dialog" widgetVar="form2Dialog" modal="true">  
+					    <div style="clear:both; float:left; width:550px; height:640px; padding:0px;">
+							<div style="clear:both;float:left;width:550px;">
+								<div style="clear:both;float:left;"><img src="../images/admin/pan_icon.jpg" /></div>
+								<div style="float:left;padding:0px; margin:0px; padding-right:0px;width:500px;">
+									<div style="clear:both;float:left; padding-top:8px; width:200px;" class="t17 tgra tbold">Edit User Info</div>
+									<div style="clear:both;float:left; width:500px; height:3px; background-image:url('../images/admin/solid_line.jpg'); background-repeat:repeat-x;"></div>
+								</div>
+							</div>
+							<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+								<div style="clear:both;float:left;padding-top:7px;">
+									<div style="clear:both;float:left" class="t14 tgra tbold">Username:</div>
+									<div style="float:left;margin-left: 10px; " class="t14 tgra">
+										<h:outputText value="#{adminAction.user.username}" />
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:8px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">First Name</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.user.firstname}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Last Name</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.user.lastname}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Email Address</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.user.emailaddress}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Company Name</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.user.companyname}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Address</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.user.address}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Phone Number</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.user.phonenumber}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Password</div>
+									<div style="clear:both;float:left">
+										<h:inputSecret id="password" match="password2" redisplay="true" label="Password" value="#{adminAction.user.password}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Confirm Password</div>
+									<div style="clear:both;float:left">
+										<h:inputSecret redisplay="true" id="password2" label="Confirm Password" value="#{adminAction.user.password}"/>
+									</div>
+									<div style="float:left;"><h:message for="password" id="passwordM" styleClass="errorMsg" /></div>
+								</div>				
+								<div class="frmbtn" style="clear:both;float:left; padding-top:18px;">
+									<p:commandLink style="float:left;" styleClass="submit" update=":form1" actionListener="#{adminAction.updateCustomer(adminAction.customerIndex)}" onstart="processDialog('form2')" oncomplete="statusDialog('form2')" />
+									<p:commandLink style="float:left;margin-left:7px;" styleClass="discard" onclick="form2Dialog.hide()"/>
+								</div>
+							</h:panelGroup>
+			
+							<h:panelGroup id="processDiv" style="clear:both;float:left;" class="t14 tgra">
+								<img src="../images/account/ajaxloadingbar.gif"  /><br />
+								<span style="margin-left: 6px;">Please wait...</span>
+							</h:panelGroup>
+							<h:panelGroup id="statusDiv" style="clear:both;float:left;">
+								<div id="close2" style="clear:both;float:left; padding-top:18px;" class="t14 tgra">
+									<span style="margin-left: 6px;">Customer/Room updated successfully.</span>
+									<br /><br />
+									<p:commandLink immediate="false" style="float:left; margin-left:7px; " styleClass="sublink" onclick="form2Dialog.hide()">Close</p:commandLink>
+								</div>
+							</h:panelGroup>
+						</div> 			  
+					</p:dialog>
+				</h:form>
+				
+				<h:form id="form3">
+					<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="form3Dialog" modal="true" style="padding:0px;">  
+					    <div id="sendEmailDialog" style="clear:both; float:left; height:440px; width:500px; padding:0px; padding-top:0px; padding-bottom:10px;">
+							<div style="clear:both;float:left;">
+									<div style="clear:both;float:left;"><img src="../images/admin/mngcust_icon1.jpg" /></div>
+									<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:400px;" class="t17 tgra tbold">Email to Customer</div>
+										<div style="clear:both;float:left; width:400px; height:2px; background-color:#464646;"></div>
+									</div>
+							</div>
+							<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Email Address</div>
+									<div style="clear:both;float:left">
+										<h:inputText value="#{adminAction.emailaddress}"/>
+									</div>
+								</div>				
+								<div style="clear:both;float:left;padding-top:15px;">
+									<p:editor value="#{adminAction.userMailBody}"/>
+								</div>				
+								<div class="frmbtn" style="clear:both;float:left; padding-top:18px;width:480px;">
+									<p:commandLink style="float:left;" styleClass="send" actionListener="#{adminAction.sendUserMail(adminAction.customerIndex)}" onstart="processDialog('form3')" oncomplete="statusDialog('form3')" />
+									<p:commandLink style="float:left; margin-left:7px; " styleClass="discard" onclick="form3Dialog.hide()"/>
+								</div>
+							</h:panelGroup>
+							<h:panelGroup id="processDiv" style="clear:both;float:left;" class="t14 tgra">
+								<img src="../images/account/ajaxloadingbar.gif"  /><br />
+								<span style="margin-left: 6px;">Please wait...</span>
+							</h:panelGroup>	
+							<h:panelGroup id="statusDiv" style="clear:both;float:left;">
+								<div id="close2" style="clear:both;float:left; padding-top:18px;" class="t14 tgra">
+									<span style="margin-left: 6px;">Email sent.</span>
+									<br /><br />
+									<p:commandLink style="float:left; margin-left:7px; " styleClass="sublink" onclick="form3Dialog.hide()">Close</p:commandLink>
+								</div>
+							</h:panelGroup>							
+						</div> 			  
+					</p:dialog>
+				</h:form>
+				
+				<h:form id="form4">
+					<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="form4Dialog" modal="true" style="padding:0px;">  
+					    <div id="sendEmailDialog" style="clear:both; float:left; width:500px; padding:0px; padding-top:0px; padding-bottom:10px;">
+							<div style="clear:both;float:left;">
+									<div style="clear:both;float:left;"><img src="../images/admin/manageadmin_icon1.jpg" /></div>
+									<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:400px;" class="t17 tgra tbold">Delete Customer</div>
+										<div style="clear:both;float:left; width:450px; height:2px; background-color:#464646;"></div>
+									</div>
+							</div>
+							<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">Are you sure you want to delete this Customer?</div>
+									<div style="clear:both;float:left" class="t14 tgra">
+										#{adminAction.user.firstname} #{adminAction.user.lastname} [#{adminAction.user.username}]
+									</div>
+								</div>				
+								<div id="close2" style="clear:both;float:left; padding-top:18px;width:480px;">
+									<p:commandLink style="float:left; margin-left:0px; " styleClass="sublink" update=":form1" actionListener="#{adminAction.deleteCustomer(adminAction.customerIndex)}" onstart="processDialog('form4')" oncomplete="closeDialog('form4')">Yes</p:commandLink>
+									<p:commandLink style="float:left; margin-left:7px; " styleClass="sublink" onclick="form4Dialog.hide()">No</p:commandLink>
+								</div>
+							</h:panelGroup>
+							<h:panelGroup id="processDiv" style="clear:both;float:left; text-align:left;width:100%;" class="t14 tgra">
+								<img src="../images/account/ajaxloadingbar.gif" border="0" /><br />
+								<span style="margin-left: 6px;">Please wait...</span>
+							</h:panelGroup>	
+							<h:panelGroup id="statusDiv" style="clear:both;float:left;"></h:panelGroup>
+						</div> 			  
+					</p:dialog>
+				</h:form>
+				
+				
+				<h:form id="form5">
+					<p:dialog  showHeader="false"  position="center" resizable="false" draggable="true" header="Modal Dialog" widgetVar="form5Dialog" modal="true" style="padding:0px;">  
+					    <div id="sendEmailDialog" style="clear:both; float:left; width:500px; padding:0px; padding-top:0px; padding-bottom:10px;">
+							<div style="clear:both;float:left;">
+									<div style="clear:both;float:left;"><img src="../images/admin/manageadmin_icon1.jpg" /></div>
+									<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left; padding-bottom:2px; padding-top:5px; width:400px;" class="t17 tgra tbold">Disable/Enable Customer</div>
+										<div style="clear:both;float:left; width:450px; height:2px; background-color:#464646;"></div>
+									</div>
+							</div>
+							<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+								<div style="clear:both;float:left;padding-top:15px;">
+									<div style="clear:both;float:left;" class="t14 tgra tbold">
+										<h:outputText rendered="#{adminAction.user.enabled=='1'}" value="Are you sure you want to disable this Customer?"/>
+										<h:outputText rendered="#{adminAction.user.enabled=='0'}" value="Are you sure you want to enable this Customer?"/>													
+									</div>
+									<div style="clear:both;float:left" class="t14 tgra">
+										#{adminAction.user.firstname} #{adminAction.user.lastname} [#{adminAction.user.username}]
+									</div>
+								</div>				
+								<div id="close2" style="clear:both;float:left; padding-top:18px;width:480px;">
+									<p:commandLink style="float:left; margin-left:0px; " styleClass="sublink" update=":form1" actionListener="#{adminAction.enableCustomer(adminAction.customerIndex)}" onstart="processDialog('form5')" oncomplete="closeDialog('form5')">Yes</p:commandLink>
+									<p:commandLink style="float:left; margin-left:7px; " styleClass="sublink" onclick="form5Dialog.hide()">No</p:commandLink>
+								</div>
+							</h:panelGroup>
+							<h:panelGroup id="processDiv" style="clear:both;float:left; text-align:left;width:100%;" class="t14 tgra">
+								<img src="../images/account/ajaxloadingbar.gif" border="0" /><br />
+								<span style="margin-left: 6px;">Please wait...</span>
+							</h:panelGroup>	
+							<h:panelGroup id="statusDiv" style="clear:both;float:left;"></h:panelGroup>
+						</div> 			  
+					</p:dialog>
+				</h:form>
+				
+				<h:form id="form6">
+					<p:dialog id="dialog" showHeader="false"  position="center" resizable="false" draggable="false" header="Modal Dialog" widgetVar="form6Dialog" modal="true">  
+					    <div style="clear:both; float:left; width:680px; height:610px; padding:0px;">
+							<div style="clear:both;float:left;">
+									<div style="clear:both;float:left;"><img src="../images/admin/mngcust_icon1.jpg" /></div>
+									<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+										<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:400px;" class="t17 tgra tbold">Customer Usage information</div>
+										<div style="clear:both;float:left; width:630px; height:2px; background-color:#464646;"></div>
+									</div>
+							</div>
+							<h:panelGroup id="mainDiv" style="clear:both;float:left;">
+						    	<div style="clear:both;float:left; padding-bottom:15px;padding-top:10px; width:680px;">
+						    		<div style="clear:both;float:left; padding-top:7px; padding-right: 8px;" class="t14 tbold tgra">Beginning Date</div>
+						    		<p:calendar id="beginningDate" style="float:left;" styleClass="datepicker" value="#{adminAction.beginningDate}" pattern="MM/dd/yyyy" />
+						    		<div style="float:left; padding-top:7px;padding-left:15px; padding-right: 8px;" class="t14 tbold tgra">Ending Date</div>
+						    		<p:calendar style="float:left;" styleClass="datepicker" value="#{adminAction.endingDate}" pattern="MM/dd/yyyy" />
+						    		<div style="float:left;margin-left:20px;" class="frmbtn"><p:commandLink styleClass="submit" update="usageContent formctrl" actionListener="#{adminAction.filterUsage}" onclick="form6Overlay.show()" oncomplete="form6Overlay.hide()" /></div>
+						    	</div>
+								<h:panelGroup id="usageContent" style="clear:both;float:left;margin-top:0px; width:680px;">
+							    	<p:blockUI  block="usageContent" widgetVar="form6Overlay">
+										<p:graphicImage value="../images/ajax-loader.gif"/><br/>
+										<span style="display:block;width:150px;">Pleae wait...</span>
+									</p:blockUI>
+							    	<table  rules="groups" width="100%" class="t14 tgra3 datatlb" border="0" cellpadding="0" cellspacing="0" >
+							    	<thead>
+								    	<tr>
+								    		<th width="50" class="tbold">Call ID</th>
+								    		<th class="tbold">Conference<br />Name</th>
+								    		<th class="tbold">Endpoint<br />Type</th>
+								    		<th class="tbold">Caller ID</th>
+								    		<th class="tbold">JoinTime</th>
+								    		<th class="tbold">LeaveTime</th>
+								    		<th class="tbold">Status</th>			    					    					    					    					    		
+								    	</tr>
+							    	</thead>
+							    	<tbody>
+								    	<ui:repeat varStatus="i" offset="#{adminAction.pagging.posFrom}" size="#{adminAction.pagging.posTo}"   var="callInfoDto" value="#{adminAction.callInfoList}">
+									    	<tr class="#{i.last=='false' ?'dotline' : ''}">
+									    		<td width="50" align="left" valign="top" style="word-wrap:break-word; padding:4px; border-right:1px solid #757575;" class="t14 tgra3">#{callInfoDto.callId}</td>
+									    		<td width="145" align="left" valign="top" style="word-wrap:break-word; padding:4px; border-right:1px solid #757575;" class="t14 tgra3">#{callInfoDto.conferenceName}</td>
+									    		<td width="65" align="left" valign="top" style="word-wrap:break-word; padding:4px; border-right:1px solid #757575;" class="t14 tgra3">#{callInfoDto.endpointType}</td>
+									    		<td width="150" align="left" valign="top" style=" word-wrap:break-word;padding:4px; border-right:1px solid #757575;" class="t14 tgra3">#{callInfoDto.callerId}</td>
+									    		<td width="90" align="left" valign="top" style="word-wrap:break-word; padding:4px; border-right:1px solid #757575;" class="t14 tgra3">#{callInfoDto.joinTime}</td>
+									    		<td width="90" align="left" valign="top" style="word-wrap:break-word; padding:4px; border-right:1px solid #757575;" class="t14 tgra3">#{callInfoDto.leaveTime}</td>
+									    		<td width="90" align="left" valign="top" style="word-wrap:break-word; padding:4px; " class="t14 tgra3">#{callInfoDto.callState}</td>			    					    					    					    					    		
+									    	</tr>
+								    	</ui:repeat>
+							    	</tbody>
+							    	</table>
+								</h:panelGroup>
+								<h:panelGroup id="formctrl" style="clear:both;float:left; padding-top:12px;width:680px;">
+							    	<div style="float:left;" class="t14 tgra1">Pages&nbsp;&nbsp;</div>
+									<ui:repeat var="page" value="#{adminAction.pagging.totPages}">
+										<p:commandLink style="float:left;margin-right:5px;" styleClass="sublink" update=":form6:usageContent" actionListener="#{adminAction.pagging.movePage(page)}" onclick="form6Overlay.show()" oncomplete="form6Overlay.hide()">#{page}</p:commandLink>
+									</ui:repeat>
+									<p:commandLink style="float:right;" styleClass="sublink" onclick="form6Dialog.hide()">Close</p:commandLink>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup id="processDiv" style="clear:both;float:left;" class="t14 tgra">
+								<img src="../images/account/ajaxloadingbar.gif"  /><br />
+								<span style="margin-left: 6px;">Please wait...</span>
+							</h:panelGroup>
+							<h:panelGroup id="statusDiv" style="clear:both;float:left;"></h:panelGroup>
+						</div> 			  
+					</p:dialog>
+				</h:form>
+			</f:view>		
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<title>Vidyo :: Sign Up</title>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<script language="javascript" src="../js/common.js" />
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/registration.css" rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
+
+</h:head>
+<body>
+<div style="width:824px; float:left; position:relative; left:50%; margin-left:-412px;">
+	<!-- Page Right content -->
+	<ui:include src="top-menu.xhtml"/>
+	<div style="clear:both; float:left;height:14px;"></div>
+	<f:view>
+	<div style="clear:both; float:left; width:824px;">
+		<div style="float:right; padding-bottom:40px; padding-right:59px;"><img src="../images/Registration_img.jpg" /></div>
+		<div style="clear:both; float:right; width:612px;">
+		<h:form id="regisform" name="regisform" method="post" action="" >
+		<h:panelGroup rendered="#{!registrationAction.actionSuccess}">
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Username*</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+						  <h:inputText styleClass="inputtext" tabindex="1"  id="username" value="#{registrationAction.username}" validator="#{registrationAction.validateUser}" required="true"  requiredMessage="Username is required" validatorMessage="Invalid username format." >
+								<f:validateRegex  pattern="[\w\.-]*[a-zA-Z0-9_]" />
+								<p:ajax event="blur" update="username usernameM" execute="username" onstart="localloading('usernameStatus','regisform:usernameM')" oncomplete="unlocalloading('usernameStatus')"   />
+						  </h:inputText>
+					</div>
+					<div style="clear:right;float:left;">
+						<div style="float:left; font-size:12px; display: none; " id="usernameStatus">Username availability checking...&nbsp;&nbsp;&nbsp;<h:graphicImage value="../images/ajaxloading.gif" style=" padding-top:5px;" /></div>
+						<h:message style="clear:right;float:left;" for="username" id="usernameM" styleClass="errorMsg" />
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">First Name*</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+					  <h:inputText styleClass="inputtext" tabindex="2" id="firstname" value="#{registrationAction.firstname}" required="true"  requiredMessage="First name is required" >
+						<f:ajax event="blur"  render="firstnameM firstname" execute="firstname" />
+					  </h:inputText>
+					</div>
+					<div style="clear:right;float:left;"><h:message for="firstname" id="firstnameM" styleClass="errorMsg" /></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Last Name </div>
+				<div style="clear:both;float:left;">
+					<h:inputText styleClass="inputtext" tabindex="3" id="lastname" value="#{registrationAction.lastname}" required="false"  />
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Email Address*</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+					  <h:inputText styleClass="inputtext" tabindex="4" id="emailid" value="#{registrationAction.emailaddress}" required="true" requiredMessage="Email address is required" validatorMessage="Email address is not valid">
+						  <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						  <f:ajax event="blur"  render="emailidM emailid" execute="emailid" />
+					  </h:inputText>
+					</div>
+					<div style="clear:right;float:left;"><h:message for="emailid" id="emailidM" styleClass="errorMsg" /></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Company Name</div>
+				<div style="clear:both;float:left;">
+					<h:inputText styleClass="inputtext" tabindex="5" value="#{registrationAction.companyname}"/>
+				</div>
+			</div>
+			<!-- 
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Address</div>
+				<div style="clear:both;float:left;">
+					<p:inputText tabindex="6" value="#{registrationAction.address}" />
+				</div>
+			</div>
+			-->
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Phone Number</div>
+				<div style="clear:both;float:left;">
+					<h:inputText styleClass="inputtext" tabindex="7" value="#{registrationAction.phonenumber}" />
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Password*</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+					  <p:password styleClass="inputpassword" id="password" tabindex="8" redisplay="true" match="password2" value="#{registrationAction.password}"    feedback="true" label="Password" required="true" requiredMessage="Password is required" >
+						<f:ajax event="blur"  render="passwordM password" execute="password" />
+					  </p:password>
+					</div>
+					<div style="clear:right;float:left;"><h:message for="password" id="passwordM" styleClass="errorMsg" /></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">Confirm Password</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+					  <p:password styleClass="inputpassword" id="password2" tabindex="9"  redisplay="true"  value="#{registrationAction.password}"  label="Confirm password" feedback="false" required="true" requiredMessage="Confirm password is required" >
+						<f:ajax event="blur"   render="passwordM password password2M password2" execute="password password2" />
+					  </p:password>
+					</div>
+					<div style="clear:right;float:left;"><h:message for="password2" id="password2M" styleClass="errorMsg" /></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left;padding-bottom:24px;">
+				<div style="clear:both;float:left;">
+					<div style=" clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:2px;" class="text16_gra">CAPTCHA*</div>
+					<div style="clear:right;float:left;padding-bottom:2px; padding-top:2px; padding-left:15px;">
+						<ui:include src="captcha.xhtml" />
+					</div>
+				</div>
+				<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;">
+					  <h:inputText styleClass="inputtext" tabindex="10" id="captcha" required="true" requiredMessage="Please enter image text." >
+							<f:validator validatorId="com.vidyo.common.CaptchaAction" />
+							<f:ajax event="blur"   render="captchaM" execute="captcha" />
+					  </h:inputText>                      
+					</div>
+					<div style="clear:right;float:left;"><h:message for="captcha" id="captchaM" styleClass="errorMsg" /></div>
+				</div>
+			</div>
+			<div style="clear:both;float:left; width:317px;">
+					<div style="clear:both;float:left;"><p:selectBooleanCheckbox tabindex="11" styleClass="TestClass"  id="legalTerm" validator="#{registrationAction.validateCheckbox}" style="display:inline;" label="Legal Term" required="true" selected="false"  requiredMessage="You should accept Legal Terms" /></div>
+					<div style=" width:200px; float:left;padding-left:7px; padding-top:6px; padding-bottom:4px; text-decoration:none;" class="text14_gra"><p:commandLink styleClass="text14_gra" immediate="true" update=":legalTermform:mainDiv" actionListener="#{registrationAction.loadLegalTerm}" oncomplete="openDialog('legalTermform')" >Accept Legal Terms</p:commandLink></div>
+					<div style="clear:both;left:right;"><h:message for="legalTerm" id="legalTermM" styleClass="errorMsg" style="padding-left:0px;" /></div>
+			</div>
+			<div style="clear:both;float:left; padding-bottom:73px; padding-top:40px;">
+					<div style="clear:both;float:left;">
+						<h:commandButton styleClass="inputsubmit" tabindex="12" actionListener="#{registrationAction.addUser}" />
+					</div>
+				</div>
+			
+		   </h:panelGroup>
+		 <h:panelGroup rendered="#{registrationAction.actionSuccess}" styleClass="infoMsg1" style="padding-top: 20px;padding-bottom:150px;white-space:normal; " >
+			 Welcome <h:outputText value="#{registrationAction.firstname} " /><h:outputText value="#{registrationAction.lastname}" />,
+			 <br/>You have successfully registered for Vidyo Portal.
+			 <br/><br/>An activation email has been sent to you. Please follow the instructions in this email to activate your account.
+			 <br/><br/>Vidyo Admin Team
+		 </h:panelGroup>
+		 </h:form>
+		</div>
+	</div>
+	</f:view>
+</div>
+<h:form id="legalTermform">
+	<p:dialog id="dialog" showHeader="false"  position="center" resizable="false" draggable="false" header="Modal Dialog" widgetVar="legalTermformDialog" modal="true" style="padding:0px;">  
+	    <div style="clear:both; float:left;  height:462px; width:620px; padding:0px; padding-top:0px; padding-bottom:0px;">
+			<div style="clear:both;float:left;">
+					<div style="clear:both;float:left;padding-top:7px;"><img src="../images/admin/manageadmin_icon2.jpg" /></div>
+					<div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+						<div style="clear:both;float:left; padding-bottom:2px; padding-top:4px; width:570px;" class="t17 tgra tbold">Vidyo Portal Legal Terms and Conditions</div>
+						<div style="clear:both;float:left; width:570px; height:2px; background-color:#464646;"></div>
+					</div>
+			</div>
+			<h:panelGroup id="statusDiv"></h:panelGroup>
+			<h:panelGroup id="processDiv"></h:panelGroup>
+			<h:panelGroup id="mainDiv" class="t14 tgra" style="clear:both;float:left;padding-top: 10px; padding-bottom: 10px; ">
+				<h:panelGroup  style="clear:both;float:left; height:380px; overflow-y: scroll; overflow-x: hidden;width:635px;white-space:normal;">
+					<h:outputText id="content" value="#{registrationAction.legalTermBody}" escape="false" />
+				</h:panelGroup> 
+			</h:panelGroup>
+			<div style="clear:both;float:left; padding-top: 2px;width:620px;">
+				<p:commandLink style="clear:both;float:right; margin-left:7px; " styleClass="sublink" onclick="legalTermformDialog.hide()">Close</p:commandLink>
+			</div>
+		</div> 			  
+	</p:dialog>
+</h:form>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.vidyo.beans.User" table="TLB_USER">
+	   <id name="id" column="USER_ID" >
+	   <generator class="identity"/>
+	  </id>
+
+	  <property name="entityId">
+		 <column name="VIDYO_ENTITY_ID" />
+	  </property>
+
+	  <property name="firstname">
+		 <column name="FIRST_NAME" />
+	  </property>
+	  <property name="lastname">
+		 <column name="LAST_NAME" />
+	  </property>
+
+	  <property name="username">
+		 <column name="USER_NAME" />
+	  </property>
+	  <property name="companyname">
+		<column name="COMPANY_NAME"/>
+	  </property>
+	  <property name="emailaddress">
+		<column name="EMAIL_ADDRESS"/>
+	  </property>
+	  <property name="address">
+		 <column name="ADDRESS" />
+	  </property>
+	  <property name="phonenumber">
+		<column name="PHONE_NUMBER"/>
+	  </property>
+	  <property name="password">
+		<column name="PASSWORD"/>
+	  </property>
+	  <property name="apiPassword">
+		<column name="API_PASSWORD"/>
+	  </property>
+
+	  <property name="userrole">
+		<column name="USER_ROLE"/>
+	  </property>
+	  <property name="status">
+		<column name="STATUS"/>
+	  </property>
+	  <property name="enabled">
+		<column name="ENABLED"/>
+	  </property>
+
+	  <property name="sessionid">
+		<column name="SESSION_ID"/>
+	  </property>
+
+<!-- 	  <many-to-one name="meetingRoom" class="com.vidyo.beans.MeetingRoom"  insert="true" fetch="join"  cascade="all" unique="true" not-null="true" >
+		<column name="ROOM_ID"></column>	  
+	  </many-to-one>
+ -->	  
+<!--       <set name="meetingList" table="TLB_MEETING" fetch="select" cascade="all" lazy="true" >
+          <key>
+              <column name="USER_ID" not-null="true"  />
+          </key>
+          <one-to-many  class="com.vidyo.beans.Meeting"  />
+      </set>	 -->  
+	  
+   </class>
+</hibernate-mapping>

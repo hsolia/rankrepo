@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Vidyo :: Feedback</title>
+<script language="javascript" src="../js/common.js" />
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<link rel="SHORTCUT ICON" href="../images/favicon.ico"/> 
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/contact.css" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+<div style="width:1073px; position:relative; left:50%; margin-left:-536px; float:left;">
+	<!-- User Top content -->
+	<ui:include src="user-top.xhtml"/>
+	<!-- Page content -->
+	<div class="contentdiv" style="border-top:0px;">
+		<div class="content">
+		  <!-- Page Left content -->
+		  <div style="clear:both;float:left; width:627px;">
+	        <div style="clear:both;float:left; padding:0px; margin:0px;">
+	          <div style="clear:both;float:left;padding-top:1px"><img src="../images/contact/contact_icon1jpg.jpg" /></div>
+	          <div style="float:left;padding:0px; margin:0px; padding-right:0px;">
+	            <div style="clear:both;float:left; padding-bottom:2px; padding-top:13px; width:150px;" class="t17 tbold torg3">User Feedback</div>
+	            <div style="clear:both;float:left; width:577px; height:3px; font-size:0; overflow:hidden; background-image:url(../images/contact/contact_bgimg.jpg)"></div>
+	          </div>
+	        </div>
+	        <h:panelGroup id="status" rendered="#{contactForm.emailSent == 'true'}" style="clear:both;float:left; text-align:center;width:627px;" styleClass="t14 tgra3">
+	        	Thank you for valuable feedback.
+	        </h:panelGroup>
+	        <h:form id="contactform" rendered="#{!contactForm.emailSent}">
+			    <div style="clear:both;float:left; margin-top:45px; margin-left:50px;">
+		          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Name*</div>
+			      <div style="clear:both;float:left;">		      
+				      <div style="clear:both;float:left; padding-left:2px;">
+				      	<h:inputText  styleClass="inputtext" value="#{contactForm.senderName}"  id="receivername" required="true" requiredMessage="Please enter your name!" />
+				      </div>
+				      <div style="clear:right;float:left;"><h:message for="receivername" id="receivernameM" styleClass="errorMsg" /></div>
+		          </div>
+		        </div>
+			    <div style="clear:both;float:left; margin-top:22px; margin-left:50px;">
+		          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Email Address*</div>
+			      <div style="clear:both;float:left;">
+				      <div style="clear:both;float:left; padding-left:2px;">
+				      	<h:inputText  styleClass="inputtext" value="#{contactForm.senderEmail}"  id="receiveremail" required="true" requiredMessage="Please enter your email!" validatorMessage="Invalid email address!" >
+				      		<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+				      	</h:inputText>
+				      </div>
+				      <div style="clear:right;float:left;"><h:message for="receiveremail" id="receiveremailM" styleClass="errorMsg" /></div>
+		          </div>
+		        </div>
+			    <div style="clear:both;float:left; margin-top:22px; margin-left:50px;">
+		          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Phone*</div>
+			      <div style="clear:both;float:left;">
+				      <div style="clear:both;float:left; padding-left:2px;">
+				      	<h:inputText  styleClass="inputtext" value="#{contactForm.senderPhone}"  id="receiverphone" required="true" requiredMessage="Please enter your phone!"/>
+				      </div>
+				      <div style="clear:right;float:left;"><h:message for="receiverphone" id="receiverphoneM" styleClass="errorMsg" /></div>
+				  </div>
+		        </div>
+			    <div style="clear:both;float:left; margin-top:36px; margin-left:50px;">
+		          <div style="clear:both;float:left; padding-left:2px; padding-bottom:2px; font-weight:bold;" class="t16 tbold tgra">Your Feedback*</div>
+			      <div style="clear:both;float:left; padding-left:2px;">
+			      	<h:inputTextarea  value="#{contactForm.supportReuest}"  id="supportrequest" required="true" requiredMessage="Please enter your feedback!"/>
+			      </div>
+			      <div style="clear:both;float:left;height:30px;"><h:message for="supportrequest" id="supportrequestM" styleClass="errorMsg" style="padding-left:0px;" /></div>
+		        </div>
+			    <div style="clear:both;float:left; margin-top:36px; margin-left:50px;">
+		          <div style="clear:both;float:left; padding-left:2px;">
+						<p:commandLink actionListener="#{contactForm.sendRequestEmail('User Feedback')}"  update="@all" styleClass="submit1" />
+		          </div>
+		        </div>
+	      	</h:form>
+	      </div>
+			<!-- Page Right content -->
+			<h:form id="rightform">	
+				<div style="float:right; width:320px;margin-top:9px;">
+				 <div style="clear:both;float:left;">
+				 	<div style="clear:both;float:left;"><img src="../images/dialout_icon13.jpg" /></div>
+					<div style="clear:right;float:left;">
+						<div style="clear:both;float:left; font-weight:bold; padding-bottom:2px; padding-top:6px;" class="text15_gra">Support</div>
+						<div style="clear:both;float:left; height:1px;font-size:0; overflow:hidden; background-color:#F7B10A; width:273px;"></div>
+					</div>
+				 </div>
+				  <div style="clear:both;float:left; width:320px;">
+				 	<div style="clear:both;float:left; padding-bottom:4px; padding-top:2px;">
+				 		<div class="t14 tgra1" style="clear:both;float:left;padding-right:16px; text-decoration:none;" >Call: </div>
+				 		<div class="t14 tgra1" style="float:left; text-decoration:none;">+1.866.99.VIDYO (+1.866.998.4396) <Br/>+1.201.289.8597</div>
+				 	</div>
+				 	<div style="clear:both;float:left; padding-bottom:4px; padding-top:4px;">
+				 		<div class="t14 tgra1" style="clear:both;float:left;padding-right:6px; text-decoration:none;" >Email: </div>
+				 		<div class="t14" style="float:left;"><a href="mailto:support@vidyo.com" class="sublink">support@vidyo.com</a></div>
+					</div>
+				 </div>
+				</div>
+			</h:form>		
+		
+		</div>
+		<!-- Page FooterRight content -->
+		<ui:include src="user-footer.xhtml"/>
+	</div>
+</div>
+</body>
+</html>

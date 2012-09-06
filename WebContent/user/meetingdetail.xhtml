@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+</h:head>
+<body>
+<f:view>
+<f:event listener="#{meetingAction.initCreateMeeting}" type="preRenderView" />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><ui:include src="top.xhtml" /></td>
+  </tr>
+  <tr>
+    <td align="center"><table width="900" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+          <tr>
+            <td width="240"><ui:include src="user-left.xhtml" /></td>
+            <td align="left" valign="top"><table width="639" border="0" cellspacing="0" cellpadding="0" style="margin-left:20px; margin-top:20px;">
+              <tr>
+                <td height="38" align="left" valign="middle" class="headline" >Create Meeting</td>
+              </tr>
+              <tr>
+                <td height="38">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>
+                <h:form id="form1" name="form1" method="post" action="" >
+                  <h:panelGroup>
+                  <table width="100%" border="0" cellspacing="2" cellpadding="0" >
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td colspan="2" style="font-size: 9px;">Note: Inputs marked (*) are mandatory fields.</td>
+                    </tr>
+
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Meeting Title</td>
+                      <td ><h:outputText value="#{meetingAction.meetingTitle}" /></td>
+                    </tr>
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Meeting Description</td>
+                      <td ><h:outputText  value="#{meetingAction.meetingDesc}" /></td>
+                    </tr>
+                    <tr>
+                      <td width="20">&nbsp;</td>
+                      <td width="135">Schedule Time</td>
+                      <td><h:outputText  value="#{meetingAction.meetingSchedule}" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td><h:outputText rendered="#{meetingAction.meetingRepeat}" value="Repeat"/>&nbsp;
+                      	  <h:outputText rendered="#{meetingAction.meetingRepeat}" value="#{meetingAction.repeatPeriod}" />
+                      	  &nbsp;&nbsp;Upto : <h:outputText rendered="#{meetingAction.meetingRepeat}" value="#{meetingAction.repeatUpto}" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td colspan="2">
+					   <p:dataTable cellpadding="0" cellspacing="0" id="invitationList" var="participant" value="#{meetingAction.invitationList}" >  
+					        <h:column>  
+							 <f:facet name="header">
+							  	Participant Name
+							  </f:facet>					            
+					            <h:outputText value="#{participant.participantName}" style="width:99%" label="Participant Name"/>  
+					        </h:column> 					        
+					        <h:column>  
+							 <f:facet name="header">
+							  	Participant Email
+							  </f:facet>					              
+					              <h:outputText value="#{participant.participantEmail}" style="width:99%" label="Email Address"/>  
+					        </h:column> 
+					       </p:dataTable>
+                      </td>
+                      </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>                    
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td>
+                      	<h:commandButton immediate="false" value="Submit"  action="#{meetingAction.createMeeting}" />
+                      	<h:commandButton value="reset" type="reset" action="#{meetingAction.editMeeting}" />
+                      </td>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  </h:panelGroup>
+                  </h:form>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+      <table width="900" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
+        <tr>
+          <td height="70" background="images/footer-bg.jpg" style="border:1px solid #A8A8A8;">Copyright &#169;Vidyo.com 2011-2012</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</f:view>
+</body>
+</html>

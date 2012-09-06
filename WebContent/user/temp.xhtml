@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+     
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+</h:head>
+<body>
+<h:form id="form1" name="form1" method="post" action="" >
+				  <p:inputText id="firstname" value="" required="true" requiredMessage="First name required" >
+					<f:ajax event="blur"  render="firstnameM firstname" execute="firstname" />
+				  </p:inputText>
+				  <p:message for="firstname" id="firstnameM"  ></p:message>
+				  <p:commandButton type="submit" value="submit" action="#{registrationAction.addUser}">
+				  	<f:ajax render="firstname" ></f:ajax>
+				  </p:commandButton>
+</h:form>
+
+</body>
+</html>
