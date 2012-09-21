@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<context:annotation-config />
+
+	<bean id="propertyConfigurer"	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:mysql.properties</value>
+			</list>
+		</property>
+	</bean>
+
+  
+	<bean id="vidyoConfig" class="com.vidyo.util.VidyoConfig" >
+		<constructor-arg ref="configDao"/>
+	</bean>
+
+
+
+<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+				<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
+				<property name="url" value="#{vidyoConfig.vidyoPortalCDRdbUrl}"/> 
+				<property name="username" value="${cdr.db.user}"/> 
+				<property name="password" value="#{vidyoConfig.vidyoPortalCDRPassword}"/>
+		        <property name="initialSize" value="3"/>  
+		        <property name="maxActive" value="8"/>  
+		        <property name="maxIdle" value="3"/>  
+		        <property name="minIdle" value="1"/>
+			    <property name="poolPreparedStatements" value="true"/>
+        		<property name="testOnBorrow" value="true"/>			    
+			    <property name="validationQuery" value="SELECT 1 FROM DUAL"/>
+			</bean> 
+		</property>
+	</bean> -->
+
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+		<property name="driverClassName" value="${db.class}"/> 
+		<property name="url" value="${db.url}"/> 
+		<property name="username" value="${db.user}"/> 
+		<property name="password" value="${db.password}"/> 
+        <property name="initialSize" value="1"/>  
+        <property name="maxActive" value="8"/>  
+        <property name="maxIdle" value="0"/>  
+        <property name="minIdle" value="0"/>
+        <property name="testOnBorrow" value="true"/>
+		<property name="validationQuery" value="SELECT 1 FROM DUAL"/>        
+	</bean>
+
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="myDataSource" />
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.vidyo.model.TaUser</value>				
+				<value>com.vidyo.model.TaFaq</value>
+				<value>com.vidyo.model.TaConfigBean</value>
+				<value>com.vidyo.model.TaInvitationCode</value>
+				<value>com.vidyo.model.TaUserTip</value>				
+				<value>com.vidyo.model.TaProblemType</value>
+				<value>com.vidyo.model.TaEndPoint</value>
+				<value>com.vidyo.model.TaEndPointType</value>
+				<value>com.vidyo.model.TaNetConnectionType</value>								
+				<value>com.vidyo.model.TaVidyoAPI</value>
+				<value>com.vidyo.model.TaMeetingRoom</value>
+		</list>
+		</property>
+		<property name="hibernateProperties"> 
+			<props> 
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> 
+				<prop key="hibernate.show_sql">true</prop> 
+				<prop key="hibernate.connection.release_mode">after_transaction</prop>				
+			</props> 
+		</property> 
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+
+ 
+  
+	 <bean id="CRMServiceProxy" class="com.vidyo.webservices.common.CustomJaxWsPortProxyFactoryBean">
+	   	<property name="serviceInterface" value="com.vidyo.webservices.crm.ServiceSoap" />
+	   	<property name="wsdlDocumentUrl"  value="#{vidyoConfig.CrmWsWsdl}" />
+	   	<property name="namespaceUri"     value="http://tempuri.org/" />
+	   	<property name="serviceName"      value="Service" />
+	   	<property name="portName"         value="ServiceSoap" />
+		<property name="endpointAddress" value="#{vidyoConfig.CrmWsUrl}"/>    
+	 </bean>
+ 
+
+
+<!--  	<bean id="vidyoAdminServiceProxy" class="com.vidyo.webservices.common.CustomJaxWsPortProxyFactoryBean">
+	   	<property name="serviceInterface" value="com.vidyo.webservices.admin.VidyoPortalAdminServicePortType" />
+	   	<property name="wsdlDocumentUrl"  value="#{vidyoConfig.vidyoPortalApiAdminWsdl}" />
+	   	<property name="namespaceUri"     value="http://portal.vidyo.com/admin/v1_1" />
+	   	<property name="serviceName"      value="VidyoPortalAdminService" />
+	   	<property name="portName"         value="VidyoPortalAdminServicePort" />
+		<property name="endpointAddress" value="#{vidyoConfig.vidyoPortalApiAdminEndpointAddress}"/>    
+	 </bean>
+	
+
+	<bean id="vidyoAdminService"  class="com.vidyo.webservices.common.VidyoAdminService" >
+		<constructor-arg ref="vidyoAdminServiceProxy"/>
+		<constructor-arg value="#{vidyoConfig.vidyoPortalApiUsername}"/>
+		<constructor-arg value="#{vidyoConfig.vidyoPortalApiPassword}"/>	
+	</bean> 
+	-->
+ 	<!-- 
+	 <bean id="vidyoUserServiceProxy" class="com.vidyo.webservices.common.CustomJaxWsPortProxyFactoryBean">
+	   	<property name="serviceInterface" value="com.vidyo.webservices.user.VidyoPortalUserServicePortType" />
+	   	<property name="wsdlDocumentUrl"  value="#{vidyoConfig.vidyoPortalApiUserWsdl}" />
+	   	<property name="namespaceUri"     value="http://portal.vidyo.com/user/v1_1" />
+	   	<property name="serviceName"      value="VidyoPortalUserService" />
+	   	<property name="portName"         value="VidyoPortalUserServicePort" />
+		<property name="endpointAddress" value="#{vidyoConfig.vidyoPortalApiUserEndpointAddress}"/>    
+	 </bean>
+	
+
+	<bean id="vidyoUserService"  class="com.vidyo.webservices.common.VidyoUserService" scope="session" >
+		<constructor-arg ref="vidyoUserServiceProxy"/>
+	</bean>
+	
+	-->
+	
+	<bean id="commonDao" class="com.vidyo.daos.CommonDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean id="apiManager" class="com.vidyo.webservices.common.ApiManager" >
+		<constructor-arg ref="commonDao" />
+	</bean>
+	<bean id="userDao" class="com.vidyo.daos.UserDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean id="configDao" class="com.vidyo.daos.ConfigDAO">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	<bean id="meetingDao" class="com.vidyo.daos.MeetingDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<bean id="invitationCodeDao" class="com.vidyo.daos.InvitationCodeDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	
+	<bean id="usageDao" class="com.vidyo.daos.UsageDAO">
+		<constructor-arg ref="commonDao" />
+	</bean>
+	
+	<bean id="usageBusiness" class="com.vidyo.business.UsageBusiness" >
+		<property name="usageDao" ref="usageDao" />
+		<property name="commonDao" ref="commonDao" />		
+	</bean>
+	
+	<bean id="userBusiness" class="com.vidyo.business.UserBusiness" >
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	
+	<bean id="userManager" class="com.vidyo.services.UserManager" >
+		<property name="userBusiness" ref="userBusiness" />
+	</bean>
+	
+	
+	
+	<bean id="meetingManager" class="com.vidyo.services.MeetingManager" />
+	
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+	  <property name="corePoolSize" value="5" />
+	  <property name="maxPoolSize" value="10" />
+	  <property name="queueCapacity" value="25" />
+	</bean>
+	
+	<bean id="emailManager" class="com.vidyo.services.EmailManager">
+	  <constructor-arg ref="taskExecutor" />
+	  <property name="templateManager" ref="templateManager"/>
+	</bean>
+	
+	<bean id="templateManager" class="com.vidyo.services.TemplateManager"/>
+	
+	
+
+</beans>
